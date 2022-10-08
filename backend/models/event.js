@@ -17,6 +17,18 @@ const eventSchema = mongoose.Schema({
       type: String,
       required: false
    },
+   cathegory: {
+      type: String,
+      required: true
+   },
+   address: {
+      type: String,
+      required: false
+   },
+   city: {
+      type: String,
+      required: true
+   },
    selectedFile: {
       type: String,
       required: true
@@ -31,6 +43,6 @@ const eventSchema = mongoose.Schema({
    }
 }, { timestamps: true })
 
-const Event = mongoose.model('Event', eventSchema)
+const EventModel = mongoose.model('Event', eventSchema)
 
-export default Event
+export default EventModel
