@@ -4,9 +4,9 @@ import Navbar from './components/Navbar/Navbar'
 import About from './pages/About/About'
 import UpcomingEvents from './pages/UpcomingEvents/UpcomingEvents'
 import AllEvents from './pages/AllEvents/AllEvents'
-import './App.css'
 import Login from './pages/Login/Login'
 import Signup from './pages/Signup/Signup'
+import './App.scss'
 
 function App() {
    return (
