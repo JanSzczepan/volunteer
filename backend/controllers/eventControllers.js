@@ -20,8 +20,11 @@ export const getUpcomingEvents = async (req, res) => {
 }
 
 export const getAllEvents = async (req, res) => {
+
+   const today = new Date()
+
    try {
-      const events = await EventModel.find().sort({ date: 1 })
+      const events = await EventModel.find({ date: {$gte: today.toISOString()} }).sort({ date: 1 })
 
       res.status(200).json({ data: events })
    } catch (error) {
