@@ -1,0 +1,191 @@
+@use "../../../scss/index" as *;
+
+$left-spacing: 25px;
+$participant-size: 35px;
+
+.card {
+   max-width: 400px;
+   width: 100%;
+   border-radius: $border-radius;
+   border: 1px solid $color-gray;
+   overflow: hidden;
+
+   @include tablet {
+      flex-basis: 50%;
+   }
+
+   @include desktop {
+      flex-basis:calc(100% / 3);
+   }
+}
+
+.imageContainer {
+   position: relative;
+   height: 250px;
+   background-image: url("https://th-thumbnailer.cdn-si-edu.com/vqs8PIB-vUgm_Qj7WEXZKQAqi-s=/1000x750/filters:no_upscale()/https://tf-cmsv2-smithsonianmag-media.s3.amazonaws.com/filer/53/ba/53bae430-8299-421c-ab94-1425e57ee16d/istock_65177049_medium.jpg");
+   background-position: center;
+   background-size: cover;
+   background-repeat: no-repeat;
+   border-radius: 0 0 $border-radius $border-radius;
+}
+
+.frontContainer {
+   position: absolute;
+   bottom: 0;
+   left: 0;
+   right: 0;
+   display: flex;
+   justify-content: space-between;
+   padding: 15px 20px;
+   backdrop-filter: blur(10px);
+   border-radius: 0 0 $border-radius $border-radius;
+}
+
+.textContainer {
+   margin-right: 5px;
+
+   .title {
+      color: $color-white;
+      font-weight: 400;
+      font-size: 2rem;
+      letter-spacing: .5px;
+      margin-bottom: 5px;
+   }
+
+   .location {
+      margin-bottom: 3px;
+   }
+
+   .location, .time {
+      display: flex;
+      align-items: center;
+      color: lighten($color-gray, 25%);
+      font-weight: 400;
+      font-size: 1.6rem;
+   }
+
+   .locationIcon, .clockIcon {
+      margin-right: 3px;
+      font-size: 1.6rem;
+   }
+}
+
+.outsideIconContainer {
+   .insideIconContainer {
+      width: 35px;
+      height: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3px;
+      border: 2px solid $color-white;
+      border-radius: 50%;
+
+      @include phone {
+         width: 40px;
+         height: 40px;
+         padding: 5px;
+      }
+
+      .cathegoryIcon {
+         color: $color-white;
+         font-size: 2rem;
+      }
+   }
+}
+
+.infoContainer {
+   margin: 15px 0;
+   padding: 0 20px;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+}
+
+.outsideParticipantsContainer {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.insideParticipantsContainer {
+   position: relative;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: calc($participant-size * 3 - 5px);
+   display: none;
+
+   @media only screen and (min-width: 380px) {
+      display: flex;
+   }
+
+   .participant {
+      position: absolute;
+      height: $participant-size;
+      width: $participant-size;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid $color-purple;
+      border-radius: 50%;
+      background-color: $color-white;
+
+      .participantLetter {
+         color: $color-purple;
+         font-weight: 700;
+         font-size: 1.6rem;
+      }
+   }
+}
+
+.participant:nth-child(1) {
+   left: 0;
+}
+.participant:nth-child(2) {
+   left: $left-spacing;
+}
+.participant:nth-child(3) {
+   left: calc($left-spacing * 2);
+}
+
+.participantsNumberContainer {
+   min-width: 45px;
+   padding: 5px 5px;
+   background-color: lighten($color-green, 25%);
+   border-radius: $border-radius;
+
+   @include phone {
+      padding: 5px 10px;
+      min-width: 50px;
+   }
+
+   .participantsNumber {
+      text-align: center;
+      color: darken($color-green, 25%);
+   }
+}
+
+.joinButton {
+   display: flex;
+   align-items: center;
+   justify-content: space-evenly;
+   padding: 8px 15px;
+   background-color: $color-purple;
+   color: $color-white;
+   font-size: 1.6rem;
+   font-weight: 400;
+   border: none;
+   border-radius: $border-radius;
+   letter-spacing: .5px;
+   cursor: pointer;
+   margin-left: auto;
+
+   @include phone {
+      font-size: 1.8rem;
+   }
+}
+
+.joinIcon {
+   margin-left: 8px;
+}
