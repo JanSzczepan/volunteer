@@ -18,7 +18,7 @@ const AllEvents = () => {
    if (isLoading) return
 
    return (  
-      <section className={styles.section}>
+      <section className='section'>
          <EventsInputButtonContainer />
          <div className={styles.headerContainer}>
             <h2 className={styles.header}>Wszystkie <br className={styles.headerBr}/> Eventy</h2>

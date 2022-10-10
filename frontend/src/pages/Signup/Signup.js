@@ -6,7 +6,7 @@ import { signUp } from '../../redux/auth'
 import styles from './Signup.module.scss'
 
 const Signup = () => {
-
+ 
    const [name, setName] = useState('')
    const [email, setEmail] = useState('')
    const [password, setPassword] = useState('')
@@ -27,25 +27,25 @@ const Signup = () => {
    // if (isLoading) return
 
    return (  
-      <section>
-         <form onSubmit={(e) => handleOnSubmit(e)}>
-            <h2>Zarejestruj się</h2>
-            <label htmlFor="name">Nazwa użytkownika</label>
-            <input onChange={(e) => setName(e.target.value)} id="name" type="text"/>
-            <label htmlFor="email">Adres email</label>
-            <input onChange={(e) => setEmail(e.target.value)} id="email" type="text"/>
-            <label htmlFor="password">Hasło</label>
-            <input onChange={(e) => setPassword(e.target.value)} id="password" type="password"/>
-            <div>
-               <p>Masz już konto?</p>
-               <Link to='/login'>Zaloguj się</Link>
+      <section className={`${'section'} ${styles.section}`}>
+         <form onSubmit={(e) => handleOnSubmit(e)} className='authForm'>
+            <h2 className='authHeader'>Zarejestruj się</h2>
+            <label className='authLabel' htmlFor="name">Nazwa użytkownika</label>
+            <input onChange={(e) => setName(e.target.value)} className='authInput' id="name" type="text"/>
+            <label className='authLabel' htmlFor="email">Adres email</label>
+            <input onChange={(e) => setEmail(e.target.value)} className='authInput' id="email" type="text"/>
+            <label className='authLabel' htmlFor="password">Hasło</label>
+            <input onChange={(e) => setPassword(e.target.value)} className='authInput' id="password" type="password"/>
+            <div className='authAlreadyContainer'>
+               <p className='authAlreadyText'>Masz już konto?</p>
+               <Link to='/login' className='authAlreadyButton'>Zaloguj się</Link>
             </div>
             {error && (
-               <div>
-                  <p>{error}</p>
+               <div className='authErrorContainer'>
+                  <p className='authErrorText'>{error}</p>
                </div>
             )}
-            <button type='submit'>Zarejestruj się</button>
+            <button className='authSubmitButton' type='submit'>Zarejestruj się</button>
          </form>
       </section>
    )

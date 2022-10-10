@@ -16,10 +16,22 @@ html {
 body {
    font-family: 'Lato', sans-serif;
    font-size: 1.6rem;
+   // min-height: 100vh;
 }
+
+// #root {
+//    min-height: 100vh;
+// }
 
 a {
    text-decoration: none;
+}
+
+.section {
+   max-width: $max-width;
+   margin-left: auto;
+   margin-right: auto;
+   padding: 0 $main-padding;
 }
 
 .cardsContainer {
@@ -36,5 +48,114 @@ a {
 
    @include desktop {
       margin: 30px 0;
+   }
+}
+
+.authForm {
+   max-width: 500px;
+   width: 100%;
+   padding: 30px 15px;
+
+   @include phone {
+      padding: 30px 25px;
+   }
+
+   @include tablet {
+      padding: 30px 35px;
+   }
+
+   .authHeader {
+      font-size: 2.2rem;
+      margin-bottom: 30px;
+      color: $color-black;
+   }
+
+   .authLabel {
+      display: block;
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+      color: $color-black;
+
+      @include phone {
+         font-size: 1.6rem;
+      }
+   }
+
+   .authInput {
+      display: block;
+      width: 100%;
+      margin-bottom: 15px;
+      padding: 10px 15px;
+      border: 1px solid $color-gray;
+      border-radius: $border-radius;
+      outline: none;
+      font-size: 1.5rem;
+      color: lighten($color-black, 10%);
+
+      @include phone {
+         font-size: 1.7rem;
+      }
+   }
+
+   .authAlreadyContainer {
+      display: flex;
+      align-items: center;
+      margin-bottom: 25px;
+   }
+
+   .authAlreadyText {
+      margin-right: 5px;
+      font-size: 1.4rem;
+      color: $color-black;
+
+      @include phone {
+         font-size: 1.6rem;
+      }
+   }
+
+   .authAlreadyButton {
+      font-size: 1.4rem;
+      color: $color-purple;
+
+      @include phone {
+         font-size: 1.6rem;
+      }
+   }
+
+   .authSubmitButton {
+      width: 100%;
+      padding: 15px 20px;
+      background-color: $color-purple;
+      color: $color-white;
+      border: none;
+      border-radius: $border-radius;
+      font-size: 1.8rem;
+      cursor: pointer;
+
+      @include phone {
+         font-size: 2rem;
+      }
+   }
+
+   .authErrorContainer {
+      position: relative;
+      margin-bottom: 25px;
+      padding-left: 15px;
+   }
+
+   .authErrorContainer::after {
+      content: '';
+      position: absolute;
+      width: 4px;
+      top: -2px;
+      bottom: -2px;
+      left: 0;
+      background-color: $color-red;
+      border-radius: $border-radius;
+   }
+
+   .authErrorText {
+      color: $color-red;
+      font-weight: 700;
    }
 }

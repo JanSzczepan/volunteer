@@ -26,23 +26,23 @@ const Login = () => {
    // if (isLoading) return
 
    return (  
-      <section>
-         <form onSubmit={(e) => handleOnSubmit(e)}>
-            <h2>Zaloguj się</h2>
-            <label htmlFor="name">Nazwa użytkownika lub email</label>
-            <input onChange={(e) => setLogin(e.target.value)} id="name" type="text"/>
-            <label htmlFor="password">Hasło</label>
-            <input onChange={(e) => setPassword(e.target.value)} id="password" type="password"/>
-            <div>
-               <p>Nie masz konta?</p>
-               <Link to='/signup'>Zarejestruj się</Link>
+      <section className={`${'section'} ${styles.section}`}>
+         <form onSubmit={(e) => handleOnSubmit(e)} className='authForm'>
+            <h2 className='authHeader'>Zaloguj się</h2>
+            <label className='authLabel' htmlFor="name">Nazwa użytkownika lub email</label>
+            <input onChange={(e) => setLogin(e.target.value)} className='authInput' id="name" type="text"/>
+            <label className='authLabel' htmlFor="password">Hasło</label>
+            <input onChange={(e) => setPassword(e.target.value)} className='authInput' id="password" type="password"/>
+            <div className='authAlreadyContainer'>
+               <p className='authAlreadyText'>Nie masz konta?</p>
+               <Link to='/signup' className='authAlreadyButton'>Zarejestruj się</Link>
             </div>
             {error && (
-               <div>
-                  <p>{error}</p>
+               <div className='authErrorContainer'>
+                  <p className='authErrorText'>{error}</p>
                </div>
             )}
-            <button type='submit'>Zaloguj się</button>
+            <button className='authSubmitButton' type='submit'>Zaloguj się</button>
          </form>
       </section>
    )

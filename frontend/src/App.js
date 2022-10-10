@@ -7,13 +7,13 @@ import AllEvents from './pages/AllEvents/AllEvents'
 import Login from './pages/Login/Login'
 import Signup from './pages/Signup/Signup'
 import AddEvent from './pages/AddEvent/AddEvent'
-import './App.scss'
+import styles from './App.module.scss'
 
 function App() {
    return (
       <BrowserRouter>
          <Navbar />
-         <main>
+         <main className={styles.main}>
          <Routes>
             <Route path='/' element={<Navigate to='/about'/>}/>
             <Route path='/about' element={<About />}/>

@@ -21,7 +21,7 @@ const UpcomingEvents = () => {
    if (isLoading) return
   
    return (  
-      <section className={styles.section}>
+      <section className='section'>
          <EventsInputButtonContainer />
          <div className={styles.headerButtonContainer}>
             <h2 className={styles.header}>Nadchodzące <br className={styles.headerBr}/> Eventy</h2>
