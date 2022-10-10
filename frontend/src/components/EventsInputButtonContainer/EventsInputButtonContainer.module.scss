@@ -1,0 +1,33 @@
+@use "../../scss/index" as *;
+
+.inputButtonContainer {
+   display: flex;
+   flex-direction: column;
+
+   @include tablet {
+      flex-direction: row-reverse;
+      align-items: center;
+      justify-content: space-between;
+   }
+
+   @include desktop {
+      margin: 20px 0;
+   }
+}
+
+.addEventButton {
+   margin-top: 10px;
+   padding: 10px 10px;
+   background-color: $color-green;
+   text-align: center;
+   color: $color-white;
+   font-size: 2rem;
+   font-weight: 700;
+   letter-spacing: .5px;
+   border-radius: $border-radius;
+
+   @include tablet {
+      margin-top: 0;
+      padding: 6px 20px;
+   }
+}

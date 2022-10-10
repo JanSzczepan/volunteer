@@ -1,0 +1,26 @@
+@use "../../scss/index" as *;
+
+.section {
+   max-width: $max-width;
+   margin: 0 auto;
+   padding: 0 $main-padding;
+}
+
+.headerContainer {
+   margin: 20px 0;
+
+   @include desktop {
+      margin: 30px 0;
+   }
+}
+
+.header {
+   color: $color-black;
+   font-size: 2rem;
+
+   .headerBr {
+      @include phone {
+         display: none;
+      }
+   }
+}

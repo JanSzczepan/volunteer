@@ -6,38 +6,6 @@
    padding: 0 $main-padding;
 }
 
-.inputButtonContainer {
-   display: flex;
-   flex-direction: column;
-
-   @include tablet {
-      flex-direction: row-reverse;
-      align-items: center;
-      justify-content: space-between;
-   }
-
-   @include desktop {
-      margin: 20px 0;
-   }
-}
-
-.addEventButton {
-   margin-top: 10px;
-   padding: 10px 10px;
-   background-color: $color-green;
-   text-align: center;
-   color: $color-white;
-   font-size: 2rem;
-   font-weight: 700;
-   letter-spacing: .5px;
-   border-radius: $border-radius;
-
-   @include tablet {
-      margin-top: 0;
-      padding: 6px 20px;
-   }
-}
-
 .headerButtonContainer {
    margin: 20px 0;
    display: flex;
@@ -86,22 +54,4 @@
 .dayButtonActive {
    color: $color-black;
    border-bottom: 2px solid $color-black;
-}
-
-.cardsContainer {
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   margin: 20px 0;
-   gap: 25px 0;
-
-   @include tablet {
-      flex-direction: row;
-      gap: 25px 15px;
-      // flex-wrap: wrap;
-   }
-
-   @include desktop {
-      margin: 30px 0;
-   }
 }
