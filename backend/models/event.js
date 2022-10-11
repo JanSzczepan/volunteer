@@ -37,6 +37,18 @@ const eventSchema = mongoose.Schema({
       type: [String],
       default: []
    },
+   motivations: {
+      type: [String],
+      default: []
+   },
+   resignations: {
+      type: [String],
+      default: []
+   },
+   banned: {
+      type: [String],
+      default: []
+   },
    comments: {
       type: [String],
       default: []

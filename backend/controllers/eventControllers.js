@@ -58,3 +58,46 @@ export const createEvent = async (req, res) => {
       res.status(409).json({ error: error.message })
    }
 }
+
+export const joinEvent = async (req, res) => {
+   try {
+
+      const { id } = req.params
+      const { motivation, resignation } = req.body
+
+      if(!mongoose.isValidObjectId(id))
+         return res.status(404).json({ error: 'Event id is not valid' })
+
+      const event = await EventModel.findById(id)
+
+      const banned = event.banned.findIndex((id) => id === String(req.user)) === -1 ? false : true
+
+      if (banned) 
+         return res.status(404).json({ error: 'You have already resigned from this event' })
+
+      const index = event.participants.findIndex((id) => id === String(req.user))
+
+      if (index === -1) {
+
+         if (!motivation)
+            return res.status(404).json({ error: 'Quote your motivation' })
+
+         event.participants.push(req.user)
+         event.motivations.push(motivation)
+      } else {
+
+         if (!resignation)
+            return res.status(404).json({ error: 'Quote your resignation' })
+
+         event.participants = event.participants.filter((id) => id !== String(req.user))
+         event.resignations.push(resignation)
+         event.banned.push(req.user)
+      }
+
+      const updatedEvent = await EventModel.findByIdAndUpdate(id, event, { new: true })
+      
+      res.status(200).json(updatedEvent)
+   } catch (error) {
+      res.status(404).json({ error: error.message })
+   }
+}

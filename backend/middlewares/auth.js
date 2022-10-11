@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken'
 
 import UserModel from '../models/user.js'
 
-const requieAuth = async (req, res, next) => {
+export const auth = async (req, res, next) => {
    const {authorization} = req.headers
 
    if(!authorization)
@@ -11,7 +11,7 @@ const requieAuth = async (req, res, next) => {
    const token = authorization.split(' ')[1]
    
    try {
-      const {_id} = jwt.verify(token, process.env.SECRET)
+      const {_id} = jwt.verify(token, process.env.TOKEN_SECRET)
 
       req.user = await UserModel.findOne({_id}).select('_id')
 
@@ -22,5 +22,3 @@ const requieAuth = async (req, res, next) => {
       res.status(401).json({error: 'Request is not authorized'})
    }
 }
-
-module.exports = requieAuth
