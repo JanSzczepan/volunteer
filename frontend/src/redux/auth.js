@@ -40,7 +40,11 @@ export const authSlice = createSlice({
    name: 'auth',
    initialState,
    reducers: {
+      logOut: (state) => {
+         window.localStorage.clear()
 
+         state.user = null
+      }
    },
    extraReducers: {
       [logIn.pending]: (state) => {
@@ -76,4 +80,5 @@ export const authSlice = createSlice({
    }
 })
 
+export const { logOut } = authSlice.actions
 export default authSlice.reducer

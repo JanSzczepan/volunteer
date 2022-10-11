@@ -10,6 +10,9 @@ import AddEvent from './pages/AddEvent/AddEvent'
 import styles from './App.module.scss'
 
 function App() {
+
+   const user = JSON.parse(window.localStorage.getItem('profile'))
+   
    return (
       <BrowserRouter>
          <Navbar />
@@ -21,8 +24,8 @@ function App() {
             <Route path='/events/upcoming' element={<UpcomingEvents />}/>
             <Route path='/events/all' element={<AllEvents />}/>
             <Route path='/events/add-event' element={<AddEvent />}/>
-            <Route path='/login' element={<Login />}/>
-            <Route path='/signup' element={<Signup />}/>
+            <Route path='/login' element={!user?.user ? <Login /> : <Navigate to='/events'/>}/>
+            <Route path='/signup' element={!user?.user ? <Signup /> : <Navigate to='/events'/>}/>
          </Routes>
          </main>
       </BrowserRouter>

@@ -73,7 +73,7 @@
 .loginButton {
    background-color: transparent;
    color: $color-black;
-   border: 3px solid $color-white;
+   border: 3px solid transparent;
    margin-right: 10px;
 }
 
@@ -81,4 +81,18 @@
    background-color: $color-green;
    color: $color-white;
    border: 3px solid $color-green;
+}
+
+.logoutButton {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   background-color: transparent;
+   color: $color-black;
+   border: 3px solid transparent;
+
+   .authLogoutIcon {
+      margin-right: 5px;
+      font-size: 1.8rem;
+   }
 }

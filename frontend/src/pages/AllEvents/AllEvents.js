@@ -15,7 +15,7 @@ const AllEvents = () => {
       dispatch(getAllEvents())
    }, [dispatch])
    
-   if (isLoading) return
+   // if (isLoading) return
 
    return (  
       <section className='section'>

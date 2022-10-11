@@ -18,7 +18,7 @@ const UpcomingEvents = () => {
       dispatch(getUpcomingEvents())
    }, [dispatch])
    
-   if (isLoading) return
+   // if (isLoading) return
   
    return (  
       <section className='section'>
