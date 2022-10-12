@@ -51,7 +51,7 @@ a {
    }
 }
 
-.authForm {
+.authForm, .joinForm {
    max-width: 500px;
    width: 100%;
    padding: 30px 15px;
@@ -64,13 +64,13 @@ a {
       padding: 30px 35px;
    }
 
-   .authHeader {
+   .authHeader, .joinHeader {
       font-size: 2.2rem;
       margin-bottom: 30px;
       color: $color-black;
    }
 
-   .authLabel {
+   .authLabel, .joinLabel {
       display: block;
       font-size: 1.4rem;
       margin-bottom: 10px;
@@ -81,7 +81,7 @@ a {
       }
    }
 
-   .authInput {
+   .authInput, .joinInput {
       display: block;
       width: 100%;
       margin-bottom: 15px;
@@ -122,7 +122,7 @@ a {
       }
    }
 
-   .authSubmitButton {
+   .authSubmitButton, .joinSubmitButton {
       width: 100%;
       padding: 15px 20px;
       background-color: $color-purple;
@@ -137,13 +137,13 @@ a {
       }
    }
 
-   .authErrorContainer {
+   .authErrorContainer, .joinErrorContainer {
       position: relative;
       margin-bottom: 25px;
       padding-left: 15px;
    }
 
-   .authErrorContainer::after {
+   .authErrorContainer::after, .joinErrorContainer::after {
       content: '';
       position: absolute;
       width: 4px;
@@ -154,7 +154,7 @@ a {
       border-radius: $border-radius;
    }
 
-   .authErrorText {
+   .authErrorText, .joinErrorText {
       color: $color-red;
       font-weight: 700;
    }

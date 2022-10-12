@@ -70,28 +70,28 @@ export const joinEvent = async (req, res) => {
 
       const event = await EventModel.findById(id)
 
-      const banned = event.banned.findIndex((id) => id === String(req.user)) === -1 ? false : true
+      const banned = event.banned.findIndex((id) => id === String(req.user._id)) === -1 ? false : true
 
       if (banned) 
          return res.status(404).json({ error: 'You have already resigned from this event' })
 
-      const index = event.participants.findIndex((id) => id === String(req.user))
+      const index = event.participants.findIndex((id) => id === String(req.user._id))
 
       if (index === -1) {
 
          if (!motivation)
             return res.status(404).json({ error: 'Quote your motivation' })
-
-         event.participants.push(req.user)
+         
+         event.participants.push(req.user._id)
          event.motivations.push(motivation)
       } else {
 
          if (!resignation)
             return res.status(404).json({ error: 'Quote your resignation' })
-
+   
          event.participants = event.participants.filter((id) => id !== String(req.user))
          event.resignations.push(resignation)
-         event.banned.push(req.user)
+         event.banned.push(req.user._id)
       }
 
       const updatedEvent = await EventModel.findByIdAndUpdate(id, event, { new: true })

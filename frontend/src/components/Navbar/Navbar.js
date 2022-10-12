@@ -31,9 +31,9 @@ const Navbar = () => {
    }, [location])
    
    const logout = () => {
-      navigate('/login')
       setUser(null)
       dispatch(logOut())
+      navigate('/login')
    }
 
    return (  

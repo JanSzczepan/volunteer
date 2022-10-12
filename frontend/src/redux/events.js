@@ -3,6 +3,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import * as api from '../api/index'
 
 const initialState = {
+   event: null,
    events: [],
    isLoading: true
 }
@@ -35,6 +36,42 @@ export const getAllEvents = createAsyncThunk(
    }
 )
 
+export const getEvent = createAsyncThunk(
+   'events/getEvent',
+   async (id, thunkAPI) => {
+      try {
+         const { data } = await api.fetchEvent(id)
+         console.log(`The event (${id}) fetched:`, data)
+
+         return data
+      } catch (error) {
+         return thunkAPI.rejectWithValue(error)
+      }
+   }
+)
+
+export const joinEvent = createAsyncThunk(
+   'events/joinEvent',
+   async (dataObj, thunkAPI) => {
+      try {
+         const { id, formData, navigate } = dataObj
+
+         const { data } = await api.joinEvent(id, formData)
+         
+         if (formData.motivation)
+            console.log('Event joined:', data)
+         else 
+            console.log('Event resigned:', data)
+         
+         navigate(`/events/${id}/eventDetails`)
+
+         return data
+      } catch (error) {
+         throw thunkAPI.rejectWithValue(error.response.data)
+      }
+   }
+)
+
 export const eventsSlice = createSlice({
    name: 'events',
    initialState,
@@ -61,6 +98,30 @@ export const eventsSlice = createSlice({
       [getAllEvents.rejected]: (state, action) => {
          console.log(action)
          state.isLoading = false
+      },
+      [getEvent.pending]: (state) => {
+         state.isLoading = true
+      },
+      [getEvent.fulfilled]: (state, action) => {
+         state.event = action.payload.data
+         state.isLoading = false
+      },
+      [getEvent.rejected]: (state, action) => {
+         console.log(action)
+         state.isLoading = false
+      },
+      [joinEvent.pending]: (state) => {
+         state.error = null
+         state.isLoading = true
+      },
+      [joinEvent.fulfilled]: (state, action) => {
+         state.events = state.events.map(event => event._id === action.payload._id ? action.payload : event)
+         state.isLoading = false
+      },
+      [joinEvent.rejected]: (state, action) => {
+         console.log(action)
+         state.isLoading = false
+         state.error = action.payload.error
       },
    }
 })

@@ -186,6 +186,15 @@ $participant-size: 35px;
    }
 }
 
+.resignButton {
+   background-color: $color-red;
+}
+
+.banButton {
+   background-color: darken($color-gray, 25%);
+   cursor: default;
+}
+
 .joinIcon {
    margin-left: 8px;
 }

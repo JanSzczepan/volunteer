@@ -1,0 +1,40 @@
+@use "../../scss/index" as *;
+
+.section {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   margin-top: 50px;
+}
+
+.joinLink {
+   display: block;
+   width: 100%;
+   padding: 15px 20px;
+   background-color: $color-purple;
+   color: $color-white;
+   border: none;
+   border-radius: $border-radius;
+   font-size: 1.8rem;
+   text-align: center;
+   cursor: pointer;
+   
+      @include phone {
+         font-size: 2rem;
+      }
+}
+
+.resignSubmitButton {
+   width: 100%;
+   padding: 15px 20px;
+   background-color: $color-red;
+   color: $color-white;
+   border: none;
+   border-radius: $border-radius;
+   font-size: 1.8rem;
+   cursor: pointer;
+
+      @include phone {
+         font-size: 2rem;
+      }
+}

@@ -7,12 +7,14 @@ import AllEvents from './pages/AllEvents/AllEvents'
 import Login from './pages/Login/Login'
 import Signup from './pages/Signup/Signup'
 import AddEvent from './pages/AddEvent/AddEvent'
+import JoinEvent from './pages/JoinEvent/JoinEvent'
+import EventDetails from './pages/EventDetails/EventDetails'
 import styles from './App.module.scss'
 
 function App() {
 
    const user = JSON.parse(window.localStorage.getItem('profile'))
-   
+   console.log(user)
    return (
       <BrowserRouter>
          <Navbar />
@@ -23,6 +25,8 @@ function App() {
             <Route path='/events' element={<Navigate to='/events/upcoming'/>}/>
             <Route path='/events/upcoming' element={<UpcomingEvents />}/>
             <Route path='/events/all' element={<AllEvents />}/>
+            <Route path='events/:id/eventDetails' element={<EventDetails />}/>
+            <Route path='events/:id/join' element={<JoinEvent />}/>
             <Route path='/events/add-event' element={<AddEvent />}/>
             <Route path='/login' element={!user?.user ? <Login /> : <Navigate to='/events'/>}/>
             <Route path='/signup' element={!user?.user ? <Signup /> : <Navigate to='/events'/>}/>
