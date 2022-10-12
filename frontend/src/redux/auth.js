@@ -54,7 +54,7 @@ export const authSlice = createSlice({
       [logIn.fulfilled]: (state, action) => {
          window.localStorage.setItem('profile', JSON.stringify(action.payload))
 
-         state.auth = action.paylaod
+         state.user = action.paylaod
          state.isLoading = false
       },
       [logIn.rejected]: (state, action) => {
@@ -69,7 +69,7 @@ export const authSlice = createSlice({
       [signUp.fulfilled]: (state, action) => {
          window.localStorage.setItem('profile', JSON.stringify(action.payload))
 
-         state.auth = action.paylaod
+         state.user = action.paylaod
          state.isLoading = false
       },
       [signUp.rejected]: (state, action) => {

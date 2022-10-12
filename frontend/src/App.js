@@ -1,4 +1,6 @@
+import { useEffect, useState } from 'react'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 import Navbar from './components/Navbar/Navbar'
 import About from './pages/About/About'
@@ -14,7 +16,7 @@ import styles from './App.module.scss'
 function App() {
 
    const user = JSON.parse(window.localStorage.getItem('profile'))
-   console.log(user)
+   
    return (
       <BrowserRouter>
          <Navbar />
@@ -28,8 +30,8 @@ function App() {
             <Route path='events/:id/eventDetails' element={<EventDetails />}/>
             <Route path='events/:id/join' element={<JoinEvent />}/>
             <Route path='/events/add-event' element={<AddEvent />}/>
-            <Route path='/login' element={!user?.user ? <Login /> : <Navigate to='/events'/>}/>
-            <Route path='/signup' element={!user?.user ? <Signup /> : <Navigate to='/events'/>}/>
+            <Route path='/login' element={!user?.user ? <Login /> : <Navigate to='/'/>}/>
+            <Route path='/signup' element={!user?.user ? <Signup /> : <Navigate to='/'/>}/>
          </Routes>
          </main>
       </BrowserRouter>
