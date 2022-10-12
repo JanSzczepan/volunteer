@@ -8,10 +8,10 @@ import styles from './EventCard.module.scss'
 
 const EventCard = ({ event }) => {
    
-   const { _id, title, date, cathegory, city, selectedFile, participants, banned } = event
+   const { _id, title, date, cathegory, city, selectedFile, participants, participantsNames, banned } = event
    const hours = (new Date(date)).getHours()
    const minutes = (new Date(date)).getMinutes()
-   const latestParticipants = participants.slice(-3)
+   const latestParticipants = participantsNames.slice(-3)
 
    const user = JSON.parse(window.localStorage.getItem('profile'))
    

@@ -64,7 +64,7 @@ export const joinEvent = async (req, res) => {
 
       const { id } = req.params
       const { motivation, resignation } = req.body
-
+      
       if(!mongoose.isValidObjectId(id))
          return res.status(404).json({ error: 'Event id is not valid' })
 
@@ -83,13 +83,15 @@ export const joinEvent = async (req, res) => {
             return res.status(404).json({ error: 'Quote your motivation' })
          
          event.participants.push(req.user._id)
+         event.participantsNames.push(req.user.name)
          event.motivations.push(motivation)
       } else {
 
          if (!resignation)
             return res.status(404).json({ error: 'Quote your resignation' })
    
-         event.participants = event.participants.filter((id) => id !== String(req.user))
+         event.participants = event.participants.filter((id) => id !== String(req.user._id))
+         event.participantsNames = event.participantsNames.filter((n) => n !== String(req.user.name))
          event.resignations.push(resignation)
          event.banned.push(req.user._id)
       }

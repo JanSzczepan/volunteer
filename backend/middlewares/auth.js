@@ -13,7 +13,7 @@ export const auth = async (req, res, next) => {
    try {
       const {_id} = jwt.verify(token, process.env.TOKEN_SECRET)
 
-      req.user = await UserModel.findOne({_id}).select('_id')
+      req.user = await UserModel.findOne({_id}).select('_id name')
 
       next()
    } catch (error) {

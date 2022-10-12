@@ -37,6 +37,10 @@ const eventSchema = mongoose.Schema({
       type: [String],
       default: []
    },
+   participantsNames: {
+      type: [String],
+      default: []
+   },
    motivations: {
       type: [String],
       default: []
