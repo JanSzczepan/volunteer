@@ -1,6 +1,6 @@
 @use "../../../scss/index" as *;
 
-$left-spacing: 25px;
+$left-spacing: -10px;
 $participant-size: 35px;
 
 .card {
@@ -113,7 +113,7 @@ $participant-size: 35px;
    display: flex;
    align-items: center;
    justify-content: center;
-   width: calc($participant-size * 3 - 5px);
+   // width: calc($participant-size * 3 - 5px);
    display: none;
 
    @media only screen and (min-width: 380px) {
@@ -121,7 +121,7 @@ $participant-size: 35px;
    }
 
    .participant {
-      position: absolute;
+      position: relative;
       height: $participant-size;
       width: $participant-size;
       display: flex;
@@ -154,6 +154,7 @@ $participant-size: 35px;
    padding: 5px 5px;
    background-color: lighten($color-green, 25%);
    border-radius: $border-radius;
+   margin-left: 10px;
 
    @include phone {
       padding: 5px 10px;
