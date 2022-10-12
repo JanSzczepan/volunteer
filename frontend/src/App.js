@@ -15,7 +15,13 @@ import styles from './App.module.scss'
 
 function App() {
 
-   const user = JSON.parse(window.localStorage.getItem('profile'))
+   const [user, setUser] = useState(JSON.parse(window.localStorage.getItem('profile')))
+   
+   const { user: auth } = useSelector(store => store.auth)
+
+   useEffect(() => {
+      setUser(JSON.parse(window.localStorage.getItem('profile')))
+   }, [auth])
    
    return (
       <BrowserRouter>
