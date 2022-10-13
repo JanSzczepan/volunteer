@@ -44,6 +44,9 @@ export const authSlice = createSlice({
          window.localStorage.clear()
 
          state.user = null
+      },
+      keepTrack: (state) => {
+         state.user = JSON.parse(window.localStorage.getItem('profile'))
       }
    },
    extraReducers: {
@@ -80,5 +83,5 @@ export const authSlice = createSlice({
    }
 })
 
-export const { logOut } = authSlice.actions
+export const { logOut, keepTrack } = authSlice.actions
 export default authSlice.reducer

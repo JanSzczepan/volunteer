@@ -5,7 +5,7 @@ import { BiMenuAltLeft } from 'react-icons/bi'
 import { FiLogOut } from 'react-icons/fi'
 import decode from 'jwt-decode'
 
-import { logOut } from '../../redux/auth'
+import { keepTrack, logOut } from '../../redux/auth'
 import styles from './Navbar.module.scss'
 
 const Navbar = () => {
@@ -26,6 +26,8 @@ const Navbar = () => {
          if(decodedToken.exp * 1000 < new Date().getTime())
             logout()
       }
+      
+      dispatch(keepTrack())
 
       setUser(JSON.parse(window.localStorage.getItem('profile')))
    }, [location])
