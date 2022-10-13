@@ -53,11 +53,8 @@
 .buttonContainer {
    position: absolute;
    right: $main-padding;
-   display: none;
-
-   @include tablet {
-      display: block;
-   }
+   display: flex;
+   align-items: center;
 }
 
 .authButton {
@@ -75,24 +72,68 @@
    color: $color-black;
    border: 3px solid transparent;
    margin-right: 10px;
+   display: none;
+
+   @include tablet {
+      display: block;
+   }
 }
 
 .signupButton {
    background-color: $color-green;
    color: $color-white;
    border: 3px solid $color-green;
+   display: none;
+
+   @include tablet {
+      display: block;
+   }
 }
 
 .logoutButton {
-   display: flex;
+   display: none;
    align-items: center;
    justify-content: center;
    background-color: transparent;
    color: $color-black;
    border: 3px solid transparent;
 
+   @include tablet {
+      display: flex;
+   }
+
    .authLogoutIcon {
       margin-right: 5px;
       font-size: 1.8rem;
+   }
+}
+
+.user {
+   height: 30px;
+   width: 30px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   border: 2px solid $color-purple;
+   border-radius: 50%;
+   background-color: $color-white;
+
+   @include phone {
+      height: 35px;
+      width: 35px;
+   }
+
+   @include tablet {
+      display: none;
+   }
+
+   .userLetter {
+      color: $color-purple;
+      font-weight: 700;
+      font-size: 1.6rem;
+
+      @include phone {
+         font-size: 1.7rem;
+      }
    }
 }

@@ -49,10 +49,15 @@ const Navbar = () => {
             </Link>
             <div className={styles.buttonContainer}>
                { user?.user ? (
-                  <button onClick={logout} className={`${styles.authButton} ${styles.logoutButton}`} type='button'>
+                  <>
+                     <button onClick={logout} className={`${styles.authButton} ${styles.logoutButton}`} type='button'>
                      <FiLogOut className={styles.authLogoutIcon}/>
                      Logout
-                  </button>
+                     </button>
+                     <div className={styles.user}>
+                        <div className={styles.userLetter}>{user?.user.name[0]}</div>
+                     </div>
+                  </>
                ) : (
                   <>
                      <Link to='/login' className={`${styles.authButton} ${styles.loginButton}`} type='button'>Login</Link>
