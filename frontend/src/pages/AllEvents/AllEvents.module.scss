@@ -1,5 +1,14 @@
 @use "../../scss/index" as *;
 
+.allEventsSection {
+   max-width: 500px !important;
+   margin: 0 auto;
+
+   @include tablet {
+      max-width: $max-width !important;
+   }
+}
+
 .headerContainer {
    margin: 20px 0;
 

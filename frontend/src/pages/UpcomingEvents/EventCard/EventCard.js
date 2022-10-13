@@ -20,26 +20,28 @@ const EventCard = ({ event }) => {
 
    return (  
       <div className={styles.card}>
-         <div className={styles.imageContainer}>
-            <div className={styles.frontContainer}>
-               <div className={styles.textContainer}>
-                  <h3 className={styles.title}>{title}</h3>
-                  <h4 className={styles.location}>
-                     <ImLocation2 className={styles.locationIcon}/>
-                     {city}
-                  </h4>
-                  <p className={styles.time}>
-                     <BsClock className={styles.clockIcon}/>
-                     {hours}:{minutes}
-                  </p>
-               </div>
-               <div className={styles.outsideIconContainer}>
-                  <div className={styles.insideIconContainer}>
-                     <FaDog className={styles.cathegoryIcon}/>
+         <Link to={`/events/${_id}/eventDetails`}>
+            <div className={styles.imageContainer}>
+               <div className={styles.frontContainer}>
+                  <div className={styles.textContainer}>
+                     <h3 className={styles.title}>{title}</h3>
+                     <h4 className={styles.location}>
+                        <ImLocation2 className={styles.locationIcon}/>
+                        {city}
+                     </h4>
+                     <p className={styles.time}>
+                        <BsClock className={styles.clockIcon}/>
+                        {hours}:{minutes}
+                     </p>
+                  </div>
+                  <div className={styles.outsideIconContainer}>
+                     <div className={styles.insideIconContainer}>
+                        <FaDog className={styles.cathegoryIcon}/>
+                     </div>
                   </div>
                </div>
             </div>
-         </div>
+         </Link>
          <div className={styles.infoContainer}>
             {Boolean(latestParticipants.length) && (
                <div className={styles.outsideParticipantsContainer}>

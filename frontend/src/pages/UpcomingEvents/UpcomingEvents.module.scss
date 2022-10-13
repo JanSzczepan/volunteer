@@ -1,5 +1,14 @@
 @use "../../scss/index" as *;
 
+.upcomingEventsSection {
+   max-width: 500px !important;
+   margin: 0 auto;
+
+   @include tablet {
+      max-width: $max-width !important;
+   }
+}
+
 .headerButtonContainer {
    margin: 20px 0;
    display: flex;

@@ -1,0 +1,195 @@
+@use "../../scss/index" as *;
+
+$left-spacing: -12.5px;
+$participant-size: 43.75px;
+
+.eventDetailsSection {
+   max-width: 500px !important;
+   margin: 0 auto;
+
+   @include tablet {
+      max-width: $max-width !important;
+   }
+}
+
+.headerContainer {
+   margin: 20px 0;
+
+   @include desktop {
+      margin: 30px 0;
+   }
+}
+
+.headerText {
+   color: $color-black;
+   font-size: 2rem;
+}
+
+.eventDetailsHeader {
+   display: flex;
+   flex-direction: column;
+
+   @include tablet {
+      flex-direction: row-reverse;
+      justify-content: space-between;
+      gap: 0 35px;
+   }
+}
+
+.imageContainer {
+   width: 100%;
+   height: 300px;
+   background-image: url("https://th-thumbnailer.cdn-si-edu.com/vqs8PIB-vUgm_Qj7WEXZKQAqi-s=/1000x750/filters:no_upscale()/https://tf-cmsv2-smithsonianmag-media.s3.amazonaws.com/filer/53/ba/53bae430-8299-421c-ab94-1425e57ee16d/istock_65177049_medium.jpg");
+   background-position: center;
+   background-size: cover;
+   background-repeat: no-repeat;
+   border-radius: $border-radius;
+
+   @include tablet {
+      flex-basis: 60%;
+      height: 450px;
+   }
+}
+
+.outsideTextContainer {
+   display: flex;
+   flex-direction: column;
+   margin: 15px 0;
+
+   @include tablet {
+      flex-basis: 40%;
+   }
+
+   .eventTitle {
+      font-size: 3rem;
+      font-weight: 700;
+      color: $color-black;
+      letter-spacing: .5px;
+      margin-bottom: 5px;
+
+      @include phone {
+         margin-bottom: 10px;
+      }
+   }
+
+   .eventDate {
+      display: flex;
+      align-items: center;
+      gap: 0 5px;
+      font-size: 1.4rem;
+      color: darken($color-gray, 20%);
+      letter-spacing: .5px;
+      margin-bottom: 15px;
+
+      .eventDateDot {
+         font-size: 1rem;
+      }
+   }
+
+   .joinButton {
+      display: block;
+      width: fit-content;
+      padding: 15px 50px;
+      background-color: $color-purple;
+      color: $color-white;
+      font-size: 2rem;
+      font-weight: 400;
+      border: none;
+      border-radius: calc($border-radius * 2);
+      letter-spacing: .5px;
+      cursor: pointer;
+      margin-bottom: 20px;
+
+      @include tablet {
+         margin-bottom: 50px;
+      }
+   }
+
+   .resignButton {
+      background-color: $color-red;
+   }
+
+   .banButton {
+      background-color: darken($color-gray, 25%);
+      cursor: default;
+   }
+
+   .joinIcon {
+      margin-left: 8px;
+   }
+
+   .eventDescriptionHeader {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: $color-black;
+      margin-bottom: 10px;
+      letter-spacing: .5px;
+   }
+
+   .eventDescription {
+      font-size: 1.6rem;
+      color: darken($color-gray, 20%);
+      margin-bottom: 20px;
+   }
+
+   .participantsHeader {
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: .5px;
+   }
+
+   .outsideParticipantsContainer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0 10px;
+   }
+
+   .participantsSpan {
+      display: none;
+
+      @include phone {
+         display: inline;
+      }
+   }
+
+   .insideParticipantsContainer {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      display: none;
+   
+      @include phone {
+         display: flex;
+      }
+   
+      .participant {
+         position: relative;
+         height: $participant-size;
+         width: $participant-size;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         border: 2px solid $color-purple;
+         border-radius: 50%;
+         background-color: $color-white;
+   
+         .participantLetter {
+            color: $color-purple;
+            font-weight: 700;
+            font-size: 1.6rem;
+         }
+      }
+   }
+   
+   .participant:nth-child(1) {
+      left: 0;
+   }
+   .participant:nth-child(2) {
+      left: $left-spacing;
+   }
+   .participant:nth-child(3) {
+      left: calc($left-spacing * 2);
+   }
+}
