@@ -13,6 +13,7 @@ export const fetchUpcomingEvents = () => API.get('/events/upcoming')
 export const fetchAllEvents = () => API.get('/events/all')
 export const fetchEvent = (id) => API.get(`/events/${id}`)
 export const joinEvent = (id, formData) => API.patch(`/events/${id}/join`, formData)
+export const createEvent = (formData) => API.post('/events', formData)
 
 export const login = (formData) => API.post('/user/login', formData)
 export const signup = (formData) => API.post('/user/signup', formData)

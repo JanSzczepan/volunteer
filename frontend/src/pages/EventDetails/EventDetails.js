@@ -60,16 +60,18 @@ const EventDetails = () => {
                {!ban && <Link to={user?.user ? `/events/${event._id}/join` : '/login'} className={`${styles.joinButton} ${!join && styles.resignButton}`}>{join ? 'Dołącz' : 'Zrezygnuj'} {join && <IoIosArrowForward className={styles.joinIcon}/>}</Link>}
                <h5 className={styles.eventDescriptionHeader}>Opis:</h5>
                <p className={styles.eventDescription}>{event.description}</p>
-               <div className={styles.outsideParticipantsContainer}>
-                  <p className={styles.participantsHeader}>{participantsText}<span className={styles.participantsSpan}>:</span></p>
-                  <div className={styles.insideParticipantsContainer}>
-                     {latestParticipants.map((p, i) => (
-                        <div className={styles.participant} key={i}>
-                           <p className={styles.participantLetter}>{p[0]}</p>
-                        </div>
-                     ))}
+               {Boolean(event?.participants?.length) && (
+                  <div className={styles.outsideParticipantsContainer}>
+                     <p className={styles.participantsHeader}>{participantsText}<span className={styles.participantsSpan}>:</span></p>
+                     <div className={styles.insideParticipantsContainer}>
+                        {latestParticipants.map((p, i) => (
+                           <div className={styles.participant} key={i}>
+                              <p className={styles.participantLetter}>{p[0]}</p>
+                           </div>
+                        ))}
+                     </div>
                   </div>
-               </div>
+               )}
             </div>
          </header>
       </section>

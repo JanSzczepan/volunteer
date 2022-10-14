@@ -1,0 +1,60 @@
+@use "../../scss/index" as *;
+
+.section {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.inputsContainer {
+   display: flex;
+   flex-direction: column;
+
+   @include tablet {
+      flex-direction: row;
+      gap: 0 15px;
+   }
+}
+
+.inputError {
+   border-color: $color-red !important;
+}
+
+.switchLabel {
+   display: flex;
+   align-items: center;
+   gap: 0 15px;
+   margin-bottom: 25px;
+
+   .switchText {
+      font-size: 1.4rem;
+      color: $color-black;
+
+      @include phone {
+         font-size: 1.6rem;
+      }
+   }
+}
+
+.addEventLink {
+   display: block;
+   width: 100%;
+   padding: 15px 20px;
+   background-color: $color-purple;
+   color: $color-white;
+   border: none;
+   border-radius: $border-radius;
+   font-size: 1.8rem;
+   text-align: center;
+   cursor: pointer;
+   margin-top: 25px;
+   
+      @include phone {
+         font-size: 2rem;
+      }
+}
+
+.addEventSubmitButton {
+   display: block;
+   margin-top: 25px !important;
+}

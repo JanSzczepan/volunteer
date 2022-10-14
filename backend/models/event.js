@@ -17,6 +17,10 @@ const eventSchema = mongoose.Schema({
       type: String,
       required: false
    },
+   anonymous: {
+      type: Boolean,
+      required: true
+   },
    cathegory: {
       type: String,
       required: true
@@ -31,7 +35,7 @@ const eventSchema = mongoose.Schema({
    },
    selectedFile: {
       type: String,
-      required: true
+      required: false
    },
    participants: {
       type: [String],

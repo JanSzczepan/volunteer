@@ -48,8 +48,27 @@ export const getEvent = async (req, res) => {
 }
 
 export const createEvent = async (req, res) => {
+
+   const { title, description, date, cathegory, city } = req.body
+
+   let emptyFields = []
+
+   if (!title)
+      emptyFields.push('title')
+   if (!description)
+      emptyFields.push('description')
+   if (!date)
+      emptyFields.push('date')
+   if (!cathegory)
+      emptyFields.push('cathegory')
+   if (!city)
+      emptyFields.push('city')
+
+   if (emptyFields.length > 0)
+      return res.status(400).json({error: {errorMessage: 'Wypełnij wszystkie wymagane pola', emptyFields}})
+
    try {
-      const event = req.body
+      const event = { ...req.body, participants: [req.user._id], participantsNames: [req.user.name], creator: req.user._id }
 
       const newEvent = await EventModel.create({ ...event })
 

@@ -72,6 +72,22 @@ export const joinEvent = createAsyncThunk(
    }
 )
 
+export const createEvent = createAsyncThunk(
+   'events/createEvent',
+   async (dataObj, thunkAPI) => {
+      try {
+         const { data } = await api.createEvent(dataObj.formData)
+         console.log(`Event created:`, data)
+         
+         dataObj.navigate(`/events/${data.data._id}/eventDetails`)
+
+         return data
+      } catch (error) {
+         throw thunkAPI.rejectWithValue(error.response.data)
+      }
+   }
+)
+
 export const eventsSlice = createSlice({
    name: 'events',
    initialState,
@@ -119,6 +135,19 @@ export const eventsSlice = createSlice({
          state.isLoading = false
       },
       [joinEvent.rejected]: (state, action) => {
+         console.log(action)
+         state.isLoading = false
+         state.error = action.payload.error
+      },
+      [createEvent.pending]: (state) => {
+         state.error = null
+         state.isLoading = true
+      },
+      [createEvent.fulfilled]: (state, action) => {
+         state.events = [...state.events, action.payload.data]
+         state.isLoading = false
+      },
+      [createEvent.rejected]: (state, action) => {
          console.log(action)
          state.isLoading = false
          state.error = action.payload.error

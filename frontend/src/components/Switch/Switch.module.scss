@@ -1,0 +1,52 @@
+@use "../../scss/index" as *;
+
+$switch-width: 50px;
+$switch-height: 25px;
+
+$slider-padding: 4px;
+
+.switch {
+   position: relative;
+   display: inline-block;
+   width: $switch-width;
+   height: $switch-height;
+   min-width: $switch-width;
+}
+
+.input {
+   opacity: 0;
+   width: 0;
+   height: 0;
+}
+
+.slider {
+   position: absolute;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   background-color: $color-gray;
+   border-radius: $border-radius;
+   cursor: pointer;
+   transition: background-color .4s;
+}
+
+.slider::before {
+   position: absolute;
+   content: "";
+   height: calc($switch-height - 2 * $slider-padding);
+   width: calc($switch-height - 2 * $slider-padding);
+   left: $slider-padding;
+   bottom: $slider-padding;
+   background-color: $color-white;
+   border-radius: 50%;
+   transition: .4s;
+}
+
+.input:checked + .slider {
+   background-color: $color-purple;
+}
+
+.input:checked + .slider::before {
+   transform: translateX(calc($switch-width - ($switch-height - 2 * $slider-padding) - 2 * $slider-padding));
+}
