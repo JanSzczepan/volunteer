@@ -118,6 +118,28 @@ $participant-size: 43.75px;
       margin-left: 8px;
    }
 
+   .authorContainer {
+      display: flex;
+      align-items: center;
+      margin: 10px 0 25px 0;
+
+      .authorIcon {
+         font-size: 3rem;
+         color: $color-green;
+         margin-right: 15px;
+      }
+
+      .authorText {
+         font-size: 1.6rem;
+         font-weight: 700;
+         color: $color-green;
+
+         @include phone {
+            font-size: 1.8rem;
+         }
+      }
+   }
+
    .eventDescriptionHeader {
       font-size: 1.8rem;
       font-weight: 700;

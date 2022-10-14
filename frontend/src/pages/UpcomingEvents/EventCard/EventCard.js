@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { ImLocation2 } from 'react-icons/im'
-import { FaDog } from 'react-icons/fa'
+import { FaDog, FaHouseUser } from 'react-icons/fa'
 import { IoIosArrowForward } from 'react-icons/io'
 import { BsClock } from 'react-icons/bs'
 
@@ -8,7 +8,7 @@ import styles from './EventCard.module.scss'
 
 const EventCard = ({ event }) => {
    
-   const { _id, title, date, cathegory, city, selectedFile, participants, participantsNames, banned } = event
+   const { _id, title, date, cathegory, city, selectedFile, participants, participantsNames, banned, creator } = event
    const hours = (new Date(date)).getHours()
    const minutes = (new Date(date)).getMinutes()
    const latestParticipants = participantsNames.slice(-3)
@@ -17,6 +17,7 @@ const EventCard = ({ event }) => {
    
    const join = Boolean(!participants.includes(user?.user._id))
    const ban = Boolean(banned.includes(user?.user._id))
+   const isAuthor = Boolean(creator === user?.user._id)
 
    return (  
       <div className={styles.card}>
@@ -57,8 +58,18 @@ const EventCard = ({ event }) => {
                   </div>
                </div>
             )} 
-            {ban && <Link to={user?.user ? `/events/${_id}/join` : '/login'} className={`${styles.joinButton} ${styles.banButton}`}>Dołącz <IoIosArrowForward className={styles.joinIcon}/></Link>}
-            {!ban && <Link to={user?.user ? `/events/${_id}/join` : '/login'} className={`${styles.joinButton} ${!join && styles.resignButton}`}>{join ? 'Dołącz' : 'Zrezygnuj'} {join && <IoIosArrowForward className={styles.joinIcon}/>}</Link>}
+            {isAuthor && (
+               <div className={styles.authorContainer}>
+                  <FaHouseUser className={styles.authorIcon}/>
+                  <p className={styles.authorText}>Autor</p>
+               </div>
+            )}
+            {!isAuthor && (
+               <>
+               {ban && <Link to={user?.user ? `/events/${_id}/join` : '/login'} className={`${styles.joinButton} ${styles.banButton}`}>Dołącz <IoIosArrowForward className={styles.joinIcon}/></Link>}
+               {!ban && <Link to={user?.user ? `/events/${_id}/join` : '/login'} className={`${styles.joinButton} ${!join && styles.resignButton}`}>{join ? 'Dołącz' : 'Zrezygnuj'} {join && <IoIosArrowForward className={styles.joinIcon}/>}</Link>}
+               </>
+            )}
          </div>
       </div>
    )

@@ -13,6 +13,8 @@ import JoinEvent from './pages/JoinEvent/JoinEvent'
 import EventDetails from './pages/EventDetails/EventDetails'
 import styles from './App.module.scss'
 
+// add cleaning event and events in redux after location change
+
 function App() {
 
    const [user, setUser] = useState(JSON.parse(window.localStorage.getItem('profile')))
