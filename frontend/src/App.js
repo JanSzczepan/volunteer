@@ -36,10 +36,10 @@ function App() {
             <Route path='/events' element={<Navigate to='/events/upcoming'/>}/>
             <Route path='/events/upcoming' element={<UpcomingEvents />}/>
             <Route path='/events/all' element={<AllEvents />}/>
-            <Route path='/events/yours' element={<YourEvents />}/>
+            <Route path='/events/yours' element={user?.user ? <YourEvents /> : <Navigate to='/login'/>}/>
+            <Route path='/events/add-event' element={user?.user ? <AddEvent /> : <Navigate to='/login'/>}/>
             <Route path='events/:id/eventDetails' element={<EventDetails />}/>
-            <Route path='events/:id/join' element={<JoinEvent />}/>
-            <Route path='/events/add-event' element={<AddEvent />}/>
+            <Route path='events/:id/join' element={user?.user ? <JoinEvent /> : <Navigate to='/login'/>}/>
             <Route path='/login' element={!user?.user ? <Login /> : <Navigate to='/'/>}/>
             <Route path='/signup' element={!user?.user ? <Signup /> : <Navigate to='/'/>}/>
          </Routes>
