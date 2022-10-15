@@ -1,0 +1,103 @@
+@use "../../scss/index" as *;
+
+.container {
+   margin-bottom: 15px;
+}
+
+.imageUploadContainer {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   padding: 30px 15px;
+   background-color: lighten($color-gray, 15%);
+   border: 2px dashed $color-gray;
+   margin-bottom: 15px;
+}
+
+.inputsContainer {
+   position: relative;
+   height: 40px;
+   width: 150px;
+   overflow: hidden;
+   margin-bottom: 15px;
+   cursor: pointer;
+
+   input {
+      position: absolute;
+      height: 100%;
+      top: 0;
+      right: 0;
+      font-size:50px;
+      opacity: 0;
+      z-index: 99;
+      cursor: pointer;
+   }
+
+   .uploadButton {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      background-color: $color-purple;
+      color: $color-white;
+      border: none;
+      border-radius: calc($border-radius / 3);
+      font-size: 1.6rem;
+
+      .uploadIcon {
+         font-size: 1.8rem;
+         margin-right: 10px;
+
+         @include phone {
+            font-size: 2rem;
+         }
+      }
+   }
+}
+
+.supportText {
+   font-size: 1.6rem;
+   color: $color-black;
+}
+
+.imageContainer {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   padding: 10px 15px;
+   background-color: lighten($color-purple, 25%);
+
+   .trashButton {
+      background-color: transparent;
+      border: none;
+      outline: none;
+      cursor: pointer;
+   }
+
+   .imageIcon, .trashIcon {
+      min-width: 15px;
+      font-size: 1.6rem;
+      color: $color-purple;
+
+      @include phone {
+         font-size: 2rem;
+      }
+   }
+
+   .imageText {
+      font-size: 1.4rem;
+      color: $color-black;
+      word-break: break-all;
+
+      @include phone {
+         font-size: 1.6rem;
+      }
+   }
+}

@@ -52,7 +52,7 @@ const EventDetails = () => {
             <h2 className={styles.headerText}>Szczegóły Eventu</h2>
          </div>
          <header className={styles.eventDetailsHeader}>
-            <div className={styles.imageContainer} />
+            <div className={styles.imageContainer} style={event.selectedFile && {backgroundImage:`url('${event.selectedFile}')`}}/>
             <div className={styles.outsideTextContainer}>
                <div className={styles.insideTextContainer}>
                   <h1 className={styles.eventTitle}>{event.title}</h1>

@@ -4,8 +4,9 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import Switch from '../../components/Switch/Switch'
 import { OPTIONS } from '../../constants'
-import styles from './AddEvent.module.scss'
 import { createEvent } from '../../redux/events'
+import ImageUpload from '../../components/ImageUpload/ImageUpload'
+import styles from './AddEvent.module.scss'
 
 const AddEvent = () => {
 
@@ -18,6 +19,10 @@ const AddEvent = () => {
    const navigate = useNavigate()
 
    const user = JSON.parse(window.localStorage.getItem('profile'))
+
+   const handleImage = (image) => {
+      setFormData({ ...formData, selectedFile: image })
+   }
 
    const onSubmit = (e) => {
       e.preventDefault()
@@ -36,6 +41,8 @@ const AddEvent = () => {
             <input value={formData.title} onChange={(e) => setFormData({ ...formData, title: e.target.value })} className={`addEventInput ${error?.emptyFields?.includes('title') && styles.inputError}`} id='title' type='text' />
             <label className='addEventLabel' htmlFor='description'>Opis</label>
             <textarea value={formData.description} onChange={(e) => setFormData({ ...formData, description: e.target.value })} className={`addEventTextarea ${error?.emptyFields?.includes('description') && styles.inputError}`} id="description" rows="6"></textarea>
+            <label className='addEventLabel' htmlFor="selectedFile">Zdjęcie</label>
+            <ImageUpload handleImage={handleImage}/>
             <div className={styles.inputsContainer}>
                <div>
                   <label className={`addEventLabel ${styles.addEventLabel}`} htmlFor='city'>Miasto</label>
