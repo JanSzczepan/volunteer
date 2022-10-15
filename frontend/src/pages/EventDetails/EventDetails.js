@@ -53,7 +53,7 @@ const EventDetails = () => {
             <h2 className={styles.headerText}>Szczegóły Eventu</h2>
          </div>
          <header className={styles.eventDetailsHeader}>
-            <div className={styles.imageContainer} style={event.selectedFile && {backgroundImage:`url('${returnImage(event.selectedFile, event.cathegory)}')`}}/>
+            <div className={styles.imageContainer} style={{backgroundImage:`url('${returnImage(event.selectedFile, event.cathegory)}')`}}/>
             <div className={styles.outsideTextContainer}>
                <div className={styles.insideTextContainer}>
                   <h1 className={styles.eventTitle}>{event.title}</h1>

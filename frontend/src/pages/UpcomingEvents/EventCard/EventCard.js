@@ -24,7 +24,7 @@ const EventCard = ({ event }) => {
    return (  
       <div className={styles.card}>
          <Link to={`/events/${_id}/eventDetails`}>
-            <div className={styles.imageContainer} style={selectedFile && {backgroundImage:`url('${returnImage(selectedFile, cathegory)}')`}}>
+            <div className={styles.imageContainer} style={{backgroundImage:`url('${returnImage(selectedFile, cathegory)}')`}}>
                <div className={styles.frontContainer}>
                   <div className={styles.textContainer}>
                      <h3 className={styles.title}>{title}</h3>
