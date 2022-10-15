@@ -91,7 +91,11 @@ export const createEvent = createAsyncThunk(
 export const eventsSlice = createSlice({
    name: 'events',
    initialState,
-   reducers: {},
+   reducers: {
+      cleanEvent: (state) => {
+         state.event = null
+      }
+   },
    extraReducers: {
       [getUpcomingEvents.pending]: (state) => {
          state.isLoading = true
@@ -155,4 +159,5 @@ export const eventsSlice = createSlice({
    }
 })
 
+export const { cleanEvent } = eventsSlice.actions
 export default eventsSlice.reducer

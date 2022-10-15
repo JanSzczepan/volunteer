@@ -6,6 +6,7 @@ import { FiLogOut } from 'react-icons/fi'
 import decode from 'jwt-decode'
 
 import { keepTrack, logOut } from '../../redux/auth'
+import { cleanEvent } from '../../redux/events'
 import Sidebar from './Sidebar/Sidebar'
 import styles from './Navbar.module.scss'
 
@@ -46,6 +47,7 @@ const Navbar = () => {
 
       setUser(JSON.parse(window.localStorage.getItem('profile')))
       setIsOpen(false)
+      dispatch(cleanEvent())
    }, [location, dispatch])
 
    const handleWindowClick = (e) => {
@@ -57,8 +59,7 @@ const Navbar = () => {
       const menuButtonRight = menuButtonLeft + menuButtonElement.current.offsetWidth
       const menuButtonTop = menuButtonElement.current.getBoundingClientRect().top 
       const menuButtonBottom = menuButtonTop + menuButtonElement.current.offsetHeight
-      console.log(clickX, clickY, menuButtonRight, menuButtonBottom)
-
+      
       if (clickX >= menuButtonLeft && clickX <= menuButtonRight && clickY >= menuButtonTop && clickY <= menuButtonBottom)
          return
          
