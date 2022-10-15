@@ -6,6 +6,7 @@ import { BsClock } from 'react-icons/bs'
 
 import styles from './EventCard.module.scss'
 import returnImage from '../../../functions/returnImage'
+import CathegoryIcon from '../../../components/CathegoryIcon/CathegoryIcon'
 
 const EventCard = ({ event }) => {
    
@@ -38,7 +39,7 @@ const EventCard = ({ event }) => {
                   </div>
                   <div className={styles.outsideIconContainer}>
                      <div className={styles.insideIconContainer}>
-                        <FaDog className={styles.cathegoryIcon}/>
+                        <CathegoryIcon cathegory={cathegory} className={'cathegoryIconCard'}/>
                      </div>
                   </div>
                </div>
