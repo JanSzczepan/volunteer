@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { BiMenuAltLeft } from 'react-icons/bi'
@@ -6,16 +6,31 @@ import { FiLogOut } from 'react-icons/fi'
 import decode from 'jwt-decode'
 
 import { keepTrack, logOut } from '../../redux/auth'
+import Sidebar from './Sidebar/Sidebar'
 import styles from './Navbar.module.scss'
 
 const Navbar = () => {
 
    const [user, setUser] = useState(JSON.parse(window.localStorage.getItem('profile')))
-   
+   const [isOpen, setIsOpen] = useState(false)
+
    const dispatch = useDispatch()
 
    const navigate = useNavigate()
    const location = useLocation()
+
+   const menuButtonElement = useRef()
+   const ref = useRef()
+
+   const logout = () => {
+      setUser(null)
+      dispatch(logOut())
+      navigate('/login')
+   }
+
+   useEffect(() => {
+      window.addEventListener('click', (e) => handleWindowClick(e))
+   }, [])
 
    useEffect(() => {
       const token = user?.token
@@ -30,18 +45,44 @@ const Navbar = () => {
       dispatch(keepTrack())
 
       setUser(JSON.parse(window.localStorage.getItem('profile')))
-   }, [location])
-   
-   const logout = () => {
-      setUser(null)
-      dispatch(logOut())
-      navigate('/login')
+      setIsOpen(false)
+   }, [location, dispatch])
+
+   const handleWindowClick = (e) => {
+
+      const clickX = e.clientX
+      const clickY = e.clientY
+
+      const menuButtonLeft = menuButtonElement.current.getBoundingClientRect().left
+      const menuButtonRight = menuButtonLeft + menuButtonElement.current.offsetWidth
+      const menuButtonTop = menuButtonElement.current.getBoundingClientRect().top 
+      const menuButtonBottom = menuButtonTop + menuButtonElement.current.offsetHeight
+      console.log(clickX, clickY, menuButtonRight, menuButtonBottom)
+
+      if (clickX >= menuButtonLeft && clickX <= menuButtonRight && clickY >= menuButtonTop && clickY <= menuButtonBottom)
+         return
+         
+
+      if (!ref?.current) {
+         setIsOpen(false)
+         return
+      }
+
+      const sidebarLeft = ref.current.offsetLeft
+      const sidebarRight = sidebarLeft + ref.current.offsetWidth
+      const sidebarTop = ref.current.offsetTop 
+      const sidebarBottom = sidebarTop + ref.current.offsetHeight
+
+      if (clickX >= sidebarLeft && clickX <= sidebarRight && clickY >= sidebarTop && clickY <= sidebarBottom)
+         return
+
+      setIsOpen(false)
    }
 
    return (  
-      <nav>
+      <nav className={styles.nav}>
          <div className={styles.container}>
-            <button className={styles.menuButton} type='button'>
+            <button onClick={() => setIsOpen(!isOpen)} ref={menuButtonElement} className={styles.menuButton} type='button'>
                <BiMenuAltLeft className={styles.menuIcon}/>
             </button>
             <Link to='/'>
@@ -66,6 +107,7 @@ const Navbar = () => {
                )}
             </div>
          </div>
+         {isOpen && <Sidebar logout={logout} ref={ref}/>}
       </nav>
    )
 }

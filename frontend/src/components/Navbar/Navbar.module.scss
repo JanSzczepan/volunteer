@@ -1,10 +1,22 @@
 @use "../../scss/index" as *;
 
+.nav {
+   position: fixed;
+   top: 0;
+   left: 0;
+   right: 0;
+   background-color: $color-white;
+   -webkit-box-shadow: 0px 15px 40px -45px rgba(43, 43, 43, 1);
+   -moz-box-shadow: 0px 15px 40px -45px rgba(43, 43, 43, 1);
+   box-shadow: 0px 15px 40px -45px rgba(43, 43, 43, 1);
+   z-index: 998;
+}
+
 .container {
    max-width: $max-width;
    padding: 0 $main-padding;
    position: relative;
-   height: 100px;
+   height: $nav-height;
    display: flex;
    align-items: center;
    margin: 0 auto;

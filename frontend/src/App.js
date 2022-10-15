@@ -11,6 +11,7 @@ import Signup from './pages/Signup/Signup'
 import AddEvent from './pages/AddEvent/AddEvent'
 import JoinEvent from './pages/JoinEvent/JoinEvent'
 import EventDetails from './pages/EventDetails/EventDetails'
+import YourEvents from './pages/YourEvents/YourEvents'
 import styles from './App.module.scss'
 
 // add cleaning event and events in redux after location change
@@ -35,6 +36,7 @@ function App() {
             <Route path='/events' element={<Navigate to='/events/upcoming'/>}/>
             <Route path='/events/upcoming' element={<UpcomingEvents />}/>
             <Route path='/events/all' element={<AllEvents />}/>
+            <Route path='/events/yours' element={<YourEvents />}/>
             <Route path='events/:id/eventDetails' element={<EventDetails />}/>
             <Route path='events/:id/join' element={<JoinEvent />}/>
             <Route path='/events/add-event' element={<AddEvent />}/>

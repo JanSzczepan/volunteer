@@ -1,0 +1,149 @@
+@use "../../../scss/index" as *;
+
+.sidebarSection {
+   position: sticky;
+   width: 200px;
+   min-height: calc(100vh - $nav-height);
+   position: absolute;
+   background-color: $color-white;
+   padding: $main-padding;
+   -webkit-box-shadow: 15px 25px 40px -40px rgba(43, 43, 43, 1);
+   -moz-box-shadow: 15px 25px 40px -40px rgba(43, 43, 43, 1);
+   box-shadow: 15px 25px 40px -40px rgba(43, 43, 43, 1);
+   z-index: 999;
+}
+
+.userContainer {
+   display: flex;
+   align-items: center;
+}
+
+.user {
+   flex: none;
+   height: 30px;
+   width: 30px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   border: 2px solid $color-purple;
+   border-radius: 50%;
+   background-color: $color-white;
+
+   @include phone {
+      height: 35px;
+      width: 35px;
+   }
+
+   .userLetter {
+      color: $color-purple;
+      font-weight: 700;
+      font-size: 1.6rem;
+
+      @include phone {
+         font-size: 1.7rem;
+      }
+   }
+}
+
+.userName {
+   font-size: 1.8rem;
+   font-weight: 700;
+   color: $color-purple;
+   letter-spacing: .5px;
+   margin-left: 10px;
+   word-break: break-all;
+}
+
+.underSectionText {
+   margin: 30px 0 15px;
+   font-size: 1.2rem;
+   color: $color-gray;
+   text-transform: uppercase;
+}
+
+.linkContainer {
+   display: flex;
+   flex-direction: column;
+   gap: 10px 0;
+}
+
+.link {
+   width: 100%;
+   display: flex;
+   align-items: center;
+   font-size: 1.7rem;
+   font-weight: 700;
+   // color: darken($color-gray, 25%);
+   color: $color-black;
+   letter-spacing: .5px;
+
+   .icon {
+      font-size: 2.5rem;
+      // color: darken($color-gray, 25%);
+      color: $color-black;
+      margin-right: 10px;
+   }
+}
+
+
+.addEventButton {
+   display: block;
+   margin-top: 10px;
+   padding: 10px 10px;
+   background-color: $color-green;
+   text-align: center;
+   color: $color-white;
+   font-size: 1.8rem;
+   font-weight: 700;
+   letter-spacing: .5px;
+   border-radius: $border-radius;
+   margin-bottom: 5px;
+
+   @include tablet {
+      margin-top: 0;
+      padding: 6px 20px;
+   }
+}
+
+.authButton {
+   padding: 5px 10px;
+   font-size: 1.5rem;
+   font-weight: 700;
+   border-radius: $border-radius;
+   border: 0;
+   text-transform: uppercase;
+   cursor: pointer;
+}
+
+.loginButton {
+   display: block;
+   text-align: center;
+   background-color: transparent;
+   color: $color-black;
+   border: 3px solid transparent;
+}
+
+.signupButton {
+   display: block;
+   text-align: center;
+   background-color: $color-green;
+   color: $color-white;
+   border: 3px solid $color-green;
+   margin-bottom: 5px;
+}
+
+.logoutButton {
+   width: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   background-color: transparent;
+   color: $color-black;
+   // color: darken($color-gray, 25%);
+   border: 3px solid transparent;
+
+   .authLogoutIcon {
+      margin-right: 5px;
+      font-size: 1.8rem;
+   }
+}

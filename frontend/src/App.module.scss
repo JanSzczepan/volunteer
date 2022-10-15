@@ -1,3 +1,6 @@
-// .main {
-//    height: 100%;
-// }
+@use "./scss/" as *;
+
+.main {
+   margin-top: $nav-height;
+   padding: 15px 0;
+}
