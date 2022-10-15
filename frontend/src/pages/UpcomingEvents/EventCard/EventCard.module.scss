@@ -11,11 +11,11 @@ $participant-size: 35px;
    overflow: hidden;
 
    @include tablet {
-      flex-basis: 50%;
+      flex-basis: calc(50% - $cards-gap-x / 2);
    }
 
    @include desktop {
-      flex-basis:calc(100% / 3);
+      flex-basis: calc(100% / 3 - $cards-gap-x * 2 / 3);
    }
 }
 
@@ -61,6 +61,11 @@ $participant-size: 35px;
       color: lighten($color-gray, 25%);
       font-weight: 400;
       font-size: 1.6rem;
+   }
+
+   .timeDot {
+      font-size: 1rem;
+      margin: 0 5px;
    }
 
    .locationIcon, .clockIcon {

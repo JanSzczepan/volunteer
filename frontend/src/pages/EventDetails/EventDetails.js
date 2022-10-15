@@ -5,6 +5,7 @@ import { IoIosArrowForward } from 'react-icons/io'
 import { FaHouseUser } from 'react-icons/fa'
 
 import returnImage from '../../functions/returnImage'
+import returnDate from '../../functions/returnDate'
 import { getEvent } from '../../redux/events'
 import styles from './EventDetails.module.scss'
 
@@ -21,11 +22,7 @@ const EventDetails = () => {
 
    if (!event) return null
 
-   const months = ['Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec', 'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień']
-   const month = months[(new Date(event.date)).getMonth()]
-   const day = (new Date(event.date)).getDay()
-   const hours = (new Date(event.date)).getHours()
-   const minutes = (new Date(event.date)).getMinutes()
+   const { month, day, hours, minutes } = returnDate(event.date)
    const latestParticipants = event.participantsNames.slice(-3)
 
    const user = JSON.parse(window.localStorage.getItem('profile'))

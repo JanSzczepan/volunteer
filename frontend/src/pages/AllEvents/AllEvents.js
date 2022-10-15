@@ -25,7 +25,7 @@ const AllEvents = () => {
          </div>
          <div className='cardsContainer'>
             {Boolean(events.length) && events.map((e, i) => (
-               <EventCard event={e} key={i}/>
+               <EventCard event={e} isAllEvents={true} key={i}/>
             ))}
          </div>
       </section> 

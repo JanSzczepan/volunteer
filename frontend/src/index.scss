@@ -37,13 +37,14 @@ a {
 .cardsContainer {
    display: flex;
    flex-direction: column;
+   flex-wrap: wrap;
    align-items: center;
    margin: 20px 0;
-   gap: 25px 0;
+   gap: $cards-gap-y 0;
 
    @include tablet {
       flex-direction: row;
-      gap: 25px 15px;
+      gap: $cards-gap-y $cards-gap-x;
    }
 
    @include desktop {

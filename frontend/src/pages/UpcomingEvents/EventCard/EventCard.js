@@ -6,13 +6,14 @@ import { BsClock } from 'react-icons/bs'
 
 import styles from './EventCard.module.scss'
 import returnImage from '../../../functions/returnImage'
+import returnDate from '../../../functions/returnDate'
 import CathegoryIcon from '../../../components/CathegoryIcon/CathegoryIcon'
 
-const EventCard = ({ event }) => {
+const EventCard = ({ event, isAllEvents = false }) => {
    
    const { _id, title, date, cathegory, city, selectedFile, participants, participantsNames, banned, creator } = event
-   const hours = (new Date(date)).getHours()
-   const minutes = (new Date(date)).getMinutes()
+   
+   const { monthNumber, month, day, hours, minutes } = returnDate(date)
    const latestParticipants = participantsNames.slice(-3)
 
    const user = JSON.parse(window.localStorage.getItem('profile'))
@@ -34,6 +35,12 @@ const EventCard = ({ event }) => {
                      </h4>
                      <p className={styles.time}>
                         <BsClock className={styles.clockIcon}/>
+                        {isAllEvents && (
+                           <>
+                           {day}.{monthNumber}
+                           <span className={styles.timeDot}>&#8226;</span>
+                           </>
+                        )}
                         {hours}:{minutes}
                      </p>
                   </div>
