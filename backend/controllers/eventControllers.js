@@ -47,6 +47,19 @@ export const getEvent = async (req, res) => {
    }
 }
 
+export const getYourEvents = async (req, res) => {
+   try {
+      const _id = req.user._id.toString()
+
+      const authorEvents = await EventModel.find({ creator: _id })
+      const participantEvents = await EventModel.find({ $and: [{ participants: { $in: [_id] } }, { creator: { $ne: _id } }] })
+   
+      res.status(200).json({ data: { authorEvents, participantEvents } })
+   } catch (error) {
+      res.status(404).json({ error: error.message })
+   }
+}
+
 export const createEvent = async (req, res) => {
 
    const { title, description, date, cathegory, city } = req.body
