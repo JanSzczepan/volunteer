@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { ImLocation2 } from 'react-icons/im'
-import { FaDog, FaHouseUser } from 'react-icons/fa'
+import { FaHouseUser, FaUserCheck } from 'react-icons/fa'
 import { IoIosArrowForward } from 'react-icons/io'
 import { BsClock } from 'react-icons/bs'
 
@@ -21,7 +21,7 @@ const EventCard = ({ event, isAllEvents = false }) => {
    const join = Boolean(!participants.includes(user?.user._id))
    const ban = Boolean(banned.includes(user?.user._id))
    const isAuthor = Boolean(creator === user?.user._id)
-
+   
    return (  
       <div className={styles.card}>
          <Link to={`/events/${_id}/eventDetails`}>
@@ -76,7 +76,17 @@ const EventCard = ({ event, isAllEvents = false }) => {
             {!isAuthor && (
                <>
                {ban && <Link to={user?.user ? `/events/${_id}/join` : '/login'} className={`${styles.joinButton} ${styles.banButton}`}>Dołącz <IoIosArrowForward className={styles.joinIcon}/></Link>}
-               {!ban && <Link to={user?.user ? `/events/${_id}/join` : '/login'} className={`${styles.joinButton} ${!join && styles.resignButton}`}>{join ? 'Dołącz' : 'Zrezygnuj'} {join && <IoIosArrowForward className={styles.joinIcon}/>}</Link>}
+               {!ban && !join && (
+                  <>
+                  <div className={styles.joinContainer}>
+                     <FaUserCheck className={styles.joinIcon}/>
+                     <p className={styles.joinText}>Uczestnik</p>
+                  </div>
+                  </>
+               )}
+               {!ban && join && (
+                  <Link to={user?.user ? `/events/${_id}/join` : '/login'} className={styles.joinButton}>Dołącz <IoIosArrowForward className={styles.joinIcon}/></Link>
+               )}
                </>
             )}
          </div>

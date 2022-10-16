@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { IoIosArrowForward } from 'react-icons/io'
-import { FaHouseUser } from 'react-icons/fa'
+import { FaHouseUser, FaUserCheck } from 'react-icons/fa'
 
 import returnImage from '../../functions/returnImage'
 import returnDate from '../../functions/returnDate'
@@ -65,7 +65,15 @@ const EventDetails = () => {
                {!isAuthor && (
                   <>
                   {ban && <Link to={user?.user ? `/events/${event._id}/join` : '/login'} className={`${styles.joinButton} ${styles.banButton}`}>Dołącz <IoIosArrowForward className={styles.joinIcon}/></Link>}
-                  {!ban && <Link to={user?.user ? `/events/${event._id}/join` : '/login'} className={`${styles.joinButton} ${!join && styles.resignButton}`}>{join ? 'Dołącz' : 'Zrezygnuj'} {join && <IoIosArrowForward className={styles.joinIcon}/>}</Link>}
+                  {!ban && join && (
+                     <Link to={user?.user ? `/events/${event._id}/join` : '/login'} className={styles.joinButton}>Dołącz <IoIosArrowForward className={styles.joinIcon}/></Link>
+                  )}
+                  {!ban && !join && (
+                     <div className={styles.joinContainer}>
+                        <FaUserCheck className={styles.joinIcon}/>
+                        <p className={styles.joinText}>Jesteś uczestnikiem tego eventu</p>
+                     </div>
+                  )} 
                   </>
                )}
                <h5 className={styles.eventDescriptionHeader}>Opis:</h5>
@@ -82,6 +90,7 @@ const EventDetails = () => {
                      </div>
                   </div>
                )}
+               {!isAuthor && !ban && !join && <Link to={user?.user ? `/events/${event._id}/join` : '/login'} className={`${styles.joinButton} ${styles.resignButton}`}>Zrezygnuj</Link>}
             </div>
          </header>
       </section>

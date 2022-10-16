@@ -199,12 +199,12 @@ $participant-size: 35px;
    margin-left: 8px;
 }
 
-.authorContainer {
+.authorContainer, .joinContainer {
    display: flex;
    align-items: center;
    margin-left: auto;
 
-   .authorIcon {
+   .authorIcon, .joinIcon {
       font-size: 2.2rem;
       color: $color-green;
       margin-right: 5px;
@@ -215,7 +215,7 @@ $participant-size: 35px;
       }
    }
 
-   .authorText {
+   .authorText, .joinText {
       font-size: 1.6rem;
       color: $color-green;
 
