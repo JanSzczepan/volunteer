@@ -10,8 +10,8 @@ export const getUpcomingEvents = async (req, res) => {
    const endOfTomorrow = new Date(tomorrow.setHours(23, 59, 59, 59))
    
    try {
-      const todayEvents = await EventModel.find({ date: {$gte:today.toISOString(),$lt:endOfToday.toISOString()} })
-      const tomorrowEvents = await EventModel.find({ date: {$gte:endOfToday.toISOString(),$lt:endOfTomorrow.toISOString()} })
+      const todayEvents = await EventModel.find({ date: {$gte:today.toISOString(),$lt:endOfToday.toISOString()} }).sort({ date: 1 })
+      const tomorrowEvents = await EventModel.find({ date: {$gte:endOfToday.toISOString(),$lt:endOfTomorrow.toISOString()} }).sort({ date: 1 })
 
       res.status(200).json({ data: { todayEvents, tomorrowEvents } })
    } catch (error) {
@@ -51,8 +51,8 @@ export const getYourEvents = async (req, res) => {
    try {
       const _id = req.user._id.toString()
 
-      const authorEvents = await EventModel.find({ creator: _id })
-      const participantEvents = await EventModel.find({ $and: [{ participants: { $in: [_id] } }, { creator: { $ne: _id } }] })
+      const authorEvents = await EventModel.find({ creator: _id }).sort({ date: 1 })
+      const participantEvents = await EventModel.find({ $and: [{ participants: { $in: [_id] } }, { creator: { $ne: _id } }] }).sort({ date: 1 })
    
       res.status(200).json({ data: { authorEvents, participantEvents } })
    } catch (error) {
