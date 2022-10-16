@@ -1,0 +1,144 @@
+@use "../../../scss/index" as *;
+
+.aboutSection {
+   max-width: 420px !important;
+   padding-top: 30px !important;
+   padding-bottom: 30px !important;
+
+   @include tablet {
+      max-width: $max-width !important;
+   }
+}
+
+.header {
+   display: flex;
+   flex-direction: column-reverse;
+
+   @include tablet {
+      flex-direction: row;
+      align-items: center;
+      gap: 0 10px;
+      padding: 20px 0;
+   }
+}
+
+.image {
+   display: block;
+   width: 100%;
+   height: auto;
+   margin-bottom: 15px;
+
+   @include tablet {
+      width: 50%;
+      margin-bottom: 0;
+   }
+
+   @include desktop {
+      width: 60%;
+   }
+}
+
+.headerText {
+   font-size: 2.6rem;
+   font-weight: 700;
+   color: $color-black;
+   letter-spacing: .5px;
+   margin-bottom: 25px;
+
+   @include phone {
+      font-size: 3rem;
+   }
+
+   @include desktop {
+      font-size: 3.5rem;
+   }
+}
+
+.text {
+   font-size: 1.4rem;
+   color: darken($color-gray, 15%);
+   margin-bottom: 25px;
+
+   @include phone {
+      font-size: 1.6rem;
+   }
+
+   @include desktop {
+      font-size: 1.7rem;
+   }
+}
+
+.buttonsContainer {
+   display: flex;
+   margin-bottom: 25px;
+}
+
+.authButton {
+   display: block;
+   padding: 5px 15px;
+   font-size: 1.8rem;
+   font-weight: 700;
+   border-radius: $border-radius;
+   border: 0;
+   text-transform: uppercase;
+   cursor: pointer;
+
+   @include desktop {
+      padding: 8px 20px;
+      font-size: 2rem;
+   }
+}
+
+.loginButton {
+   background-color: transparent;
+   color: $color-black;
+   border: 3px solid transparent;
+   margin-right: 10px;
+}
+
+.signupButton {
+   background-color: $color-green;
+   color: $color-white;
+   border: 3px solid $color-green;
+}
+
+.addEventButton {
+   display: block;
+   padding: 5px 15px;
+   font-size: 1.8rem;
+   background-color: $color-green;
+   text-align: center;
+   color: $color-white;
+   font-weight: 700;
+   letter-spacing: .5px;
+   border-radius: $border-radius;
+
+   @include desktop {
+      padding: 8px 20px;
+      font-size: 2rem;
+   }
+}
+
+.checkContainer {
+   display: flex;
+   align-items: center;
+   gap: 5px 10px;
+   flex-wrap: wrap;
+}
+
+.check {
+   display: flex;
+   align-items: center;
+}
+
+.checkIcon {
+   flex: none;
+   font-size: 1.4rem;
+   color: $color-green;
+   margin-right: 5px;
+}
+
+.checkText {
+   font-size: 1.2rem;
+   color: $color-black;
+}
