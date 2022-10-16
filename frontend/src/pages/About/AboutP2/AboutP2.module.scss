@@ -10,7 +10,7 @@ $about-card-gap-y: 15px;
 .aboutContainer {
    max-width: 420px !important;
    padding-top: 30px !important;
-   padding-bottom: 30px !important;
+   padding-bottom: 60px !important;
 
    @include tablet {
       max-width: $max-width !important;
@@ -62,6 +62,9 @@ $about-card-gap-y: 15px;
    padding: 20px 25px;
    background-color: $color-white;
    border-radius: $border-radius;
+   -webkit-box-shadow: 0px 9px 25px -5px rgba(216, 216, 216, 1);
+   -moz-box-shadow: 0px 9px 25px -5px rgba(216, 216, 216, 1);
+   box-shadow: 0px 9px 25px -5px rgba(216, 216, 216, 1);
 
    @include tablet {
       flex-basis: calc(100% / 3 - 2 * $about-card-gap-x / 3);
