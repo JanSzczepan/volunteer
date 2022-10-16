@@ -43,7 +43,7 @@ const JoinEvent = () => {
       dispatch(getEvent(id))
    }, [id, dispatch])
 
-   if (isLoading) return
+   // if (isLoading) return
 
    if (event?.banned?.includes(user?.user._id)) 
       return (

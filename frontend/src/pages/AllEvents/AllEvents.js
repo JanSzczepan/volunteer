@@ -9,7 +9,7 @@ import styles from './AllEvents.module.scss'
 const AllEvents = () => {
 
    const dispatch = useDispatch()
-   const { isLoading, events } = useSelector(store => store.events)
+   const { isLoading, allEvents } = useSelector(store => store.events)
 
    useEffect(() => {
       dispatch(getAllEvents())
@@ -24,7 +24,7 @@ const AllEvents = () => {
             <h2 className={styles.header}>Wszystkie <br className={styles.headerBr}/> Eventy</h2>
          </div>
          <div className='cardsContainer'>
-            {Boolean(events.length) && events.map((e, i) => (
+            {Boolean(allEvents?.length) && allEvents.map((e, i) => (
                <EventCard event={e} isAllEvents={true} key={i}/>
             ))}
          </div>

@@ -12,7 +12,7 @@ const UpcomingEvents = () => {
    const [isToday, setIsToday] = useState(true)
 
    const dispatch = useDispatch()
-   const { isLoading, events } = useSelector(store => store.events)
+   const { isLoading, todayEvents, tomorrowEvents } = useSelector(store => store.events)
 
    useEffect(() => {
       dispatch(getUpcomingEvents())
@@ -32,22 +32,22 @@ const UpcomingEvents = () => {
             <button className={`${styles.dayButton} ${!isToday && styles.dayButtonActive}`} onClick={() => setIsToday(false)} type='button'>Jutro</button>
          </div>
          <div className='cardsContainer'>
-            {isToday && Boolean(events.todayEvents?.length) && ( 
-               events.todayEvents.map((e, i) => (
+            {isToday && Boolean(todayEvents?.length) && ( 
+               todayEvents.map((e, i) => (
                   <EventCard event={e} key={i}/>
                ))
             )}
-            {isToday && Boolean(!events.todayEvents?.length) && (
+            {isToday && Boolean(!todayEvents?.length) && (
                <div>
                   <p>Nie ma dzisiaj żadnych eventów</p>
                </div>
             )}
-            {!isToday && Boolean(events.tomorrowEvents?.length) && (
-               events.tomorrowEvents.map((e, i) => (
+            {!isToday && Boolean(tomorrowEvents?.length) && (
+               tomorrowEvents.map((e, i) => (
                   <EventCard event={e} key={i}/>
                ))
             )}
-            {!isToday && Boolean(!events.tomorrowEvents?.length) && (
+            {!isToday && Boolean(!tomorrowEvents?.length) && (
                <div>
                   <p>Nie ma jutro żadnych eventów</p>
                </div>

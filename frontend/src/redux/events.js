@@ -4,7 +4,9 @@ import * as api from '../api/index'
 
 const initialState = {
    event: null,
-   events: [],
+   todayEvents: [],
+   tomorrowEvents: [],
+   allEvents: [],
    isLoading: true
 }
 
@@ -101,7 +103,8 @@ export const eventsSlice = createSlice({
          state.isLoading = true
       },
       [getUpcomingEvents.fulfilled]: (state, action) => {
-         state.events = action.payload.data
+         state.todayEvents = action.payload.data.todayEvents
+         state.tomorrowEvents = action.payload.data.tomorrowEvents
          state.isLoading = false
       },
       [getUpcomingEvents.rejected]: (state, action) => {
@@ -112,7 +115,7 @@ export const eventsSlice = createSlice({
          state.isLoading = true
       },
       [getAllEvents.fulfilled]: (state, action) => {
-         state.events = action.payload.data
+         state.allEvents = action.payload.data
          state.isLoading = false
       },
       [getAllEvents.rejected]: (state, action) => {
@@ -135,7 +138,7 @@ export const eventsSlice = createSlice({
          state.isLoading = true
       },
       [joinEvent.fulfilled]: (state, action) => {
-         state.events = state.events.map(event => event._id === action.payload._id ? action.payload : event)
+         state.allEvents = state.allEvents.map(event => event._id === action.payload._id ? action.payload : event)
          state.isLoading = false
       },
       [joinEvent.rejected]: (state, action) => {
@@ -148,7 +151,7 @@ export const eventsSlice = createSlice({
          state.isLoading = true
       },
       [createEvent.fulfilled]: (state, action) => {
-         state.events = [...state.events, action.payload.data]
+         state.allEvents = [...state.allEvents, action.payload.data]
          state.isLoading = false
       },
       [createEvent.rejected]: (state, action) => {
