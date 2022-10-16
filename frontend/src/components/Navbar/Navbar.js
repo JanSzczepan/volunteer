@@ -29,9 +29,9 @@ const Navbar = () => {
       navigate('/login')
    }
 
-   useEffect(() => {
-      window.addEventListener('click', (e) => handleWindowClick(e))
-   }, [])
+   // useEffect(() => {
+   //    window.addEventListener('click', (e) => handleWindowClick(e))
+   // }, [])
 
    useEffect(() => {
       const token = user?.token
@@ -50,42 +50,44 @@ const Navbar = () => {
       dispatch(cleanEvent())
    }, [location, dispatch])
 
-   const handleWindowClick = (e) => {
+   // const handleWindowClick = (e) => {
 
-      const clickX = e.clientX
-      const clickY = e.clientY
+   //    const clickX = e.clientX
+   //    const clickY = e.clientY
 
-      const menuButtonLeft = menuButtonElement.current.getBoundingClientRect().left
-      const menuButtonRight = menuButtonLeft + menuButtonElement.current.offsetWidth
-      const menuButtonTop = menuButtonElement.current.getBoundingClientRect().top 
-      const menuButtonBottom = menuButtonTop + menuButtonElement.current.offsetHeight
+   //    const menuButtonLeft = menuButtonElement.current.getBoundingClientRect().left
+   //    const menuButtonRight = menuButtonLeft + menuButtonElement.current.offsetWidth
+   //    const menuButtonTop = menuButtonElement.current.getBoundingClientRect().top 
+   //    const menuButtonBottom = menuButtonTop + menuButtonElement.current.offsetHeight
       
-      if (clickX >= menuButtonLeft && clickX <= menuButtonRight && clickY >= menuButtonTop && clickY <= menuButtonBottom)
-         return
+   //    if (clickX >= menuButtonLeft && clickX <= menuButtonRight && clickY >= menuButtonTop && clickY <= menuButtonBottom)
+   //       return
          
 
-      if (!ref?.current) {
-         setIsOpen(false)
-         return
-      }
+   //    if (!ref?.current) {
+   //       setIsOpen(false)
+   //       return
+   //    }
 
-      const sidebarLeft = ref.current.offsetLeft
-      const sidebarRight = sidebarLeft + ref.current.offsetWidth
-      const sidebarTop = ref.current.offsetTop 
-      const sidebarBottom = sidebarTop + ref.current.offsetHeight
+   //    const sidebarLeft = ref.current.offsetLeft
+   //    const sidebarRight = sidebarLeft + ref.current.offsetWidth
+   //    const sidebarTop = ref.current.offsetTop 
+   //    const sidebarBottom = sidebarTop + ref.current.offsetHeight
 
-      if (clickX >= sidebarLeft && clickX <= sidebarRight && clickY >= sidebarTop && clickY <= sidebarBottom)
-         return
+   //    if (clickX >= sidebarLeft && clickX <= sidebarRight && clickY >= sidebarTop && clickY <= sidebarBottom)
+   //       return
 
-      setIsOpen(false)
-   }
+   //    setIsOpen(false)
+   // }
 
    return (  
       <nav className={styles.nav}>
          <div className={styles.container}>
-            <button onClick={() => setIsOpen(!isOpen)} ref={menuButtonElement} className={styles.menuButton} type='button'>
-               <BiMenuAltLeft className={styles.menuIcon}/>
-            </button>
+            {!isOpen && (
+               <button onClick={() => setIsOpen(!isOpen)} ref={menuButtonElement} className={styles.menuButton} type='button'>
+                  <BiMenuAltLeft className={styles.menuIcon}/>
+               </button>
+            )}
             <Link to='/'>
                <h1 className={styles.logo}>Volunteer</h1>
             </Link>
@@ -108,7 +110,7 @@ const Navbar = () => {
                )}
             </div>
          </div>
-         {isOpen && <Sidebar logout={logout} ref={ref}/>}
+         {isOpen && <Sidebar logout={logout} setIsOpen={setIsOpen} ref={ref}/>}
       </nav>
    )
 }

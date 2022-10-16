@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { FiLogOut } from 'react-icons/fi'
 import { BiHome } from 'react-icons/bi'
 import { MdOutlineEventAvailable, MdOutlineEventNote } from 'react-icons/md'
+import { IoCloseCircleOutline } from 'react-icons/io5'
 
 import styles from './Sidebar.module.scss'
 
@@ -27,7 +28,7 @@ const EVENTS_ROUTES = [
    }
 ]
 
-const Sidebar = forwardRef(({ logout }, ref) => {
+const Sidebar = forwardRef(({ logout, setIsOpen }, ref) => {
 
    const user = JSON.parse(window.localStorage.getItem('profile'))
 
@@ -72,6 +73,11 @@ const Sidebar = forwardRef(({ logout }, ref) => {
                   <Link to='/login' className={`${styles.authButton} ${styles.loginButton}`} type='button'>Login</Link>
                </>
             )}
+         </div>
+         <div className={styles.closeButtonContainer}>
+            <button onClick={() => setIsOpen(false)} className={styles.closeButton} type='button'>
+               <IoCloseCircleOutline className={styles.closeIcon}/>
+            </button>
          </div>
       </section>
    )

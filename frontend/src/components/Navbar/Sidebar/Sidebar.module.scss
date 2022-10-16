@@ -1,16 +1,18 @@
 @use "../../../scss/index" as *;
 
 .sidebarSection {
-   position: sticky;
    width: 200px;
-   min-height: calc(100vh - $nav-height);
+   height: calc(100vh - $nav-height);
    position: absolute;
+   display: flex;
+   flex-direction: column;
    background-color: $color-white;
    padding: $main-padding;
    -webkit-box-shadow: 15px 25px 40px -40px rgba(43, 43, 43, 1);
    -moz-box-shadow: 15px 25px 40px -40px rgba(43, 43, 43, 1);
    box-shadow: 15px 25px 40px -40px rgba(43, 43, 43, 1);
    z-index: 999;
+   overflow-y: auto;
 
    @include phone {
       width: 230px;
@@ -155,5 +157,38 @@
    .authLogoutIcon {
       margin-right: 5px;
       font-size: 1.8rem;
+   }
+}
+
+.closeButtonContainer {
+   position: relative;
+   min-height: 120px;
+   flex-grow: 1;
+}
+
+.closeButton {
+   position: absolute;
+   bottom: 25px;
+   left: 50%;
+   transform: translateX(-50%);
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding: 5px;
+   background-color: transparent;
+   border: none;
+   cursor: pointer;
+
+   .closeIcon {
+      font-size: 3.5rem;
+      color: $color-black;
+
+      @include phone {
+         font-size: 4rem;
+      }
+   
+      @include tablet {
+         font-size: 4.5rem;
+      }
    }
 }
