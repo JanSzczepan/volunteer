@@ -1,12 +1,13 @@
 import express from 'express'
 
-import { getUpcomingEvents, getAllEvents, getEvent, createEvent, joinEvent, getYourEvents } from '../controllers/eventControllers.js'
+import { getUpcomingEvents, getAllEvents, getEvent, createEvent, joinEvent, getYourEvents, getEventBySearch } from '../controllers/eventControllers.js'
 import { auth } from '../middlewares/auth.js'
 
 const router = express.Router()
 
 router.get('/upcoming', getUpcomingEvents)
 router.get('/all', getAllEvents)
+router.get('/search', getEventBySearch)
 router.get('/yours', auth, getYourEvents)
 router.get('/:id', getEvent)
 

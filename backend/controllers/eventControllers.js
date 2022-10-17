@@ -66,6 +66,20 @@ export const getYourEvents = async (req, res) => {
    }
 }
 
+export const getEventBySearch = async (req, res) => {
+   
+   const { search } = req.query
+   const searchQuery = search ? new RegExp(search, "i") : null
+   
+   try {
+      const event = await EventModel.find({ $or: [{ title: searchQuery }, { cathegory: searchQuery }, { city: searchQuery }, { address: searchQuery }] })
+
+      res.status(200).json({ data: event })
+   } catch (error) {
+      res.status(404).json({ error: error.message })
+   }
+}
+
 export const createEvent = async (req, res) => {
 
    const { title, description, date, cathegory, city } = req.body
