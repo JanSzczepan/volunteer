@@ -32,22 +32,22 @@ const UpcomingEvents = () => {
             <button className={`${styles.dayButton} ${!isToday && styles.dayButtonActive}`} onClick={() => setIsToday(false)} type='button'>Jutro</button>
          </div>
          <div className='cardsContainer'>
-            {isToday && Boolean(todayEvents?.length) && ( 
+            {!isLoading && isToday && Boolean(todayEvents?.length) && ( 
                todayEvents.map((e, i) => (
                   <EventCard event={e} key={i}/>
                ))
             )}
-            {isToday && Boolean(!todayEvents?.length) && (
+            {!isLoading && isToday && Boolean(!todayEvents?.length) && (
                <div>
                   <p>Nie ma dzisiaj żadnych eventów</p>
                </div>
             )}
-            {!isToday && Boolean(tomorrowEvents?.length) && (
+            {!isLoading && !isToday && Boolean(tomorrowEvents?.length) && (
                tomorrowEvents.map((e, i) => (
                   <EventCard event={e} key={i}/>
                ))
             )}
-            {!isToday && Boolean(!tomorrowEvents?.length) && (
+            {!isLoading && !isToday && Boolean(!tomorrowEvents?.length) && (
                <div>
                   <p>Nie ma jutro żadnych eventów</p>
                </div>
