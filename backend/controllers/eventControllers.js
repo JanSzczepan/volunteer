@@ -48,13 +48,19 @@ export const getEvent = async (req, res) => {
 }
 
 export const getYourEvents = async (req, res) => {
+   
+   const today = new Date()
+
    try {
       const _id = req.user._id.toString()
 
-      const authorEvents = await EventModel.find({ creator: _id }).sort({ date: 1 })
-      const participantEvents = await EventModel.find({ $and: [{ participants: { $in: [_id] } }, { creator: { $ne: _id } }] }).sort({ date: 1 })
+      const authorEvents = await EventModel.find({ $and:[{ creator: _id }, { date: {$gte: today.toISOString()} }]}).sort({ date: 1 })
+      const participantEvents = await EventModel.find({ $and: [{ participants: { $in: [_id] } }, { creator: { $ne: _id } }, { date: {$gte: today.toISOString()}}] }).sort({ date: 1 })
    
-      res.status(200).json({ data: { authorEvents, participantEvents } })
+      const authorArchivalEvents = await EventModel.find({ $and:[{ creator: _id }, { date: {$lte: today.toISOString()} }]}).sort({ date: 1 })
+      const participantArchivalEvents = await EventModel.find({ $and: [{ participants: { $in: [_id] } }, { creator: { $ne: _id } }, { date: {$lte: today.toISOString()}}] }).sort({ date: 1 })
+
+      res.status(200).json({ data: { authorEvents, participantEvents, authorArchivalEvents, participantArchivalEvents } })
    } catch (error) {
       res.status(404).json({ error: error.message })
    }
