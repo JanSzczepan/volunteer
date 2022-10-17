@@ -18,7 +18,7 @@ const CARDS_LIST = [
    },
    {
       name: 'Przeglądaj wolontariaty',
-      text: 'Zobacz jakie wolontariaty zostały zorganizowane w twojej okolicy dzisiaj lub jutro. Możesz zobaczyć wszystkie dostępne wolontariaty lub wyszukać tych, które cię interesują.',
+      text: 'Możesz zobaczyć wszystkie dostępne wolontariaty, wyszukać te które cię interesują oraz sprawdzić jakie będą organizowane w najbliższych dniach.',
       icon: <FaSearch className={styles.cardIcon}/>,
       link: '/events/upcoming'
    }

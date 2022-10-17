@@ -15,7 +15,7 @@ const AboutP1 = () => {
          <header className={styles.header}>
             <div className={styles.headerContainer}>
                <h1 className={styles.headerText}>Organizacja wolontariatów nigdy nie była prostsza</h1>
-               <p className={styles.text}>Twórz wolontariusze w łatwy sposób i zgłaszaj chęć udziału w wolontariuszach innych osób.<br />Dołącz do nas!</p>
+               <p className={styles.text}>Twórz wolontariaty w łatwy sposób i zgłaszaj chęć udziału w istniejących wolontariatach.<br />Dołącz do nas!</p>
                <div className={styles.buttonsContainer}>
                   {!user?.user && (
                      <>
