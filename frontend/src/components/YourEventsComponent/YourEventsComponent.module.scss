@@ -1,0 +1,82 @@
+@use "../../scss/index" as *;
+
+.yourEventsSection {
+   max-width: 500px !important;
+
+   @include tablet {
+      max-width: $max-width !important;
+   }
+}
+
+.outsideEventsContainer {
+   display: flex;
+   flex-direction: column;
+
+   @include tablet {
+      flex-direction: row;
+      gap: 0 40px;
+   }
+}
+
+.eventsContainer {
+   flex-basis: 100%;
+   font-size: 1.6rem;
+   font-weight: 700;
+   color: $color-black;
+
+   @include tablet {
+      flex-basis: 50%;
+   }
+
+   @include desktop {
+      font-size: 1.8rem;
+   }
+}
+
+.eventHeaderText {
+   margin: 20px 0;
+   font-size: 2rem;
+
+   @include tablet {
+      font-size: 2.4rem;
+   }
+}
+
+.eventBr {
+   display: none;
+
+   @include tablet {
+      display: inline;
+   }
+
+   @include desktop {
+      display: none;
+   }
+}
+
+.noEventText {
+   color: $color-black;
+   margin-bottom: 20px;
+}
+
+.addEventButton {
+   max-width: 150px;
+   display: block;
+   padding: 6px 10px;
+   background-color: $color-green;
+   text-align: center;
+   color: $color-white;
+   font-size: 2rem;
+   font-weight: 700;
+   letter-spacing: .5px;
+   border-radius: $border-radius;
+   margin-bottom: 40px;
+
+   @include tablet {
+      padding: 6px 20px;
+   }
+}
+
+.exploreButton {
+   background-color: $color-purple;
+}

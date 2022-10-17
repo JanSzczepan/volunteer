@@ -9,6 +9,8 @@ const initialState = {
    allEvents: [],
    authorEvents: [],
    participantEvents: [],
+   authorArchivalEvents: [],
+   participantArchivalEvents: [],
    isLoading: true
 }
 
@@ -143,7 +145,9 @@ export const eventsSlice = createSlice({
       },
       [getYourEvents.fulfilled]: (state, action) => {
          state.authorEvents = action.payload.data.authorEvents
-         state.participantEvents = action.payload.data.participantEvents         
+         state.participantEvents = action.payload.data.participantEvents
+         state.authorArchivalEvents = action.payload.data.authorArchivalEvents
+         state.participantArchivalEvents = action.payload.data.participantArchivalEvents         
          state.isLoading = false
       },
       [getYourEvents.rejected]: (state, action) => {

@@ -12,6 +12,7 @@ import AddEvent from './pages/AddEvent/AddEvent'
 import JoinEvent from './pages/JoinEvent/JoinEvent'
 import EventDetails from './pages/EventDetails/EventDetails'
 import YourEvents from './pages/YourEvents/YourEvents'
+import ArchivalEvents from './pages/ArchivalEvents/ArchivalEvents'
 import styles from './App.module.scss'
 
 // add cleaning event and events in redux after location change
@@ -37,6 +38,7 @@ function App() {
             <Route path='/events/upcoming' element={<UpcomingEvents />}/>
             <Route path='/events/all' element={<AllEvents />}/>
             <Route path='/events/yours' element={user?.user ? <YourEvents /> : <Navigate to='/login'/>}/>
+            <Route path='/events/archival' element={user?.user ? <ArchivalEvents /> : <Navigate to='/login'/>}/>
             <Route path='/events/add-event' element={user?.user ? <AddEvent /> : <Navigate to='/login'/>}/>
             <Route path='events/:id/eventDetails' element={<EventDetails />}/>
             <Route path='events/:id/join' element={user?.user ? <JoinEvent /> : <Navigate to='/login'/>}/>

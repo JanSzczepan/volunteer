@@ -2,7 +2,7 @@ import { forwardRef } from 'react'
 import { Link } from 'react-router-dom'
 import { FiLogOut } from 'react-icons/fi'
 import { BiHome } from 'react-icons/bi'
-import { MdOutlineEventAvailable, MdOutlineEventNote } from 'react-icons/md'
+import { MdOutlineEventAvailable, MdOutlineEventNote, MdOutlineArchive } from 'react-icons/md'
 import { IoCloseCircleOutline } from 'react-icons/io5'
 
 import styles from './Sidebar.module.scss'
@@ -25,6 +25,11 @@ const EVENTS_ROUTES = [
       path: '/events/yours',
       name: 'Twoje Eventy',
       icon: <MdOutlineEventAvailable className={styles.icon}/>
+   },
+   {
+      path: '/events/archival',
+      name: 'Archiwalne',
+      icon: <MdOutlineArchive className={styles.icon}/>
    }
 ]
 
@@ -49,7 +54,7 @@ const Sidebar = forwardRef(({ logout, setIsOpen }, ref) => {
             ))}
          </div>
          {user?.user && (
-            <div>
+            <div className={styles.linkContainer}>
                <p className={styles.underSectionText}>Twoje eventy</p>
                {EVENTS_ROUTES.map((route, i) => (
                   <Link className={styles.link} to={route.path} key={i}>{route.icon} {route.name}</Link>
