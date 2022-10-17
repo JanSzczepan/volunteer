@@ -1,0 +1,25 @@
+@use "../../scss/index" as *;
+
+.searchEventsSection {
+   max-width: 500px !important;
+   margin: 0 auto;
+
+   @include tablet {
+      max-width: $max-width !important;
+   }
+}
+
+.headerContainer {
+   margin: 30px 0;
+}
+
+.header {
+   color: $color-black;
+   font-size: 2rem;
+
+   .headerBr {
+      @include phone {
+         display: none;
+      }
+   }
+}

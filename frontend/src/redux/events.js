@@ -11,6 +11,7 @@ const initialState = {
    participantEvents: [],
    authorArchivalEvents: [],
    participantArchivalEvents: [],
+   eventsBySearch: [],
    isLoading: true
 }
 
@@ -48,6 +49,20 @@ export const getYourEvents = createAsyncThunk(
       try {
          const { data } = await api.fetchYourEvents()
          console.log('Your Events fetched:', data)
+
+         return data
+      } catch (error) {
+         return thunkAPI.rejectWithValue(error)
+      }
+   }
+)
+
+export const getEventsBySearch = createAsyncThunk(
+   'events/getEventsBySearch',
+   async (search, thunkAPI) => {
+      try {
+         const { data } = await api.fetchEventsBySearch(search)
+         console.log("Events fetched by search:", data)
 
          return data
       } catch (error) {
@@ -121,6 +136,7 @@ export const eventsSlice = createSlice({
          state.participantEvents = []
          state.authorArchivalEvents = []
          state.participantArchivalEvents = []
+         state.eventsBySearch = []
       }
    },
    extraReducers: {
@@ -158,6 +174,17 @@ export const eventsSlice = createSlice({
          state.isLoading = false
       },
       [getYourEvents.rejected]: (state, action) => {
+         console.log(action)
+         state.isLoading = false
+      },
+      [getEventsBySearch.pending]: (state) => {
+         state.isLoading = true
+      },
+      [getEventsBySearch.fulfilled]: (state, action) => {
+         state.eventsBySearch = action.payload.data
+         state.isLoading = false
+      },
+      [getEventsBySearch.rejected]: (state, action) => {
          console.log(action)
          state.isLoading = false
       },
