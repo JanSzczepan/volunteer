@@ -7,6 +7,8 @@ const initialState = {
    todayEvents: [],
    tomorrowEvents: [],
    allEvents: [],
+   authorEvents: [],
+   participantEvents: [],
    isLoading: true
 }
 
@@ -30,6 +32,20 @@ export const getAllEvents = createAsyncThunk(
       try {
          const { data } = await api.fetchAllEvents()
          console.log('All Events fetched:', data)
+
+         return data
+      } catch (error) {
+         return thunkAPI.rejectWithValue(error)
+      }
+   }
+)
+
+export const getYourEvents = createAsyncThunk(
+   'events/getYourEvents',
+   async (thunkAPI) => {
+      try {
+         const { data } = await api.fetchYourEvents()
+         console.log('Your Events fetched:', data)
 
          return data
       } catch (error) {
@@ -119,6 +135,18 @@ export const eventsSlice = createSlice({
          state.isLoading = false
       },
       [getAllEvents.rejected]: (state, action) => {
+         console.log(action)
+         state.isLoading = false
+      },
+      [getYourEvents.pending]: (state) => {
+         state.isLoading = true
+      },
+      [getYourEvents.fulfilled]: (state, action) => {
+         state.authorEvents = action.payload.data.authorEvents
+         state.participantEvents = action.payload.data.participantEvents         
+         state.isLoading = false
+      },
+      [getYourEvents.rejected]: (state, action) => {
          console.log(action)
          state.isLoading = false
       },

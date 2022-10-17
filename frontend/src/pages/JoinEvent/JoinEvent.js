@@ -50,7 +50,7 @@ const JoinEvent = () => {
       return (
          <section className={`section ${styles.section}`}>
             <div>
-               <h2>Zrezygnowałeś już z tego eventu...</h2>
+               <h2 className={styles.resignText}>Zrezygnowałeś już z tego eventu...</h2>
             </div>
          </section>
       )

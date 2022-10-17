@@ -1,0 +1,103 @@
+@use "../../../scss/index" as *;
+
+.card {
+   display: flex;
+   border: 1px solid $color-gray;
+   border-radius: $border-radius;
+   margin-bottom: 15px;
+}
+
+.cardImage {
+   flex: none;
+   width: 75px;
+   min-height: 100px;
+   height: auto;
+   background-position: center;
+   background-size: cover;
+   background-repeat: no-repeat;
+   border-radius: $border-radius;
+
+   @include phone {
+      width: 100px;
+   }
+
+   @include tablet {
+      width: 150px;
+   }
+
+   @include desktop {
+      min-height: 125px;
+      width: 175px;
+   }
+}
+
+.textContainer {
+   flex-grow: 1;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-evenly;
+   padding: 5px 15px;
+
+   @include phone {
+      padding: 10px 15px;
+   }
+
+   @include desktop {
+      padding: 15px 20px;
+   }
+
+   .cardHeaderText {
+      font-size: 1.6rem;
+      color: $color-black;
+      margin-bottom: 8px;
+
+      @include phone {
+         font-size: 1.7rem;
+      }
+
+      @include desktop {
+         font-size: 2rem;
+      }
+   }
+
+   .cardText {
+      display: flex;
+      align-items: center;
+      font-size: 1.2rem;
+      color: darken($color-gray, 25%);
+      margin-bottom: 5px;
+
+      @include desktop {
+         font-size: 1.4rem;
+      }
+
+      .cardTextIcon {
+         font-size: 1.4rem;
+         margin-right: 5px;
+
+         @include desktop {
+            font-size: 1.6rem;
+         }
+      }
+   }
+}
+
+.iconContainer {
+   display: none;
+   align-items: center;
+   justify-content: center;
+   padding: 10px;
+
+   @include phone {
+      display: flex;
+   }
+
+   @include desktop {
+      padding: 15px;
+   }
+
+   .icon {
+      font-size: 2rem;
+      color: darken($color-gray, 15%);
+   }
+}
