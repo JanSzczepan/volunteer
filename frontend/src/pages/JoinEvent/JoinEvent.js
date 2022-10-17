@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { getEvent, joinEvent } from '../../redux/events'
+import { cleanEvents, getEvent, joinEvent } from '../../redux/events'
 import styles from './JoinEvent.module.scss'
 
 const JoinEvent = () => {
@@ -36,6 +36,7 @@ const JoinEvent = () => {
          formData = {resignation}
       }
 
+      dispatch(cleanEvents())
       dispatch(joinEvent({ id, formData, navigate }))
    }
 

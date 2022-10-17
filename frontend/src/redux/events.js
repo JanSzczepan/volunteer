@@ -112,8 +112,15 @@ export const eventsSlice = createSlice({
    name: 'events',
    initialState,
    reducers: {
-      cleanEvent: (state) => {
+      cleanEvents: (state) => {
          state.event = null
+         state.todayEvents = []
+         state.tomorrowEvents = []
+         state.allEvents = []
+         state.authorEvents = []
+         state.participantEvents = []
+         state.authorArchivalEvents = []
+         state.participantArchivalEvents = []
       }
    },
    extraReducers: {
@@ -192,7 +199,7 @@ export const eventsSlice = createSlice({
          state.error = action.payload.error
       },
    }
-})
+}) 
 
-export const { cleanEvent } = eventsSlice.actions
+export const { cleanEvents } = eventsSlice.actions
 export default eventsSlice.reducer

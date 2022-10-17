@@ -20,7 +20,7 @@ const EventDetails = () => {
       dispatch(getEvent(id))
    }, [id])
 
-   if (!event) return null
+   if (!event) return
 
    const { month, day, hours, minutes } = returnDate(event.date)
    const latestParticipants = event.participantsNames.slice(-3)

@@ -6,7 +6,7 @@ import { FiLogOut } from 'react-icons/fi'
 import decode from 'jwt-decode'
 
 import { keepTrack, logOut } from '../../redux/auth'
-import { cleanEvent } from '../../redux/events'
+import { cleanEvents } from '../../redux/events'
 import Sidebar from './Sidebar/Sidebar'
 import styles from './Navbar.module.scss'
 
@@ -47,7 +47,7 @@ const Navbar = () => {
 
       setUser(JSON.parse(window.localStorage.getItem('profile')))
       setIsOpen(false)
-      dispatch(cleanEvent())
+      dispatch(cleanEvents())
    }, [location, dispatch])
 
    // const handleWindowClick = (e) => {
