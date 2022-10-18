@@ -36,7 +36,7 @@ const AddEvent = () => {
    return (  
       <section className={`section ${styles.section}`}>
          <form onSubmit={(e) => onSubmit(e)} className='addEventForm'>
-            <h2 className='addEventHeader'>Stwórz event</h2>
+            <h2 className='addEventHeader'>Stwórz wolontariat</h2>
             <label className='addEventLabel' htmlFor='title'>Tytuł</label>
             <input value={formData.title} onChange={(e) => setFormData({ ...formData, title: e.target.value })} className={`addEventInput ${error?.emptyFields?.includes('title') && styles.inputError}`} id='title' type='text' />
             <label className='addEventLabel' htmlFor='description'>Opis</label>

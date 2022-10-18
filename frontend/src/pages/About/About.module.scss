@@ -1,1 +1,74 @@
 @use "../../scss/index" as *;
+
+$about-card-gap-x: 15px;
+$about-card-gap-y: 15px;
+
+.aboutSection {
+   background-color: darken($color-white, 2.5%);
+}
+
+.aboutContainer {
+   max-width: 420px !important;
+   padding-top: 30px !important;
+   padding-bottom: 60px !important;
+
+   @include tablet {
+      max-width: $max-width !important;
+   }
+}
+
+.text {
+   color: $color-purple;
+   font-size: 1.2rem;
+   font-weight: 700;
+   text-align: center;
+   text-transform: uppercase;
+   margin-bottom: 10px;
+
+   @include phone {
+      font-size: 1.4rem;
+   }
+}
+
+.headerText {
+   color: $color-black;
+   font-size: 2.4rem;
+   font-weight: 700;
+   text-align: center;
+   margin-bottom: 30px;
+
+   @include phone {
+      font-size: 2.8rem;
+   }
+
+   @include desktop {
+      font-size: 3rem;
+   }
+}
+
+.cardsContainer {
+   display: flex;
+   flex-direction: column;
+   gap: $about-card-gap-y 0;
+   flex-wrap: wrap;
+
+   @include tablet {
+      flex-direction: row;
+      gap: $about-card-gap-y $about-card-gap-x;
+      justify-content: center;
+   }
+}
+
+.card {
+   display: block;
+   padding: 20px 25px;
+   background-color: $color-white;
+   border-radius: $border-radius;
+   -webkit-box-shadow: 0px 9px 25px -5px rgba(216, 216, 216, 1);
+   -moz-box-shadow: 0px 9px 25px -5px rgba(216, 216, 216, 1);
+   box-shadow: 0px 9px 25px -5px rgba(216, 216, 216, 1);
+
+   @include tablet {
+      flex-basis: calc(100% / 3 - 2 * $about-card-gap-x / 3);
+   }
+}

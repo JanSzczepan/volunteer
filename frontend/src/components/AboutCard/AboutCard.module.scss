@@ -1,0 +1,29 @@
+@use "../../scss/index" as *;
+
+.cardIconContainer {
+   width: fit-content;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding: 10px 12px;
+   background-color: lighten($color-purple, 30%);
+   border-radius: $border-radius;
+   margin-bottom: 15px;
+
+   .cardIcon {
+      font-size: 2rem;
+      color: $color-purple;
+   }
+}
+
+.cardHeaderText {
+   font-size: 2rem;
+   font-weight: 700;
+   color: $color-black;
+   margin-bottom: 15px;
+}
+
+.cardText {
+   font-size: 1.6rem;
+   color: darken($color-gray, 15%);
+}

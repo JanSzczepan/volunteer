@@ -1,25 +1,26 @@
 import { Link } from 'react-router-dom'
 import { FaUserPlus, FaUsers, FaSearch } from 'react-icons/fa'
 
-import styles from './AboutP2.module.scss'
+import AboutCard from '../../../components/AboutCard/AboutCard'
+import styles from '../About.module.scss'
 
 const CARDS_LIST = [
    {
-      name: 'Dodawaj wolontariaty',
-      text: 'Volunteer to aplikacja, która w łatwy sposób pozwoli ci zorganizować wolontariat. Dodaj tytuł, opis, datę, miasto i zdjęcie - to tyle, gotowe!',
-      icon: <FaUserPlus className={styles.cardIcon}/>,
+      text: 'Dodawaj wolontariaty',
+      description: 'Volunteer to aplikacja, która w łatwy sposób pozwoli ci zorganizować wolontariat. Dodaj tytuł, opis, datę, miasto i zdjęcie - to tyle, gotowe!',
+      icon: FaUserPlus,
       link: '/events/add-event'
    },
    {
-      name: 'Zostań wolontariuszem',
-      text: 'Dzięki naszej aplikacji możesz zgłosić uczestnictwo w dowolnym wolontariacie. Jeśli coś ci wypadło możesz zrezygnować, ale uważaj, nie możesz drugi raz uczestniczyć w tym samym wolontariacie.',
-      icon: <FaUsers className={styles.cardIcon}/>,
+      text: 'Zostań wolontariuszem',
+      description: 'Dzięki naszej aplikacji możesz zgłosić uczestnictwo w dowolnym wolontariacie. Jeśli coś ci wypadło możesz zrezygnować, ale uważaj, nie możesz drugi raz uczestniczyć w tym samym wolontariacie.',
+      icon: FaUsers,
       link: '/events/all'
    },
    {
-      name: 'Przeglądaj wolontariaty',
-      text: 'Możesz zobaczyć wszystkie dostępne wolontariaty, wyszukać te które cię interesują oraz sprawdzić jakie będą organizowane w najbliższych dniach.',
-      icon: <FaSearch className={styles.cardIcon}/>,
+      text: 'Przeglądaj wolontariaty',
+      description: 'Możesz zobaczyć wszystkie dostępne wolontariaty, wyszukać te które cię interesują oraz sprawdzić jakie będą organizowane w najbliższych dniach.',
+      icon: FaSearch,
       link: '/events/upcoming'
    }
 ]
@@ -36,11 +37,7 @@ const AboutP2 = () => {
             <div className={styles.cardsContainer}>
                {CARDS_LIST.map((card, i) => (
                   <Link className={styles.card} to={user?.user ? card.link : '/login'} key={i}>
-                     <div className={styles.cardIconContainer}>
-                        {card.icon}
-                     </div>
-                     <h5 className={styles.cardHeaderText}>{card.name}</h5>
-                     <p className={styles.cardText}>{card.text}</p>
+                     <AboutCard card={card}/>
                   </Link>
                ))}
             </div>
