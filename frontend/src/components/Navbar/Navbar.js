@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { BiMenuAltLeft } from 'react-icons/bi'
 import { FiLogOut } from 'react-icons/fi'
+import { FaHeart } from 'react-icons/fa'
 import decode from 'jwt-decode'
 
 import { keepTrack, logOut } from '../../redux/auth'
@@ -89,7 +90,10 @@ const Navbar = () => {
                </button>
             )}
             <Link to='/'>
-               <h1 className={styles.logo}>Volunteer</h1>
+               <h1 className={styles.logo}>
+                  <FaHeart className={styles.logoIcon}/>
+                  olunteer
+               </h1>
             </Link>
             <div className={styles.buttonContainer}>
                { user?.user ? (
