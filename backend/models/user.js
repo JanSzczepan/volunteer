@@ -22,17 +22,17 @@ const userSchema = mongoose.Schema({
 userSchema.statics.login = async function (login, password) {
 
    if (!login || !password) 
-      throw Error('All fields must be filled')
+      throw Error('Wszytskie pola muszą być wypełnione')
 
    const user = await this.findOne({ $or: [{ name: login }, { email: login }] })
 
    if (!user) 
-      throw Error('Incorrect email or name')
+      throw Error('Niepoprawny email lub nazwa użytkownika')
 
    const match = await bcrypt.compare(password, user.password)
 
    if (!match) 
-      throw Error('Incorrect password')
+      throw Error('Niepoprawne hasło')
 
    return user
 }
@@ -40,23 +40,23 @@ userSchema.statics.login = async function (login, password) {
 userSchema.statics.signup = async function (name, email, password) {
 
    if(!name || !email || !password)
-      throw Error('All fields must be filled in')
+      throw Error('Wszytskie pola muszą być wypełnione')
    if(validator.contains(name, ' ')) 
-      throw Error('Name is not valid')
+      throw Error('Nazwa użytkownika nie może zawierać spacji')
    if(!validator.isEmail(email))
-      throw Error('Email is not valid')
+      throw Error('Niepoprawny email')
    if(!validator.isStrongPassword(password))
-      throw Error('Password is not strong enough')
+      throw Error('Hasło nie jest wystarczająco silne')
 
    const nameExists = await this.findOne({name})
 
    if(nameExists)
-      throw Error('Name already in use')
+      throw Error('Nazwa użytkownika jest już w użyciu')
 
    const emailExists = await this.findOne({email})
 
    if(emailExists)
-      throw Error('Email already in use')
+      throw Error('Email jest już w użyciu')
 
    const salt = await bcrypt.genSalt(10)
    const hash = await bcrypt.hash(password, salt)
