@@ -15,7 +15,7 @@ const EXPLORE_ROUTES = [
    },
    {
       path: '/events',
-      name: 'Eventy',
+      name: 'Wolontariaty',
       icon: <MdOutlineEventNote className={styles.icon}/>
    }
 ]
@@ -23,7 +23,7 @@ const EXPLORE_ROUTES = [
 const EVENTS_ROUTES = [
    {
       path: '/events/yours',
-      name: 'Twoje Eventy',
+      name: 'Nadchodzące',
       icon: <MdOutlineEventAvailable className={styles.icon}/>
    },
    {
@@ -55,7 +55,7 @@ const Sidebar = forwardRef(({ logout, setIsOpen }, ref) => {
          </div>
          {user?.user && (
             <div className={styles.linkContainer}>
-               <p className={styles.underSectionText}>Twoje eventy</p>
+               <p className={styles.underSectionText}>Twoje&nbsp;&nbsp;wolontariaty</p>
                {EVENTS_ROUTES.map((route, i) => (
                   <Link className={styles.link} to={route.path} key={i}>{route.icon} {route.name}</Link>
                ))}

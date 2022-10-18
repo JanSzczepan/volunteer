@@ -35,7 +35,7 @@ const Search = () => {
          <input 
             className={styles.input}
             type='text'
-            placeholder='Szukaj eventu...'
+            placeholder='Szukaj wolontariatu...'
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             onKeyDown={(e) => handleKeyDown(e)}

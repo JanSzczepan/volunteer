@@ -21,7 +21,7 @@ const AllEvents = () => {
       <section className={`section ${styles.allEventsSection}`}>
          <EventsInputButtonContainer />
          <div className={styles.headerContainer}>
-            <h2 className={styles.header}>Wszystkie <br className={styles.headerBr}/> Eventy</h2>
+            <h2 className={styles.header}>Wszystkie <br className={styles.headerBr}/> Wolontariaty</h2>
          </div>
          <div className='cardsContainer'>
             {Boolean(allEvents?.length) && allEvents.map((e, i) => (

@@ -24,7 +24,7 @@ const UpcomingEvents = () => {
       <section className={`section ${styles.upcomingEventsSection}`}>
          <EventsInputButtonContainer />
          <div className={styles.headerButtonContainer}>
-            <h2 className={styles.header}>Nadchodzące <br className={styles.headerBr}/> Eventy</h2>
+            <h2 className={styles.header}>Nadchodzące <br className={styles.headerBr}/> Wolontariaty</h2>
             <Link to='/events/all' className={styles.viewAllButton}>Wszystkie</Link>
          </div>
          <div className={styles.buttonsContainer}>
