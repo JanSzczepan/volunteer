@@ -80,7 +80,7 @@ export const getEvent = createAsyncThunk(
 
          return data
       } catch (error) {
-         return thunkAPI.rejectWithValue(error)
+         throw thunkAPI.rejectWithValue(error.response.data)
       }
    }
 )
@@ -137,6 +137,9 @@ export const eventsSlice = createSlice({
          state.authorArchivalEvents = []
          state.participantArchivalEvents = []
          state.eventsBySearch = []
+      },
+      cleanError: (state) => {
+         state.error = null
       }
    },
    extraReducers: {
@@ -198,6 +201,7 @@ export const eventsSlice = createSlice({
       [getEvent.rejected]: (state, action) => {
          console.log(action)
          state.isLoading = false
+         state.error = action.payload.error
       },
       [joinEvent.pending]: (state) => {
          state.error = null
@@ -228,5 +232,5 @@ export const eventsSlice = createSlice({
    }
 }) 
 
-export const { cleanEvents } = eventsSlice.actions
+export const { cleanEvents, cleanError } = eventsSlice.actions
 export default eventsSlice.reducer

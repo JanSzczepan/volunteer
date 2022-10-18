@@ -7,18 +7,22 @@ import { FaHouseUser, FaUserCheck } from 'react-icons/fa'
 import returnImage from '../../functions/returnImage'
 import returnDate from '../../functions/returnDate'
 import { getEvent } from '../../redux/events'
+import PageNotFound from '../PageNotFound/PageNotFound'
 import styles from './EventDetails.module.scss'
 
 const EventDetails = () => {
 
    const dispatch = useDispatch()
-   const { event, isLoading } = useSelector(store => store.events)
+   const { event, isLoading, error } = useSelector(store => store.events)
 
    const { id } = useParams()
 
    useEffect(() => {
       dispatch(getEvent(id))
    }, [id])
+
+   if (error === 'Event id is not valid')
+      return <PageNotFound />
 
    if (!event) return
 

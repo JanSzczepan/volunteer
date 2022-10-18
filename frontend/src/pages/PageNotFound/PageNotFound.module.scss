@@ -1,0 +1,64 @@
+@use "../../scss/index" as *;
+
+.notFoundSection {
+   max-width: 500px !important;
+   margin: 0 auto;
+}
+
+.notFoundImage {
+   width: 100%;
+   height: auto;
+   margin-bottom: 5px;
+}
+
+.headerText {
+   text-align: center;
+   font-size: 3.2rem;
+   font-weight: 700;
+   color: $color-purple;
+   margin-bottom: 10px;
+
+   @include phone {
+      font-size: 4rem;
+   }
+}
+
+.subHeaderText {
+   text-align: center;
+   font-size: 1.8rem;
+   color: $color-black;
+   margin-bottom: 25px;
+
+   @include phone {
+      font-size: 2rem;
+   }
+}
+
+.text {
+   text-align: center;
+   font-size: 1.4rem;
+   color: darken($color-gray, 15%);
+   margin-bottom: 10px;
+
+   @include phone {
+      font-size: 1.6rem;
+   }
+}
+
+.linksContainer {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 0 10px;
+}
+
+.link {
+   font-size: 1.6rem;
+   font-weight: 700;
+   color: $color-green;
+   text-decoration: underline;
+
+   @include phone {
+      font-size: 1.8rem;
+   }
+}

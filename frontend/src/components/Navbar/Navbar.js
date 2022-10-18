@@ -7,7 +7,7 @@ import { FaHeart } from 'react-icons/fa'
 import decode from 'jwt-decode'
 
 import { keepTrack, logOut } from '../../redux/auth'
-import { cleanEvents } from '../../redux/events'
+import { cleanError, cleanEvents } from '../../redux/events'
 import Sidebar from './Sidebar/Sidebar'
 import styles from './Navbar.module.scss'
 
@@ -49,6 +49,7 @@ const Navbar = () => {
       setUser(JSON.parse(window.localStorage.getItem('profile')))
       setIsOpen(false)
       dispatch(cleanEvents())
+      dispatch(cleanError())
    }, [location, dispatch])
 
    // const handleWindowClick = (e) => {

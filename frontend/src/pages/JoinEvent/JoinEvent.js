@@ -3,20 +3,21 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { cleanEvents, getEvent, joinEvent } from '../../redux/events'
+import PageNotFound from '../PageNotFound/PageNotFound'
 import styles from './JoinEvent.module.scss'
 
 const JoinEvent = () => {
 
    const [motivation, setMotivation] = useState('')
+   const [error, setError] = useState(false)
 
    const { id } = useParams()
    const navigate = useNavigate()
 
    const dispatch = useDispatch()
-   const { error } = useSelector(store => store.events)
   
    // const [ event ] = useSelector(store => store.events.events.filter(e => e._id === id))
-   const { event, isLoading } = useSelector(store => store.events)
+   const { event, isLoading, error: err } = useSelector(store => store.events)
    
    const user = JSON.parse(window.localStorage.getItem('profile'))
    
@@ -26,6 +27,12 @@ const JoinEvent = () => {
       e.preventDefault()
 
       if (!user?.user) return
+
+      if (!motivation) {
+         const errorText = join ? 'Podaj motywację' : 'Podaj rezygnację' 
+         setError(errorText)
+         return
+      }
 
       let formData
 
@@ -41,10 +48,17 @@ const JoinEvent = () => {
    }
 
    useEffect(() => {
+      setError(err)
+   }, [err])
+
+   useEffect(() => {
       dispatch(getEvent(id))
    }, [id, dispatch])
 
    // if (isLoading) return
+   if (error === 'Event id is not valid')
+      return <PageNotFound />
+
    if (!event) return
 
    if (event?.banned?.includes(user?.user._id)) 

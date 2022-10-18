@@ -14,9 +14,8 @@ import EventDetails from './pages/EventDetails/EventDetails'
 import YourEvents from './pages/YourEvents/YourEvents'
 import ArchivalEvents from './pages/ArchivalEvents/ArchivalEvents'
 import SearchEvents from './pages/SearchEvents/SearchEvents'
+import PageNotFound from './pages/PageNotFound/PageNotFound'
 import styles from './App.module.scss'
-
-// add cleaning event and events in redux after location change
 
 function App() {
 
@@ -46,6 +45,7 @@ function App() {
             <Route path='events/:id/join' element={user?.user ? <JoinEvent /> : <Navigate to='/login'/>}/>
             <Route path='/login' element={!user?.user ? <Login /> : <Navigate to='/'/>}/>
             <Route path='/signup' element={!user?.user ? <Signup /> : <Navigate to='/'/>}/>
+            <Route path='*' element={<PageNotFound />}/>
          </Routes>
          </main>
       </BrowserRouter>
