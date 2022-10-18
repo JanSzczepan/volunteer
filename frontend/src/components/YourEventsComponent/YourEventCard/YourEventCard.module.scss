@@ -2,8 +2,10 @@
 
 .card {
    display: flex;
-   border: 1px solid $color-gray;
    border-radius: $border-radius;
+   -webkit-box-shadow: 0px 9px 25px -5px rgba(175, 175, 175);
+   -moz-box-shadow: 0px 9px 25px -5px rgba(175, 175, 175);
+   box-shadow: 0px 9px 25px -5px rgba(175, 175, 175);
    margin-bottom: 15px;
 }
 
