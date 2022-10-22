@@ -10,14 +10,11 @@ const Search = () => {
 
    const [search, setSearch] = useState('')
 
-   // const dispatch = useDispatch()
-
    const navigate = useNavigate()
 
    const searchEvents = () => {
       if (search.trim()) {
          navigate(`/events/search?search=${search.trim() || 'none'}`)
-         // dispatch(getEventsBySearch(search.trim()))
       } else 
          navigate('/events/all')
    }

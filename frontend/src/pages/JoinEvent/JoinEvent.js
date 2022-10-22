@@ -16,7 +16,6 @@ const JoinEvent = () => {
 
    const dispatch = useDispatch()
   
-   // const [ event ] = useSelector(store => store.events.events.filter(e => e._id === id))
    const { event, isLoading, error: err } = useSelector(store => store.events)
    
    const user = JSON.parse(window.localStorage.getItem('profile'))
@@ -55,7 +54,6 @@ const JoinEvent = () => {
       dispatch(getEvent(id))
    }, [id, dispatch])
 
-   // if (isLoading) return
    if (error === 'Event id is not valid')
       return <PageNotFound />
 

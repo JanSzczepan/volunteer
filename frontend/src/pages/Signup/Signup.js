@@ -33,8 +33,6 @@ const Signup = () => {
    useEffect(() => {
       setError(null)
    }, [location])
-   
-   // if (isLoading) return
 
    return (  
       <section className={`${'section'} ${styles.section}`}>

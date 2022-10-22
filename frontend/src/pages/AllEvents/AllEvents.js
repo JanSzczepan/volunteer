@@ -14,8 +14,6 @@ const AllEvents = () => {
    useEffect(() => {
       dispatch(getAllEvents())
    }, [dispatch])
-   
-   // if (isLoading) return
 
    return (  
       <section className={`section ${styles.allEventsSection}`}>

@@ -114,7 +114,6 @@ $participant-size: 35px;
    display: flex;
    align-items: center;
    justify-content: center;
-   // width: calc($participant-size * 3 - 5px);
    display: none;
 
    @media only screen and (min-width: 380px) {

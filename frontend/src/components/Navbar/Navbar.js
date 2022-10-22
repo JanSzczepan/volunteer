@@ -30,10 +30,6 @@ const Navbar = () => {
       navigate('/login')
    }
 
-   // useEffect(() => {
-   //    window.addEventListener('click', (e) => handleWindowClick(e))
-   // }, [])
-
    useEffect(() => {
       const token = user?.token
 
@@ -51,36 +47,6 @@ const Navbar = () => {
       dispatch(cleanEvents())
       dispatch(cleanError())
    }, [location, dispatch])
-
-   // const handleWindowClick = (e) => {
-
-   //    const clickX = e.clientX
-   //    const clickY = e.clientY
-
-   //    const menuButtonLeft = menuButtonElement.current.getBoundingClientRect().left
-   //    const menuButtonRight = menuButtonLeft + menuButtonElement.current.offsetWidth
-   //    const menuButtonTop = menuButtonElement.current.getBoundingClientRect().top 
-   //    const menuButtonBottom = menuButtonTop + menuButtonElement.current.offsetHeight
-      
-   //    if (clickX >= menuButtonLeft && clickX <= menuButtonRight && clickY >= menuButtonTop && clickY <= menuButtonBottom)
-   //       return
-         
-
-   //    if (!ref?.current) {
-   //       setIsOpen(false)
-   //       return
-   //    }
-
-   //    const sidebarLeft = ref.current.offsetLeft
-   //    const sidebarRight = sidebarLeft + ref.current.offsetWidth
-   //    const sidebarTop = ref.current.offsetTop 
-   //    const sidebarBottom = sidebarTop + ref.current.offsetHeight
-
-   //    if (clickX >= sidebarLeft && clickX <= sidebarRight && clickY >= sidebarTop && clickY <= sidebarBottom)
-   //       return
-
-   //    setIsOpen(false)
-   // }
 
    return (  
       <nav className={styles.nav}>

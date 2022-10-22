@@ -17,8 +17,6 @@ const UpcomingEvents = () => {
    useEffect(() => {
       dispatch(getUpcomingEvents())
    }, [dispatch])
-   
-   // if (isLoading) return
   
    return (  
       <section className={`section ${styles.upcomingEventsSection}`}>

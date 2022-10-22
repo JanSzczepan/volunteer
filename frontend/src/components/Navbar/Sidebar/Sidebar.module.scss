@@ -85,13 +85,11 @@
    align-items: center;
    font-size: 1.7rem;
    font-weight: 700;
-   // color: darken($color-gray, 25%);
    color: $color-black;
    letter-spacing: .5px;
 
    .icon {
       font-size: 2.5rem;
-      // color: darken($color-gray, 25%);
       color: $color-black;
       margin-right: 10px;
    }
@@ -151,7 +149,6 @@
    justify-content: center;
    background-color: transparent;
    color: $color-black;
-   // color: darken($color-gray, 25%);
    border: 3px solid transparent;
 
    .authLogoutIcon {
