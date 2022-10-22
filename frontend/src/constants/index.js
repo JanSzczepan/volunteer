@@ -1,9 +1,7 @@
 import { FaDog, FaHandsHelping, FaHospital } from 'react-icons/fa'
-import { AiFillHeart } from 'react-icons/ai'
 import { BiPackage } from 'react-icons/bi'
 import { GiMoneyStack, GiSlicedBread, GiPartyPopper } from 'react-icons/gi'
 import { MdChildFriendly, MdLocalHospital } from 'react-icons/md'
-import { VscOrganization } from 'react-icons/vsc'
 
 export const OPTIONS = [
    { value: 'Pomoc finansowa', text: 'Pomoc finansowa', imgLink: 'https://woiz.p.lodz.pl/arch/wp-content/uploads/2020/07/pomoc-materialna-i-stypendia.jpeg', icon: GiMoneyStack, description: 'W życiu spotykamy ludzi, dla których los był nieprzychylny. Niektórzy mają problemy, z którymi nie potrafią sobie poradzić. Wspomóż finansowo tych, którzy nie mieli tyle szczęścia co ty.' },
