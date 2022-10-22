@@ -159,13 +159,13 @@
 
 .closeButtonContainer {
    position: relative;
-   min-height: 120px;
+   min-height: 190px;
    flex-grow: 1;
 }
 
 .closeButton {
    position: absolute;
-   bottom: 25px;
+   bottom: 60px;
    left: 50%;
    transform: translateX(-50%);
    display: flex;
