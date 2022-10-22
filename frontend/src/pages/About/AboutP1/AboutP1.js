@@ -19,11 +19,11 @@ const AboutP1 = () => {
                <div className={styles.buttonsContainer}>
                   {!user?.user && (
                      <>
-                     <Link to='/signup' className={`${styles.authButton} ${styles.signupButton}`} type='button'>Signup</Link>
-                     <Link to='/login' className={`${styles.authButton} ${styles.loginButton}`} type='button'>Login</Link>
+                     <Link to='/volunteer/signup' className={`${styles.authButton} ${styles.signupButton}`} type='button'>Signup</Link>
+                     <Link to='/volunteer/login' className={`${styles.authButton} ${styles.loginButton}`} type='button'>Login</Link>
                      </>
                   )}
-                  {user?.user && <Link to='/events/add-event' className={styles.addEventButton}>Dodaj Event</Link>}
+                  {user?.user && <Link to='/volunteer/events/add-event' className={styles.addEventButton}>Dodaj Event</Link>}
                </div>
                <div className={styles.checkContainer}>
                   {CHECK_LIST.map((item, i) => (

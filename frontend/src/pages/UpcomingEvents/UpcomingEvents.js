@@ -23,7 +23,7 @@ const UpcomingEvents = () => {
          <EventsInputButtonContainer />
          <div className={styles.headerButtonContainer}>
             <h2 className={styles.header}>Nadchodzące <br className={styles.headerBr}/> Wolontariaty</h2>
-            <Link to='/events/all' className={styles.viewAllButton}>Wszystkie</Link>
+            <Link to='/volunteer/events/all' className={styles.viewAllButton}>Wszystkie</Link>
          </div>
          <div className={styles.buttonsContainer}>
             <button className={`${styles.dayButton} ${isToday && styles.dayButtonActive}`} onClick={() => setIsToday(true)} type='button'>Dziś</button>

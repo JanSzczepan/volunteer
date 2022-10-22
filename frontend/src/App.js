@@ -32,19 +32,20 @@ function App() {
          <Navbar />
          <main className={styles.main}>
          <Routes>
-            <Route path='/' element={<Navigate to='/about'/>}/>
-            <Route path='/about' element={<About />}/>
-            <Route path='/events' element={<Navigate to='/events/upcoming'/>}/>
-            <Route path='/events/upcoming' element={<UpcomingEvents />}/>
-            <Route path='/events/all' element={<AllEvents />}/>
-            <Route path='/events/yours' element={user?.user ? <YourEvents /> : <Navigate to='/login'/>}/>
-            <Route path='/events/archival' element={user?.user ? <ArchivalEvents /> : <Navigate to='/login'/>}/>
-            <Route path='/events/search' element={<SearchEvents />}/>
-            <Route path='/events/add-event' element={user?.user ? <AddEvent /> : <Navigate to='/login'/>}/>
-            <Route path='events/:id/eventDetails' element={<EventDetails />}/>
-            <Route path='events/:id/join' element={user?.user ? <JoinEvent /> : <Navigate to='/login'/>}/>
-            <Route path='/login' element={!user?.user ? <Login /> : <Navigate to='/'/>}/>
-            <Route path='/signup' element={!user?.user ? <Signup /> : <Navigate to='/'/>}/>
+            <Route path='/' element={<Navigate to='/volunteer/about'/>}/>
+            <Route path='/volunteer' element={<Navigate to='/volunteer/about'/>}/>
+            <Route path='/volunteer/about' element={<About />}/>
+            <Route path='/volunteer/events' element={<Navigate to='/volunteer/events/upcoming'/>}/>
+            <Route path='/volunteer/events/upcoming' element={<UpcomingEvents />}/>
+            <Route path='/volunteer/events/all' element={<AllEvents />}/>
+            <Route path='/volunteer/events/yours' element={user?.user ? <YourEvents /> : <Navigate to='/volunteer/login'/>}/>
+            <Route path='/volunteer/events/archival' element={user?.user ? <ArchivalEvents /> : <Navigate to='/volunteer/login'/>}/>
+            <Route path='/volunteer/events/search' element={<SearchEvents />}/>
+            <Route path='/volunteer/events/add-event' element={user?.user ? <AddEvent /> : <Navigate to='/volunteer/login'/>}/>
+            <Route path='/volunteer/events/:id/eventDetails' element={<EventDetails />}/>
+            <Route path='/volunteer/events/:id/join' element={user?.user ? <JoinEvent /> : <Navigate to='/volunteer/login'/>}/>
+            <Route path='/volunteer/login' element={!user?.user ? <Login /> : <Navigate to='/volunteer'/>}/>
+            <Route path='/volunteer/signup' element={!user?.user ? <Signup /> : <Navigate to='/volunteer'/>}/>
             <Route path='*' element={<PageNotFound />}/>
          </Routes>
          </main>

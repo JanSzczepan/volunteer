@@ -83,7 +83,7 @@ const JoinEvent = () => {
             {user?.user ? (
                <button className={join ? 'joinSubmitButton' : styles.resignSubmitButton} type='submit'>{join ? 'Dołącz' : 'Zrezygnuj'}</button>
             ) : (
-               <Link to='/login' className={styles.joinLink}>Dołącz</Link>
+               <Link to='/volunteer/login' className={styles.joinLink}>Dołącz</Link>
             )}
          </form>
       </section>

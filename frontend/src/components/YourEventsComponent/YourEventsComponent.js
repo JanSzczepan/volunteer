@@ -35,7 +35,7 @@ const YourEventsComponent = ({ isArchival }) => {
                   {Boolean(!authorEvents?.length) && (
                      <div>
                         <p className={styles.noEventText}>Nie jesteś autorem żadnego wolontariatu...</p>
-                        <Link to='/events/add-event' className={styles.addEventButton}>Dodaj</Link>
+                        <Link to='/volunteer/events/add-event' className={styles.addEventButton}>Dodaj</Link>
                      </div>
                   )}
                   </>
@@ -50,7 +50,6 @@ const YourEventsComponent = ({ isArchival }) => {
                   {Boolean(!authorArchivalEvents?.length) && (
                      <div>
                         <p className={styles.noEventText}>Nie jesteś autorem żadnego archiwalnego wolontariatu...</p>
-                        {/* <Link to='/events/add-event' className={styles.addEventButton}>Dodaj</Link> */}
                      </div>
                   )}
                   </>
@@ -68,7 +67,7 @@ const YourEventsComponent = ({ isArchival }) => {
                   {Boolean(!participantEvents?.length) && (
                      <div>
                         <p className={styles.noEventText}>Nie jesteś uczestnikiem żadnego wolontariatu...</p>
-                        <Link to='/events/all' className={`${styles.addEventButton} ${styles.exploreButton}`}>Przeglądaj</Link>
+                        <Link to='/volunteer/events/all' className={`${styles.addEventButton} ${styles.exploreButton}`}>Przeglądaj</Link>
                      </div>
                   )}
                   </>
@@ -83,7 +82,6 @@ const YourEventsComponent = ({ isArchival }) => {
                   {Boolean(!participantArchivalEvents?.length) && (
                      <div>
                         <p className={styles.noEventText}>Nie jesteś uczestnikiem żadnego archiwalnego wolontariatu...</p>
-                        {/* <Link to='/events/all' className={`${styles.addEventButton} ${styles.exploreButton}`}>Przeglądaj</Link> */}
                      </div>
                   )}
                   </>

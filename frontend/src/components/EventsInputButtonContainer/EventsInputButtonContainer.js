@@ -7,7 +7,7 @@ const EventsInputButtonContainer = () => {
    return (  
       <div className={styles.inputButtonContainer}>
          <Search />
-         <Link to='/events/add-event' className={styles.addEventButton}>Dodaj Event</Link>
+         <Link to='/volunteer/events/add-event' className={styles.addEventButton}>Dodaj Event</Link>
       </div>
    )
 }

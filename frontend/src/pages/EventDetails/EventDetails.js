@@ -68,9 +68,9 @@ const EventDetails = () => {
                )}
                {!isAuthor && (
                   <>
-                  {ban && <Link to={user?.user ? `/events/${event._id}/join` : '/login'} className={`${styles.joinButton} ${styles.banButton}`}>Dołącz <IoIosArrowForward className={styles.joinIcon}/></Link>}
+                  {ban && <Link to={user?.user ? `/volunteer/events/${event._id}/join` : '/volunteer/login'} className={`${styles.joinButton} ${styles.banButton}`}>Dołącz <IoIosArrowForward className={styles.joinIcon}/></Link>}
                   {!ban && join && (
-                     <Link to={user?.user ? `/events/${event._id}/join` : '/login'} className={styles.joinButton}>Dołącz <IoIosArrowForward className={styles.joinIcon}/></Link>
+                     <Link to={user?.user ? `/volunteer/events/${event._id}/join` : '/volunteer/login'} className={styles.joinButton}>Dołącz <IoIosArrowForward className={styles.joinIcon}/></Link>
                   )}
                   {!ban && !join && (
                      <div className={styles.joinContainer}>
@@ -94,7 +94,7 @@ const EventDetails = () => {
                      </div>
                   </div>
                )}
-               {!isAuthor && !ban && !join && <Link to={user?.user ? `/events/${event._id}/join` : '/login'} className={`${styles.joinButton} ${styles.resignButton}`}>Zrezygnuj</Link>}
+               {!isAuthor && !ban && !join && <Link to={user?.user ? `/volunteer/events/${event._id}/join` : '/volunteer/login'} className={`${styles.joinButton} ${styles.resignButton}`}>Zrezygnuj</Link>}
             </div>
          </header>
       </section>

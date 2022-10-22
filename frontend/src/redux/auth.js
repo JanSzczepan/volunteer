@@ -14,7 +14,7 @@ export const logIn = createAsyncThunk(
       try {
          const { data } = await api.login(dataObj.formData)
 
-         dataObj.navigate('/events')
+         dataObj.navigate('/volunteer/events')
          return data
       } catch (error) {
          throw thunkAPI.rejectWithValue(error.response.data)
@@ -28,7 +28,7 @@ export const signUp = createAsyncThunk(
       try {
          const { data } = await api.signup(dataObj.formData)
 
-         dataObj.navigate('/events')
+         dataObj.navigate('/volunteer/events')
          return data
       } catch (error) {
          throw thunkAPI.rejectWithValue(error.response.data)

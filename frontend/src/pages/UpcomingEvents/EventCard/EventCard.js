@@ -24,7 +24,7 @@ const EventCard = ({ event, isAllEvents = false }) => {
    
    return (  
       <div className={styles.card}>
-         <Link to={`/events/${_id}/eventDetails`}>
+         <Link to={`/volunteer/events/${_id}/eventDetails`}>
             <div className={styles.imageContainer} style={{backgroundImage:`url('${returnImage(selectedFile, cathegory)}')`}}>
                <div className={styles.frontContainer}>
                   <div className={styles.textContainer}>
@@ -75,7 +75,7 @@ const EventCard = ({ event, isAllEvents = false }) => {
             )}
             {!isAuthor && (
                <>
-               {ban && <Link to={user?.user ? `/events/${_id}/join` : '/login'} className={`${styles.joinButton} ${styles.banButton}`}>Dołącz <IoIosArrowForward className={styles.joinIcon}/></Link>}
+               {ban && <Link to={user?.user ? `/volunteer/events/${_id}/join` : '/volunteer/login'} className={`${styles.joinButton} ${styles.banButton}`}>Dołącz <IoIosArrowForward className={styles.joinIcon}/></Link>}
                {!ban && !join && (
                   <>
                   <div className={styles.joinContainer}>
@@ -85,7 +85,7 @@ const EventCard = ({ event, isAllEvents = false }) => {
                   </>
                )}
                {!ban && join && (
-                  <Link to={user?.user ? `/events/${_id}/join` : '/login'} className={styles.joinButton}>Dołącz <IoIosArrowForward className={styles.joinIcon}/></Link>
+                  <Link to={user?.user ? `/volunteer/events/${_id}/join` : '/volunteer/login'} className={styles.joinButton}>Dołącz <IoIosArrowForward className={styles.joinIcon}/></Link>
                )}
                </>
             )}

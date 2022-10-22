@@ -4,8 +4,8 @@ import Image from '../../images/not_found.jpg'
 import styles from './PageNotFound.module.scss'
 
 const LINKS_LIST = [
-   { text: 'O nas', link: '/about' },
-   { text: 'Wolontariaty', link: '/events/upcoming' },
+   { text: 'O nas', link: '/volunteer/about' },
+   { text: 'Wolontariaty', link: '/volunteer/events/upcoming' },
 ]
 
 const PageNotFound = () => {

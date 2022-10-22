@@ -9,12 +9,12 @@ import styles from './Sidebar.module.scss'
 
 const EXPLORE_ROUTES = [
    {
-      path: '/about',
+      path: '/volunteer/about',
       name: 'O nas',
       icon: <BiHome className={styles.icon}/>
    },
    {
-      path: '/events',
+      path: '/volunteer/events',
       name: 'Wolontariaty',
       icon: <MdOutlineEventNote className={styles.icon}/>
    }
@@ -22,12 +22,12 @@ const EXPLORE_ROUTES = [
 
 const EVENTS_ROUTES = [
    {
-      path: '/events/yours',
+      path: '/volunteer/events/yours',
       name: 'Nadchodzące',
       icon: <MdOutlineEventAvailable className={styles.icon}/>
    },
    {
-      path: '/events/archival',
+      path: '/volunteer/events/archival',
       name: 'Archiwalne',
       icon: <MdOutlineArchive className={styles.icon}/>
    }
@@ -65,7 +65,7 @@ const Sidebar = forwardRef(({ logout, setIsOpen }, ref) => {
             <p className={styles.underSectionText}>Użytkownik</p>
             {user?.user && (
                <>
-               <Link to='/events/add-event' className={styles.addEventButton}>Dodaj Event</Link>
+               <Link to='/volunteer/events/add-event' className={styles.addEventButton}>Dodaj Event</Link>
                <button onClick={logout} className={`${styles.authButton} ${styles.logoutButton}`} type='button'>
                   <FiLogOut className={styles.authLogoutIcon}/>
                   Logout
@@ -74,8 +74,8 @@ const Sidebar = forwardRef(({ logout, setIsOpen }, ref) => {
             )}
             {!user?.user && (
                <>
-                  <Link to='/signup' className={`${styles.authButton} ${styles.signupButton}`} type='button'>Signup</Link>
-                  <Link to='/login' className={`${styles.authButton} ${styles.loginButton}`} type='button'>Login</Link>
+                  <Link to='/volunteer/signup' className={`${styles.authButton} ${styles.signupButton}`} type='button'>Signup</Link>
+                  <Link to='/volunteer/login' className={`${styles.authButton} ${styles.loginButton}`} type='button'>Login</Link>
                </>
             )}
          </div>

@@ -12,7 +12,7 @@ const AboutP4 = () => {
             <h3 className={styles.headerText}>Jakie są rodzaje wolontariatów?</h3>
             <div className={styles.cardsContainer}>
                {OPTIONS.map((card, i) => (
-                  <Link className={styles.card} to={`/events/search?search=${card.value || 'none'}`} key={i}>
+                  <Link className={styles.card} to={`/volunteer/events/search?search=${card.value || 'none'}`} key={i}>
                      <AboutCard card={card}/>
                   </Link>
                ))}

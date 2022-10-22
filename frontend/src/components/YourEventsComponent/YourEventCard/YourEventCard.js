@@ -37,7 +37,7 @@ const YourEventCard = ({event, isArchival}) => {
    return (  
       <>
          {!isArchival && (
-            <Link to={`/events/${_id}/eventDetails`} className={styles.card}>
+            <Link to={`/volunteer/events/${_id}/eventDetails`} className={styles.card}>
                {returnCardContent()}
             </Link>
          )}

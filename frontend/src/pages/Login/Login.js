@@ -49,7 +49,7 @@ const Login = () => {
                } className='authInput' id="password" type="password"/>
             <div className='authAlreadyContainer'>
                <p className='authAlreadyText'>Nie masz konta?</p>
-               <Link to='/signup' className='authAlreadyButton'>Zarejestruj się</Link>
+               <Link to='/volunteer/signup' className='authAlreadyButton'>Zarejestruj się</Link>
             </div>
             {error && (
                <div className='authErrorContainer'>

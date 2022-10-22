@@ -73,7 +73,7 @@ const AddEvent = () => {
             {user?.user ? (
                <button className={`addEventSubmitButton ${styles.addEventSubmitButton}`} type='submit'>Dodaj Event</button>
             ) : (
-               <Link to='/login' className={styles.addEventLink}>Dodaj Event</Link>
+               <Link to='/volunteer/login' className={styles.addEventLink}>Dodaj Event</Link>
             )}
          </form>
       </section>

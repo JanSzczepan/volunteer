@@ -14,9 +14,9 @@ const Search = () => {
 
    const searchEvents = () => {
       if (search.trim()) {
-         navigate(`/events/search?search=${search.trim() || 'none'}`)
+         navigate(`/volunteer/events/search?search=${search.trim() || 'none'}`)
       } else 
-         navigate('/events/all')
+         navigate('/volunteer/events/all')
    }
 
    const handleKeyDown = (e) => {

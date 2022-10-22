@@ -55,7 +55,7 @@ const Signup = () => {
                }} className='authInput' id="password" type="password"/>
             <div className='authAlreadyContainer'>
                <p className='authAlreadyText'>Masz już konto?</p>
-               <Link to='/login' className='authAlreadyButton'>Zaloguj się</Link>
+               <Link to='/volunteer/login' className='authAlreadyButton'>Zaloguj się</Link>
             </div>
             {error && (
                <div className='authErrorContainer'>

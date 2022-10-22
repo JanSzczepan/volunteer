@@ -88,7 +88,7 @@ export const joinEvent = createAsyncThunk(
 
          const { data } = await api.joinEvent(id, formData)
          
-         navigate(`/events/${id}/eventDetails`)
+         navigate(`/volunteer/events/${id}/eventDetails`)
 
          return data
       } catch (error) {
@@ -103,7 +103,7 @@ export const createEvent = createAsyncThunk(
       try {
          const { data } = await api.createEvent(dataObj.formData)
          
-         dataObj.navigate(`/events/${data.data._id}/eventDetails`)
+         dataObj.navigate(`/volunteer/events/${data.data._id}/eventDetails`)
 
          return data
       } catch (error) {

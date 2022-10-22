@@ -27,7 +27,7 @@ const Navbar = () => {
    const logout = () => {
       setUser(null)
       dispatch(logOut())
-      navigate('/login')
+      navigate('/volunteer/login')
    }
 
    useEffect(() => {
@@ -56,7 +56,7 @@ const Navbar = () => {
                   <BiMenuAltLeft className={styles.menuIcon}/>
                </button>
             )}
-            <Link to='/'>
+            <Link to='/volunteer'>
                <h1 className={styles.logo}>
                   <FaHeart className={styles.logoIcon}/>
                   olunteer
@@ -75,8 +75,8 @@ const Navbar = () => {
                   </>
                ) : (
                   <>
-                     <Link to='/login' className={`${styles.authButton} ${styles.loginButton}`} type='button'>Login</Link>
-                     <Link to='/signup' className={`${styles.authButton} ${styles.signupButton}`} type='button'>Signup</Link>
+                     <Link to='/volunteer/login' className={`${styles.authButton} ${styles.loginButton}`} type='button'>Login</Link>
+                     <Link to='/volunteer/signup' className={`${styles.authButton} ${styles.signupButton}`} type='button'>Signup</Link>
                   </>
                )}
             </div>
