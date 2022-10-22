@@ -29,7 +29,7 @@ const AddEvent = () => {
       
       if (isToggled)
          setFormData({ ...formData, anonymous: false })
-      console.log(formData)
+      
       dispatch(createEvent({ formData, navigate }))
    }
    

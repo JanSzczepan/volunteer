@@ -20,7 +20,6 @@ export const getUpcomingEvents = createAsyncThunk(
    async (thunkAPI) => {
       try {
          const { data } = await api.fetchUpcomingEvents()
-         console.log('Upcoming Events fetched:', data)
 
          return data
       } catch (error) {
@@ -34,7 +33,6 @@ export const getAllEvents = createAsyncThunk(
    async (thunkAPI) => {
       try {
          const { data } = await api.fetchAllEvents()
-         console.log('All Events fetched:', data)
 
          return data
       } catch (error) {
@@ -48,7 +46,6 @@ export const getYourEvents = createAsyncThunk(
    async (thunkAPI) => {
       try {
          const { data } = await api.fetchYourEvents()
-         console.log('Your Events fetched:', data)
 
          return data
       } catch (error) {
@@ -62,7 +59,6 @@ export const getEventsBySearch = createAsyncThunk(
    async (search, thunkAPI) => {
       try {
          const { data } = await api.fetchEventsBySearch(search)
-         console.log("Events fetched by search:", data)
 
          return data
       } catch (error) {
@@ -76,7 +72,6 @@ export const getEvent = createAsyncThunk(
    async (id, thunkAPI) => {
       try {
          const { data } = await api.fetchEvent(id)
-         console.log(`The event (${id}) fetched:`, data)
 
          return data
       } catch (error) {
@@ -93,11 +88,6 @@ export const joinEvent = createAsyncThunk(
 
          const { data } = await api.joinEvent(id, formData)
          
-         if (formData.motivation)
-            console.log('Event joined:', data)
-         else 
-            console.log('Event resigned:', data)
-         
          navigate(`/events/${id}/eventDetails`)
 
          return data
@@ -112,7 +102,6 @@ export const createEvent = createAsyncThunk(
    async (dataObj, thunkAPI) => {
       try {
          const { data } = await api.createEvent(dataObj.formData)
-         console.log(`Event created:`, data)
          
          dataObj.navigate(`/events/${data.data._id}/eventDetails`)
 
