@@ -7,14 +7,69 @@
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
-      content="Web site created using create-react-app"
+      content="Twórz wolontariaty w łatwy sposób i zgłaszaj chęć udziału w istniejących wolontariatach. Dołącz do nas!"
     />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <title>Volunteer</title>
+
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&display=swap');
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .loaderContainer {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .loaderImage {
+        width: 40px;
+        height: auto;
+      }
+
+      .loaderHeaderText {
+        font-size: 25px;
+        font-weight: 700;
+        font-family: 'Lato', sans-serif;
+        color: #141414;
+      }
+
+      @media only screen and (min-width: 320px) {
+        .loaderImage {
+          width: 45px;
+        }
+
+        .loaderHeaderText {
+          font-size: 28px;
+        }
+      }
+
+      @media only screen and (min-width: 768px) {
+        .loaderImage {
+          width: 50px;
+        }
+
+        .loaderHeaderText {
+          font-size: 30px;
+        }
+      }
+    </style>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+    
+    <div id="root">
+      <div class="loaderContainer">
+        <img class="loaderImage" src="%PUBLIC_URL%/logo.png" alt="Heart Logo">
+        <h1 class="loaderHeaderText">oluteer</h1>
+      </div>
+    </div>
   </body>
 </html>
