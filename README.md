@@ -12,10 +12,10 @@ Dołącz do nas!
 ![https://volunteer-website.netlify.app/volunteer/events/add-event](https://i.ibb.co/YtkRRR2/2.png)
 Każdy może zostać wolontariuszem, **dodawać nowe wolontariaty** i zachęcać innych do działania.
 
-![https://volunteer-website.netlify.app/volunteer/events/upcoming](https://i.ibb.co/K0Jdgv6/3.png)
+![https://volunteer-website.netlify.app/volunteer/events/upcoming](https://i.ibb.co/C9mbYFK/3.png)
 Użytkownik ma możliwość przeglądać **wszystkie organizowane wolontariaty**, oraz te, które odbędą się w najbliższych dniach. 
 
-![https://volunteer-website.netlify.app/volunteer/events/all](https://i.ibb.co/w7XwndX/4.png)
+![https://volunteer-website.netlify.app/volunteer/events/all](https://i.ibb.co/4FVrKKD/4.png)
 Możesz **dołączyć do wolontariatu**, który cię zainteresuje. W każdej chwili można zrezygnować podając powód.
 
 Klikając w poszczególny event zobaczysz **szczegółowy opis** wolontariatu.
