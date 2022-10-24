@@ -70,9 +70,10 @@ export const getEventBySearch = async (req, res) => {
    
    const { search } = req.query
    const searchQuery = search ? new RegExp(search, "i") : null
-   
+   const today = new Date()
+
    try {
-      const event = await EventModel.find({ $or: [{ title: searchQuery }, { cathegory: searchQuery }, { city: searchQuery }, { address: searchQuery }] })
+      const event = await EventModel.find({ $and: [{ $or: [{ title: searchQuery }, { cathegory: searchQuery }, { city: searchQuery }, { address: searchQuery }] }, { date: {$gte: today.toISOString()} }] }).sort({ date: 1 })
 
       res.status(200).json({ data: event })
    } catch (error) {
