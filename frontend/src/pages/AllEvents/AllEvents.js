@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { getAllEvents } from '../../redux/events'
@@ -11,9 +12,12 @@ const AllEvents = () => {
    const dispatch = useDispatch()
    const { isLoading, allEvents } = useSelector(store => store.events)
 
+   const location = useLocation()
+
    useEffect(() => {
+      console.log('fetch')
       dispatch(getAllEvents())
-   }, [dispatch])
+   }, [dispatch, location])
 
    return (  
       <section className={`section ${styles.allEventsSection}`}>
