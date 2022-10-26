@@ -15,7 +15,6 @@ const AllEvents = () => {
    const location = useLocation()
 
    useEffect(() => {
-      console.log('fetch')
       dispatch(getAllEvents())
    }, [dispatch, location])
 
