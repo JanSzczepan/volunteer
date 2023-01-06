@@ -1,13 +1,12 @@
 import axios from 'axios'
 
 // const devUrl = 'http://localhost:5000'
-const prodUrl = 'https://volunteer-johnkot.herokuapp.com/'
+const prodUrl = 'https://volunteer-production.up.railway.app/'
 
 const API = axios.create({ baseURL: prodUrl })
- 
+
 API.interceptors.request.use((req) => {
-   if(window.localStorage.getItem('profile'))
-      req.headers.authorization = `Bearer ${JSON.parse(window.localStorage.getItem('profile')).token}`
+   if (window.localStorage.getItem('profile')) req.headers.authorization = `Bearer ${JSON.parse(window.localStorage.getItem('profile')).token}`
 
    return req
 })
