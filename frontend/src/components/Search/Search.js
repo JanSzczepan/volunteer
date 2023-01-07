@@ -1,9 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
 import { BsSearch } from 'react-icons/bs'
 
-import { getEventsBySearch } from '../../redux/events'
 import styles from './Search.module.scss'
 
 const Search = () => {
@@ -15,6 +13,8 @@ const Search = () => {
       if (search.trim()) {
          navigate(`/volunteer/events/search?search=${search.trim() || 'none'}`)
       } else navigate('/volunteer/events/all')
+
+      setSearch('')
    }
 
    const handleKeyDown = (e) => {

@@ -5,6 +5,8 @@ import EventsInputButtonContainer from '../../components/EventsInputButtonContai
 import EventCard from '../UpcomingEvents/EventCard/EventCard'
 import useQuery from '../../hooks/useQuery'
 import { getEventsBySearch } from '../../redux/events'
+import Loader from '../../components/Loader/Loader'
+import { COLORS } from '../../constants'
 import styles from './SearchEvents.module.scss'
 
 const SearchEvents = () => {
@@ -26,22 +28,34 @@ const SearchEvents = () => {
                <br className={styles.headerBr} />"{query}"
             </h2>
          </div>
-         <div className='cardsContainer'>
-            {!isLoading &&
-               Boolean(eventsBySearch?.length) &&
-               eventsBySearch.map((e, i) => (
-                  <EventCard
-                     event={e}
-                     isAllEvents={true}
-                     key={i}
-                  />
-               ))}
-            {!isLoading && Boolean(!eventsBySearch?.length) && (
-               <div>
-                  <p>Nie znaleziono eventów dla wyszukiwania:&nbsp;&nbsp;"{query}"</p>
-               </div>
-            )}
-         </div>
+         {isLoading ? (
+            <div className='loaderSpinnerContainer'>
+               <Loader
+                  height={40}
+                  width={40}
+                  color={COLORS.green}
+                  secondaryColor={COLORS.green}
+                  strokeWidth={3}
+                  strokeWidthSecondary={3}
+               />
+            </div>
+         ) : (
+            <div className='cardsContainer'>
+               {Boolean(eventsBySearch?.length) ? (
+                  eventsBySearch.map((e, i) => (
+                     <EventCard
+                        event={e}
+                        isAllEvents={true}
+                        key={i}
+                     />
+                  ))
+               ) : (
+                  <div>
+                     <p>Nie znaleziono eventów dla wyszukiwania:&nbsp;&nbsp;"{query}"</p>
+                  </div>
+               )}
+            </div>
+         )}
       </section>
    )
 }
