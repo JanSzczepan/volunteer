@@ -1,28 +1,32 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { cleanEvents, getEvent, joinEvent } from '../../redux/events'
 import PageNotFound from '../PageNotFound/PageNotFound'
+import Loader from '../../components/Loader/Loader'
+import { COLORS } from '../../constants'
 import styles from './JoinEvent.module.scss'
 
 const JoinEvent = () => {
    const [motivation, setMotivation] = useState('')
    const [error, setError] = useState(false)
+   const [isLoading, setIsLoading] = useState(false)
 
    const { id } = useParams()
    const navigate = useNavigate()
 
    const dispatch = useDispatch()
 
-   const { event, isLoading, error: err } = useSelector((store) => store.events)
+   const { event, isLoading: isEventLoading, error: err } = useSelector((store) => store.events)
 
    const user = JSON.parse(window.localStorage.getItem('profile'))
 
-   const join = Boolean(!event?.participants?.includes(user?.user._id))
+   const join = useMemo(() => Boolean(!event?.participants?.includes(user?.user._id)), [])
 
    const handleSubmit = (e) => {
       e.preventDefault()
+      setIsLoading(true)
 
       if (!user?.user) return
 
@@ -41,7 +45,7 @@ const JoinEvent = () => {
       }
 
       dispatch(cleanEvents())
-      dispatch(joinEvent({ id, formData, navigate }))
+      dispatch(joinEvent({ id, formData, navigate, setIsLoading }))
    }
 
    useEffect(() => {
@@ -54,7 +58,19 @@ const JoinEvent = () => {
 
    if (error === 'Event id is not valid') return <PageNotFound />
 
-   if (!event) return
+   if (isEventLoading && !isLoading)
+      return (
+         <div className='loaderSpinnerBigContainer'>
+            <Loader
+               height={40}
+               width={40}
+               color={COLORS.green}
+               secondaryColor={COLORS.green}
+               strokeWidth={3}
+               strokeWidthSecondary={3}
+            />
+         </div>
+      )
 
    if (event?.banned?.includes(user?.user._id))
       return (
@@ -95,8 +111,22 @@ const JoinEvent = () => {
                <button
                   className={join ? 'joinSubmitButton' : styles.resignSubmitButton}
                   type='submit'
+                  disabled={isLoading}
                >
-                  {join ? 'Dołącz' : 'Zrezygnuj'}
+                  {isLoading ? (
+                     <Loader
+                        height={30}
+                        width={30}
+                        color={COLORS.white}
+                        secondaryColor={COLORS.white}
+                        strokeWidth={3}
+                        strokeWidthSecondary={3}
+                     />
+                  ) : join ? (
+                     'Dołącz'
+                  ) : (
+                     'Zrezygnuj'
+                  )}
                </button>
             ) : (
                <Link

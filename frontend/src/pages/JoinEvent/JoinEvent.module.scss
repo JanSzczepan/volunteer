@@ -25,7 +25,11 @@
 }
 
 .resignSubmitButton {
+   display: flex;
+   align-items: center;
+   justify-content: center;
    width: 100%;
+   height: 52.5px;
    padding: 15px 20px;
    background-color: $color-red;
    color: $color-white;

@@ -66,15 +66,17 @@ export const getEvent = createAsyncThunk('events/getEvent', async (id, thunkAPI)
 })
 
 export const joinEvent = createAsyncThunk('events/joinEvent', async (dataObj, thunkAPI) => {
-   try {
-      const { id, formData, navigate } = dataObj
+   const { id, formData, navigate, setIsLoading } = dataObj
 
+   try {
       const { data } = await api.joinEvent(id, formData)
 
+      setIsLoading(false)
       navigate(`/volunteer/events/${id}/eventDetails`)
 
       return data
    } catch (error) {
+      setIsLoading(false)
       throw thunkAPI.rejectWithValue(error.response.data)
    }
 })
