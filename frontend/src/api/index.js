@@ -1,9 +1,9 @@
 import axios from 'axios'
 
-// const devUrl = 'http://localhost:5000'
-const prodUrl = 'https://volunteer-production.up.railway.app/'
+const devUrl = 'http://localhost:8080'
+// const prodUrl = 'https://volunteer-production.up.railway.app/'
 
-const API = axios.create({ baseURL: prodUrl })
+const API = axios.create({ baseURL: devUrl })
 
 API.interceptors.request.use((req) => {
    if (window.localStorage.getItem('profile')) req.headers.authorization = `Bearer ${JSON.parse(window.localStorage.getItem('profile')).token}`

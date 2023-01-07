@@ -6,11 +6,12 @@ import { getAllEvents } from '../../redux/events'
 import EventsInputButtonContainer from '../../components/EventsInputButtonContainer/EventsInputButtonContainer'
 import EventCard from '../UpcomingEvents/EventCard/EventCard'
 import styles from './AllEvents.module.scss'
+import Loader from '../../components/Loader/Loader'
+import { COLORS } from '../../constants'
 
 const AllEvents = () => {
-
    const dispatch = useDispatch()
-   const { isLoading, allEvents } = useSelector(store => store.events)
+   const { isLoading, allEvents } = useSelector((store) => store.events)
 
    const location = useLocation()
 
@@ -18,19 +19,39 @@ const AllEvents = () => {
       dispatch(getAllEvents())
    }, [dispatch, location])
 
-   return (  
+   return (
       <section className={`section ${styles.allEventsSection}`}>
          <EventsInputButtonContainer />
          <div className={styles.headerContainer}>
-            <h2 className={styles.header}>Wszystkie <br className={styles.headerBr}/> Wolontariaty</h2>
+            <h2 className={styles.header}>
+               Wszystkie <br className={styles.headerBr} /> Wolontariaty
+            </h2>
          </div>
-         <div className='cardsContainer'>
-            {Boolean(allEvents?.length) && allEvents.map((e, i) => (
-               <EventCard event={e} isAllEvents={true} key={i}/>
-            ))}
-         </div>
-      </section> 
+         {isLoading ? (
+            <div className='loaderSpinnerContainer'>
+               <Loader
+                  height={40}
+                  width={40}
+                  color={COLORS.green}
+                  secondaryColor={COLORS.green}
+                  strokeWidth={3}
+                  strokeWidthSecondary={3}
+               />
+            </div>
+         ) : (
+            <div className='cardsContainer'>
+               {Boolean(allEvents?.length) &&
+                  allEvents.map((e, i) => (
+                     <EventCard
+                        event={e}
+                        isAllEvents={true}
+                        key={i}
+                     />
+                  ))}
+            </div>
+         )}
+      </section>
    )
 }
- 
+
 export default AllEvents

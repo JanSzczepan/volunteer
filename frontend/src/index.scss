@@ -1,4 +1,4 @@
-@use "./scss/index" as *;
+@use './scss/index' as *;
 
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&display=swap');
 
@@ -47,7 +47,23 @@ a {
    }
 }
 
-.authForm, .joinForm, .addEventForm {
+.loaderSpinnerContainer {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding: 50px 0;
+}
+
+.loaderSpinnerBigContainer {
+   height: calc(100vh - $nav-height);
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.authForm,
+.joinForm,
+.addEventForm {
    max-width: 500px;
    width: 100%;
    padding: 30px 15px;
@@ -60,13 +76,17 @@ a {
       padding: 30px 35px;
    }
 
-   .authHeader, .joinHeader, .addEventHeader {
+   .authHeader,
+   .joinHeader,
+   .addEventHeader {
       font-size: 2.2rem;
       margin-bottom: 30px;
       color: $color-black;
    }
 
-   .authLabel, .joinLabel, .addEventLabel {
+   .authLabel,
+   .joinLabel,
+   .addEventLabel {
       display: block;
       font-size: 1.4rem;
       margin-bottom: 10px;
@@ -77,7 +97,12 @@ a {
       }
    }
 
-   .authInput, .joinInput, .addEventInput, .addEventTextarea, .addEventSelect, .addEventDateTime {
+   .authInput,
+   .joinInput,
+   .addEventInput,
+   .addEventTextarea,
+   .addEventSelect,
+   .addEventDateTime {
       display: block;
       width: 100%;
       margin-bottom: 15px;
@@ -118,8 +143,14 @@ a {
       }
    }
 
-   .authSubmitButton, .joinSubmitButton, .addEventSubmitButton {
+   .authSubmitButton,
+   .joinSubmitButton,
+   .addEventSubmitButton {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       width: 100%;
+      height: 52.5px;
       padding: 15px 20px;
       background-color: $color-purple;
       color: $color-white;
@@ -133,13 +164,17 @@ a {
       }
    }
 
-   .authErrorContainer, .joinErrorContainer, .addEventErrorContainer {
+   .authErrorContainer,
+   .joinErrorContainer,
+   .addEventErrorContainer {
       position: relative;
       margin-bottom: 25px;
       padding-left: 15px;
    }
 
-   .authErrorContainer::after, .joinErrorContainer::after, .addEventErrorContainer::after {
+   .authErrorContainer::after,
+   .joinErrorContainer::after,
+   .addEventErrorContainer::after {
       content: '';
       position: absolute;
       width: 4px;
@@ -150,7 +185,9 @@ a {
       border-radius: $border-radius;
    }
 
-   .authErrorText, .joinErrorText, .addEventErrorText {
+   .authErrorText,
+   .joinErrorText,
+   .addEventErrorText {
       color: $color-red;
       font-weight: 700;
    }

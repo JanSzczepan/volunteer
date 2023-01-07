@@ -25,7 +25,7 @@ app.get('/', (req, res) => {
    res.send('APP IS RUNNING.')
 })
 
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 8080
 
 mongoose.connect(process.env.MONGO_URI)
    .then(() => app.listen(PORT, () => console.log(`Listening for request on port ${PORT}`)))

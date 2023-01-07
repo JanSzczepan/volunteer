@@ -14,3 +14,10 @@ export const OPTIONS = [
    { value: 'Organizacja wydarzenia', text: 'Organizacja wydarzenia', imgLink: 'https://marqueemonkeys.com.au/wp-content/uploads/2019/02/marquee-monkeys-2-980x523.jpg', icon: GiPartyPopper, description: 'Organizowanie charytatywnych wydarzeń w twoim regionie to pomysł na integrację i miło spędzony czas. Będąc uczestnikiem wspierasz szczytne cele.' },
    { value: 'Zbiórka', text: 'Zbiórka', imgLink: 'https://www.thelifeyoucansave.org/wp-content/uploads/2019/11/Screen-Shot-2015-07-13-at-1.53.34-PM.png', icon: BiPackage, description: 'Zbiórka pieniędzy jest najprostrzym sposobem, warto jednak powrócić do zapomnianych form zbiórek np. makulatury, zakrętek, baterii itp. Przy okazji pomagając naszej planecie możesz pomóc innym.' },
 ]
+
+export const COLORS = {
+   white: '#fff',
+   gray: '#C3C3C3',
+   purple: '#6064CA',
+   green: '#74D189',
+}
