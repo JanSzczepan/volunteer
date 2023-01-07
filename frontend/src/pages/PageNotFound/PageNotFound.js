@@ -9,19 +9,29 @@ const LINKS_LIST = [
 ]
 
 const PageNotFound = () => {
-   return (  
+   return (
       <section className={`section ${styles.notFoundSection}`}>
-         <img className={styles.notFoundImage} src={Image} alt="404 strona nie znaleziona"/>
+         <img
+            className={styles.notFoundImage}
+            src={Image}
+            alt='404 strona nie znaleziona'
+         />
          <h3 className={styles.headerText}>404</h3>
          <h5 className={styles.subHeaderText}>Strona nie została odnaleziona</h5>
          <p className={styles.text}>Poniżej znajdziesz przydatne linki:</p>
          <div className={styles.linksContainer}>
             {LINKS_LIST.map((item, i) => (
-               <Link className={styles.link} to={item.link} key={i}>{item.text}</Link>
+               <Link
+                  className={styles.link}
+                  to={item.link}
+                  key={i}
+               >
+                  {item.text}
+               </Link>
             ))}
          </div>
       </section>
    )
 }
- 
+
 export default PageNotFound

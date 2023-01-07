@@ -1,21 +1,23 @@
-import { OPTIONS } from "../../constants"
+import { OPTIONS } from '../../constants'
 import styles from './CathegoryIcon.module.scss'
 
 const CathegoryIcon = ({ cathegory, className }) => {
-   return (  
+   return (
       <>
-      {OPTIONS.map((option, i) => {
-         if (option.value === cathegory) {
-            
-            const Icon = option.icon
+         {OPTIONS.map((option, i) => {
+            if (option.value === cathegory) {
+               const Icon = option.icon
 
-            return (
-               <Icon className={styles[className]} key={i}/>
-            )
-         }
-      })}
+               return (
+                  <Icon
+                     className={styles[className]}
+                     key={i}
+                  />
+               )
+            }
+         })}
       </>
    )
 }
- 
+
 export default CathegoryIcon

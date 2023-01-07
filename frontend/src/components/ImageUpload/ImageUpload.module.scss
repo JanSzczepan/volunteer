@@ -1,4 +1,4 @@
-@use "../../scss/index" as *;
+@use '../../scss/index' as *;
 
 .container {
    margin-bottom: 15px;
@@ -28,7 +28,7 @@
       height: 100%;
       top: 0;
       right: 0;
-      font-size:50px;
+      font-size: 50px;
       opacity: 0;
       z-index: 99;
       cursor: pointer;
@@ -81,7 +81,8 @@
       cursor: pointer;
    }
 
-   .imageIcon, .trashIcon {
+   .imageIcon,
+   .trashIcon {
       min-width: 15px;
       font-size: 1.6rem;
       color: $color-purple;

@@ -1,4 +1,4 @@
-@use "../../scss/index" as *;
+@use '../../scss/index' as *;
 
 .yourEventsSection {
    max-width: 500px !important;
@@ -68,7 +68,7 @@
    color: $color-white;
    font-size: 2rem;
    font-weight: 700;
-   letter-spacing: .5px;
+   letter-spacing: 0.5px;
    border-radius: $border-radius;
    margin-bottom: 40px;
 

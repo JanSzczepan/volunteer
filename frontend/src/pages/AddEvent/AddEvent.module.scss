@@ -1,4 +1,4 @@
-@use "../../scss/index" as *;
+@use '../../scss/index' as *;
 
 .section {
    display: flex;
@@ -48,10 +48,10 @@
    text-align: center;
    cursor: pointer;
    margin-top: 25px;
-   
-      @include phone {
-         font-size: 2rem;
-      }
+
+   @include phone {
+      font-size: 2rem;
+   }
 }
 
 .addEventSubmitButton {

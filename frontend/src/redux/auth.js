@@ -1,40 +1,34 @@
-import { createAsyncThunk, createSlice  } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
 import * as api from '../api/index'
 
 const initialState = {
    user: null,
    isLoading: false,
-   error: null
+   error: null,
 }
 
-export const logIn = createAsyncThunk(
-   'auth/logIn',
-   async (dataObj, thunkAPI) => {
-      try {
-         const { data } = await api.login(dataObj.formData)
+export const logIn = createAsyncThunk('auth/logIn', async (dataObj, thunkAPI) => {
+   try {
+      const { data } = await api.login(dataObj.formData)
 
-         dataObj.navigate('/volunteer/events')
-         return data
-      } catch (error) {
-         throw thunkAPI.rejectWithValue(error.response.data)
-      }
+      dataObj.navigate('/volunteer/events')
+      return data
+   } catch (error) {
+      throw thunkAPI.rejectWithValue(error.response.data)
    }
-)
+})
 
-export const signUp = createAsyncThunk(
-   'auth/signUp',
-   async (dataObj, thunkAPI) => {
-      try {
-         const { data } = await api.signup(dataObj.formData)
+export const signUp = createAsyncThunk('auth/signUp', async (dataObj, thunkAPI) => {
+   try {
+      const { data } = await api.signup(dataObj.formData)
 
-         dataObj.navigate('/volunteer/events')
-         return data
-      } catch (error) {
-         throw thunkAPI.rejectWithValue(error.response.data)
-      }
+      dataObj.navigate('/volunteer/events')
+      return data
+   } catch (error) {
+      throw thunkAPI.rejectWithValue(error.response.data)
    }
-)
+})
 
 export const authSlice = createSlice({
    name: 'auth',
@@ -47,7 +41,7 @@ export const authSlice = createSlice({
       },
       keepTrack: (state) => {
          state.user = JSON.parse(window.localStorage.getItem('profile'))
-      }
+      },
    },
    extraReducers: {
       [logIn.pending]: (state) => {
@@ -79,8 +73,8 @@ export const authSlice = createSlice({
          console.log(action)
          state.error = action.payload.err
          state.isLoading = false
-      }
-   }
+      },
+   },
 })
 
 export const { logOut, keepTrack } = authSlice.actions

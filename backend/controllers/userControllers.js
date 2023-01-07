@@ -5,7 +5,6 @@ import UserModel from '../models/user.js'
 const createToken = (email, _id) => jwt.sign({ email, _id }, process.env.TOKEN_SECRET, { expiresIn: '1h' })
 
 export const login = async (req, res) => {
-
    const { login, password } = req.body
 
    try {
@@ -29,6 +28,6 @@ export const signup = async (req, res) => {
 
       res.status(200).json({ user, token })
    } catch (err) {
-      res.status(400).json({err: err.message})
+      res.status(400).json({ err: err.message })
    }
 }

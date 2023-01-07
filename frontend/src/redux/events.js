@@ -12,105 +12,84 @@ const initialState = {
    authorArchivalEvents: [],
    participantArchivalEvents: [],
    eventsBySearch: [],
-   isLoading: true
+   isLoading: true,
 }
 
-export const getUpcomingEvents = createAsyncThunk(
-   'events/getUpcomingEvents',
-   async (thunkAPI) => {
-      try {
-         const { data } = await api.fetchUpcomingEvents()
+export const getUpcomingEvents = createAsyncThunk('events/getUpcomingEvents', async (thunkAPI) => {
+   try {
+      const { data } = await api.fetchUpcomingEvents()
 
-         return data
-      } catch (error) {
-         return thunkAPI.rejectWithValue(error)
-      }
+      return data
+   } catch (error) {
+      return thunkAPI.rejectWithValue(error)
    }
-)
+})
 
-export const getAllEvents = createAsyncThunk(
-   'events/getAllEvents',
-   async (thunkAPI) => {
-      try {
-         const { data } = await api.fetchAllEvents()
+export const getAllEvents = createAsyncThunk('events/getAllEvents', async (thunkAPI) => {
+   try {
+      const { data } = await api.fetchAllEvents()
 
-         return data
-      } catch (error) {
-         return thunkAPI.rejectWithValue(error)
-      }
+      return data
+   } catch (error) {
+      return thunkAPI.rejectWithValue(error)
    }
-)
+})
 
-export const getYourEvents = createAsyncThunk(
-   'events/getYourEvents',
-   async (thunkAPI) => {
-      try {
-         const { data } = await api.fetchYourEvents()
+export const getYourEvents = createAsyncThunk('events/getYourEvents', async (thunkAPI) => {
+   try {
+      const { data } = await api.fetchYourEvents()
 
-         return data
-      } catch (error) {
-         return thunkAPI.rejectWithValue(error)
-      }
+      return data
+   } catch (error) {
+      return thunkAPI.rejectWithValue(error)
    }
-)
+})
 
-export const getEventsBySearch = createAsyncThunk(
-   'events/getEventsBySearch',
-   async (search, thunkAPI) => {
-      try {
-         const { data } = await api.fetchEventsBySearch(search)
+export const getEventsBySearch = createAsyncThunk('events/getEventsBySearch', async (search, thunkAPI) => {
+   try {
+      const { data } = await api.fetchEventsBySearch(search)
 
-         return data
-      } catch (error) {
-         return thunkAPI.rejectWithValue(error)
-      }
+      return data
+   } catch (error) {
+      return thunkAPI.rejectWithValue(error)
    }
-)
+})
 
-export const getEvent = createAsyncThunk(
-   'events/getEvent',
-   async (id, thunkAPI) => {
-      try {
-         const { data } = await api.fetchEvent(id)
+export const getEvent = createAsyncThunk('events/getEvent', async (id, thunkAPI) => {
+   try {
+      const { data } = await api.fetchEvent(id)
 
-         return data
-      } catch (error) {
-         throw thunkAPI.rejectWithValue(error.response.data)
-      }
+      return data
+   } catch (error) {
+      throw thunkAPI.rejectWithValue(error.response.data)
    }
-)
+})
 
-export const joinEvent = createAsyncThunk(
-   'events/joinEvent',
-   async (dataObj, thunkAPI) => {
-      try {
-         const { id, formData, navigate } = dataObj
+export const joinEvent = createAsyncThunk('events/joinEvent', async (dataObj, thunkAPI) => {
+   try {
+      const { id, formData, navigate } = dataObj
 
-         const { data } = await api.joinEvent(id, formData)
-         
-         navigate(`/volunteer/events/${id}/eventDetails`)
+      const { data } = await api.joinEvent(id, formData)
 
-         return data
-      } catch (error) {
-         throw thunkAPI.rejectWithValue(error.response.data)
-      }
+      navigate(`/volunteer/events/${id}/eventDetails`)
+
+      return data
+   } catch (error) {
+      throw thunkAPI.rejectWithValue(error.response.data)
    }
-)
+})
 
-export const createEvent = createAsyncThunk(
-   'events/createEvent',
-   async (dataObj, thunkAPI) => {
-      try {
-         const { data } = await api.createEvent(dataObj.formData)
-         
-         dataObj.navigate(`/volunteer/events/${data.data._id}/eventDetails`)
+export const createEvent = createAsyncThunk('events/createEvent', async (dataObj, thunkAPI) => {
+   try {
+      const { data } = await api.createEvent(dataObj.formData)
 
-         return data
-      } catch (error) {
-         throw thunkAPI.rejectWithValue(error.response.data)
-      }
+      dataObj.navigate(`/volunteer/events/${data.data._id}/eventDetails`)
+
+      return data
+   } catch (error) {
+      throw thunkAPI.rejectWithValue(error.response.data)
    }
-)
+})
 
 export const eventsSlice = createSlice({
    name: 'events',
@@ -129,7 +108,7 @@ export const eventsSlice = createSlice({
       },
       cleanError: (state) => {
          state.error = null
-      }
+      },
    },
    extraReducers: {
       [getUpcomingEvents.pending]: (state) => {
@@ -162,7 +141,7 @@ export const eventsSlice = createSlice({
          state.authorEvents = action.payload.data.authorEvents
          state.participantEvents = action.payload.data.participantEvents
          state.authorArchivalEvents = action.payload.data.authorArchivalEvents
-         state.participantArchivalEvents = action.payload.data.participantArchivalEvents         
+         state.participantArchivalEvents = action.payload.data.participantArchivalEvents
          state.isLoading = false
       },
       [getYourEvents.rejected]: (state, action) => {
@@ -197,7 +176,7 @@ export const eventsSlice = createSlice({
          state.isLoading = true
       },
       [joinEvent.fulfilled]: (state, action) => {
-         state.allEvents = state.allEvents.map(event => event._id === action.payload._id ? action.payload : event)
+         state.allEvents = state.allEvents.map((event) => (event._id === action.payload._id ? action.payload : event))
          state.isLoading = false
       },
       [joinEvent.rejected]: (state, action) => {
@@ -218,8 +197,8 @@ export const eventsSlice = createSlice({
          state.isLoading = false
          state.error = action.payload.error
       },
-   }
-}) 
+   },
+})
 
 export const { cleanEvents, cleanError } = eventsSlice.actions
 export default eventsSlice.reducer

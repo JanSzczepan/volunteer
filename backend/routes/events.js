@@ -11,7 +11,7 @@ router.get('/search', getEventBySearch)
 router.get('/yours', auth, getYourEvents)
 router.get('/:id', getEvent)
 
-router.post('/', auth, createEvent) 
+router.post('/', auth, createEvent)
 router.patch('/:id/join', auth, joinEvent)
 
 export default router

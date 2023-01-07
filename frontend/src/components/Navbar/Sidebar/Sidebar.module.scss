@@ -1,4 +1,4 @@
-@use "../../../scss/index" as *;
+@use '../../../scss/index' as *;
 
 .sidebarSection {
    width: 200px;
@@ -19,7 +19,7 @@
       padding: $main-padding calc($main-padding * 1.5);
    }
 
-   @include desktop{
+   @include desktop {
       width: 250px;
       padding: $main-padding calc($main-padding * 2);
    }
@@ -61,7 +61,7 @@
    font-size: 1.8rem;
    font-weight: 700;
    color: $color-purple;
-   letter-spacing: .5px;
+   letter-spacing: 0.5px;
    margin-left: 10px;
    word-break: break-all;
 }
@@ -86,7 +86,7 @@
    font-size: 1.7rem;
    font-weight: 700;
    color: $color-black;
-   letter-spacing: .5px;
+   letter-spacing: 0.5px;
 
    .icon {
       font-size: 2.5rem;
@@ -94,7 +94,6 @@
       margin-right: 10px;
    }
 }
-
 
 .addEventButton {
    display: block;
@@ -105,7 +104,7 @@
    color: $color-white;
    font-size: 1.8rem;
    font-weight: 700;
-   letter-spacing: .5px;
+   letter-spacing: 0.5px;
    border-radius: $border-radius;
    margin-bottom: 5px;
 
@@ -183,7 +182,7 @@
       @include phone {
          font-size: 4rem;
       }
-   
+
       @include tablet {
          font-size: 4.5rem;
       }

@@ -1,4 +1,4 @@
-@use "../../scss/index" as *;
+@use '../../scss/index' as *;
 
 .section {
    display: flex;
@@ -18,10 +18,10 @@
    font-size: 1.8rem;
    text-align: center;
    cursor: pointer;
-   
-      @include phone {
-         font-size: 2rem;
-      }
+
+   @include phone {
+      font-size: 2rem;
+   }
 }
 
 .resignSubmitButton {
@@ -34,9 +34,9 @@
    font-size: 1.8rem;
    cursor: pointer;
 
-      @include phone {
-         font-size: 2rem;
-      }
+   @include phone {
+      font-size: 2rem;
+   }
 }
 
 .resignText {

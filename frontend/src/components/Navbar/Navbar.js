@@ -12,7 +12,6 @@ import Sidebar from './Sidebar/Sidebar'
 import styles from './Navbar.module.scss'
 
 const Navbar = () => {
-
    const [user, setUser] = useState(JSON.parse(window.localStorage.getItem('profile')))
    const [isOpen, setIsOpen] = useState(false)
 
@@ -35,11 +34,10 @@ const Navbar = () => {
 
       if (token) {
          const decodedToken = decode(token)
-       
-         if(decodedToken.exp * 1000 < new Date().getTime())
-            logout()
+
+         if (decodedToken.exp * 1000 < new Date().getTime()) logout()
       }
-      
+
       dispatch(keepTrack())
 
       setUser(JSON.parse(window.localStorage.getItem('profile')))
@@ -48,26 +46,35 @@ const Navbar = () => {
       dispatch(cleanError())
    }, [location, dispatch])
 
-   return (  
+   return (
       <nav className={styles.nav}>
          <div className={styles.container}>
             {!isOpen && (
-               <button onClick={() => setIsOpen(!isOpen)} ref={menuButtonElement} className={styles.menuButton} type='button'>
-                  <BiMenuAltLeft className={styles.menuIcon}/>
+               <button
+                  onClick={() => setIsOpen(!isOpen)}
+                  ref={menuButtonElement}
+                  className={styles.menuButton}
+                  type='button'
+               >
+                  <BiMenuAltLeft className={styles.menuIcon} />
                </button>
             )}
             <Link to='/volunteer'>
                <h1 className={styles.logo}>
-                  <FaHeart className={styles.logoIcon}/>
+                  <FaHeart className={styles.logoIcon} />
                   olunteer
                </h1>
             </Link>
             <div className={styles.buttonContainer}>
-               { user?.user ? (
+               {user?.user ? (
                   <>
-                     <button onClick={logout} className={`${styles.authButton} ${styles.logoutButton}`} type='button'>
-                     <FiLogOut className={styles.authLogoutIcon}/>
-                     Logout
+                     <button
+                        onClick={logout}
+                        className={`${styles.authButton} ${styles.logoutButton}`}
+                        type='button'
+                     >
+                        <FiLogOut className={styles.authLogoutIcon} />
+                        Logout
                      </button>
                      <div className={styles.user}>
                         <div className={styles.userLetter}>{user?.user.name[0]}</div>
@@ -75,15 +82,33 @@ const Navbar = () => {
                   </>
                ) : (
                   <>
-                     <Link to='/volunteer/login' className={`${styles.authButton} ${styles.loginButton}`} type='button'>Login</Link>
-                     <Link to='/volunteer/signup' className={`${styles.authButton} ${styles.signupButton}`} type='button'>Signup</Link>
+                     <Link
+                        to='/volunteer/login'
+                        className={`${styles.authButton} ${styles.loginButton}`}
+                        type='button'
+                     >
+                        Login
+                     </Link>
+                     <Link
+                        to='/volunteer/signup'
+                        className={`${styles.authButton} ${styles.signupButton}`}
+                        type='button'
+                     >
+                        Signup
+                     </Link>
                   </>
                )}
             </div>
          </div>
-         {isOpen && <Sidebar logout={logout} setIsOpen={setIsOpen} ref={ref}/>}
+         {isOpen && (
+            <Sidebar
+               logout={logout}
+               setIsOpen={setIsOpen}
+               ref={ref}
+            />
+         )}
       </nav>
    )
 }
- 
+
 export default Navbar

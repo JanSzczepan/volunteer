@@ -1,67 +1,70 @@
-import mongoose from "mongoose"
+import mongoose from 'mongoose'
 
-const eventSchema = mongoose.Schema({
-   title: {
-      type: String,
-      required: true
+const eventSchema = mongoose.Schema(
+   {
+      title: {
+         type: String,
+         required: true,
+      },
+      description: {
+         type: String,
+         required: true,
+      },
+      date: {
+         type: Date,
+         required: true,
+      },
+      creator: {
+         type: String,
+         required: false,
+      },
+      anonymous: {
+         type: Boolean,
+         required: true,
+      },
+      cathegory: {
+         type: String,
+         required: true,
+      },
+      address: {
+         type: String,
+         required: false,
+      },
+      city: {
+         type: String,
+         required: true,
+      },
+      selectedFile: {
+         type: String,
+         required: false,
+      },
+      participants: {
+         type: [String],
+         default: [],
+      },
+      participantsNames: {
+         type: [String],
+         default: [],
+      },
+      motivations: {
+         type: [String],
+         default: [],
+      },
+      resignations: {
+         type: [String],
+         default: [],
+      },
+      banned: {
+         type: [String],
+         default: [],
+      },
+      comments: {
+         type: [String],
+         default: [],
+      },
    },
-   description: {
-      type: String,
-      required: true
-   },
-   date: {
-      type: Date,
-      required: true
-   },
-   creator: {
-      type: String,
-      required: false
-   },
-   anonymous: {
-      type: Boolean,
-      required: true
-   },
-   cathegory: {
-      type: String,
-      required: true
-   },
-   address: {
-      type: String,
-      required: false
-   },
-   city: {
-      type: String,
-      required: true
-   },
-   selectedFile: {
-      type: String,
-      required: false
-   },
-   participants: {
-      type: [String],
-      default: []
-   },
-   participantsNames: {
-      type: [String],
-      default: []
-   },
-   motivations: {
-      type: [String],
-      default: []
-   },
-   resignations: {
-      type: [String],
-      default: []
-   },
-   banned: {
-      type: [String],
-      default: []
-   },
-   comments: {
-      type: [String],
-      default: []
-   }
-}, { timestamps: true })
+   { timestamps: true }
+)
 
 const EventModel = mongoose.model('Event', eventSchema)
 

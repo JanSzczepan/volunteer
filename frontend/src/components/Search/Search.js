@@ -7,7 +7,6 @@ import { getEventsBySearch } from '../../redux/events'
 import styles from './Search.module.scss'
 
 const Search = () => {
-
    const [search, setSearch] = useState('')
 
    const navigate = useNavigate()
@@ -15,21 +14,23 @@ const Search = () => {
    const searchEvents = () => {
       if (search.trim()) {
          navigate(`/volunteer/events/search?search=${search.trim() || 'none'}`)
-      } else 
-         navigate('/volunteer/events/all')
+      } else navigate('/volunteer/events/all')
    }
 
    const handleKeyDown = (e) => {
-      if (e.keyCode === 13)
-        searchEvents()
-    }
+      if (e.keyCode === 13) searchEvents()
+   }
 
-   return (  
+   return (
       <div className={styles.container}>
-         <button onClick={searchEvents} className={styles.searchButton} type='button'>
-            <BsSearch className={styles.icon}/>
+         <button
+            onClick={searchEvents}
+            className={styles.searchButton}
+            type='button'
+         >
+            <BsSearch className={styles.icon} />
          </button>
-         <input 
+         <input
             className={styles.input}
             type='text'
             placeholder='Szukaj wolontariatu...'
@@ -40,5 +41,5 @@ const Search = () => {
       </div>
    )
 }
- 
+
 export default Search

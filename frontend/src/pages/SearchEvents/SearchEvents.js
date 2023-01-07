@@ -8,9 +8,8 @@ import { getEventsBySearch } from '../../redux/events'
 import styles from './SearchEvents.module.scss'
 
 const SearchEvents = () => {
-
    const dispatch = useDispatch()
-   const { eventsBySearch, isLoading } = useSelector(store => store.events)
+   const { eventsBySearch, isLoading } = useSelector((store) => store.events)
 
    const query = useQuery('search')
 
@@ -18,18 +17,25 @@ const SearchEvents = () => {
       dispatch(getEventsBySearch(query))
    }, [query, dispatch])
 
-   return (  
+   return (
       <section className={`section ${styles.searchEventsSection}`}>
          <EventsInputButtonContainer />
          <div className={styles.headerContainer}>
-            <h2 className={styles.header}>Eventy:&nbsp;&nbsp;<br className={styles.headerBr}/>"{query}"</h2>
+            <h2 className={styles.header}>
+               Eventy:&nbsp;&nbsp;
+               <br className={styles.headerBr} />"{query}"
+            </h2>
          </div>
          <div className='cardsContainer'>
-            {!isLoading && Boolean(eventsBySearch?.length) && (
+            {!isLoading &&
+               Boolean(eventsBySearch?.length) &&
                eventsBySearch.map((e, i) => (
-                  <EventCard event={e} isAllEvents={true} key={i}/>
-               ))
-            )}
+                  <EventCard
+                     event={e}
+                     isAllEvents={true}
+                     key={i}
+                  />
+               ))}
             {!isLoading && Boolean(!eventsBySearch?.length) && (
                <div>
                   <p>Nie znaleziono eventów dla wyszukiwania:&nbsp;&nbsp;"{query}"</p>
@@ -39,5 +45,5 @@ const SearchEvents = () => {
       </section>
    )
 }
- 
+
 export default SearchEvents

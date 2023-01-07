@@ -11,34 +11,36 @@ const EXPLORE_ROUTES = [
    {
       path: '/volunteer/about',
       name: 'O nas',
-      icon: <BiHome className={styles.icon}/>
+      icon: <BiHome className={styles.icon} />,
    },
    {
       path: '/volunteer/events',
       name: 'Wolontariaty',
-      icon: <MdOutlineEventNote className={styles.icon}/>
-   }
+      icon: <MdOutlineEventNote className={styles.icon} />,
+   },
 ]
 
 const EVENTS_ROUTES = [
    {
       path: '/volunteer/events/yours',
       name: 'Nadchodzące',
-      icon: <MdOutlineEventAvailable className={styles.icon}/>
+      icon: <MdOutlineEventAvailable className={styles.icon} />,
    },
    {
       path: '/volunteer/events/archival',
       name: 'Archiwalne',
-      icon: <MdOutlineArchive className={styles.icon}/>
-   }
+      icon: <MdOutlineArchive className={styles.icon} />,
+   },
 ]
 
 const Sidebar = forwardRef(({ logout, setIsOpen }, ref) => {
-
    const user = JSON.parse(window.localStorage.getItem('profile'))
 
-   return (  
-      <section ref={ref} className={styles.sidebarSection}>
+   return (
+      <section
+         ref={ref}
+         className={styles.sidebarSection}
+      >
          {user?.user && (
             <div className={styles.userContainer}>
                <div className={styles.user}>
@@ -50,14 +52,26 @@ const Sidebar = forwardRef(({ logout, setIsOpen }, ref) => {
          <div className={styles.linkContainer}>
             <p className={styles.underSectionText}>Odkryj</p>
             {EXPLORE_ROUTES.map((route, i) => (
-               <Link className={styles.link} to={route.path} key={i}>{route.icon} {route.name}</Link>
+               <Link
+                  className={styles.link}
+                  to={route.path}
+                  key={i}
+               >
+                  {route.icon} {route.name}
+               </Link>
             ))}
          </div>
          {user?.user && (
             <div className={styles.linkContainer}>
                <p className={styles.underSectionText}>Twoje&nbsp;&nbsp;wolontariaty</p>
                {EVENTS_ROUTES.map((route, i) => (
-                  <Link className={styles.link} to={route.path} key={i}>{route.icon} {route.name}</Link>
+                  <Link
+                     className={styles.link}
+                     to={route.path}
+                     key={i}
+                  >
+                     {route.icon} {route.name}
+                  </Link>
                ))}
             </div>
          )}
@@ -65,27 +79,52 @@ const Sidebar = forwardRef(({ logout, setIsOpen }, ref) => {
             <p className={styles.underSectionText}>Użytkownik</p>
             {user?.user && (
                <>
-               <Link to='/volunteer/events/add-event' className={styles.addEventButton}>Dodaj Event</Link>
-               <button onClick={logout} className={`${styles.authButton} ${styles.logoutButton}`} type='button'>
-                  <FiLogOut className={styles.authLogoutIcon}/>
-                  Logout
-               </button>
+                  <Link
+                     to='/volunteer/events/add-event'
+                     className={styles.addEventButton}
+                  >
+                     Dodaj Event
+                  </Link>
+                  <button
+                     onClick={logout}
+                     className={`${styles.authButton} ${styles.logoutButton}`}
+                     type='button'
+                  >
+                     <FiLogOut className={styles.authLogoutIcon} />
+                     Logout
+                  </button>
                </>
             )}
             {!user?.user && (
                <>
-                  <Link to='/volunteer/signup' className={`${styles.authButton} ${styles.signupButton}`} type='button'>Signup</Link>
-                  <Link to='/volunteer/login' className={`${styles.authButton} ${styles.loginButton}`} type='button'>Login</Link>
+                  <Link
+                     to='/volunteer/signup'
+                     className={`${styles.authButton} ${styles.signupButton}`}
+                     type='button'
+                  >
+                     Signup
+                  </Link>
+                  <Link
+                     to='/volunteer/login'
+                     className={`${styles.authButton} ${styles.loginButton}`}
+                     type='button'
+                  >
+                     Login
+                  </Link>
                </>
             )}
          </div>
          <div className={styles.closeButtonContainer}>
-            <button onClick={() => setIsOpen(false)} className={styles.closeButton} type='button'>
-               <IoCloseCircleOutline className={styles.closeIcon}/>
+            <button
+               onClick={() => setIsOpen(false)}
+               className={styles.closeButton}
+               type='button'
+            >
+               <IoCloseCircleOutline className={styles.closeIcon} />
             </button>
          </div>
       </section>
    )
 })
- 
+
 export default Sidebar

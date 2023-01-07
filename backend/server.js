@@ -27,6 +27,7 @@ app.get('/', (req, res) => {
 
 const PORT = process.env.PORT || 8080
 
-mongoose.connect(process.env.MONGO_URI)
+mongoose
+   .connect(process.env.MONGO_URI)
    .then(() => app.listen(PORT, () => console.log(`Listening for request on port ${PORT}`)))
    .catch((error) => console.log(error.message))

@@ -6,57 +6,46 @@ const userSchema = mongoose.Schema({
    name: {
       type: String,
       required: true,
-      unique: true
+      unique: true,
    },
    email: {
       type: String,
       required: true,
-      unique: true
+      unique: true,
    },
    password: {
       type: String,
-      required: true
-   }
+      required: true,
+   },
 })
 
 userSchema.statics.login = async function (login, password) {
-
-   if (!login || !password) 
-      throw Error('Wszytskie pola muszą być wypełnione')
+   if (!login || !password) throw Error('Wszytskie pola muszą być wypełnione')
 
    const user = await this.findOne({ $or: [{ name: login }, { email: login }] })
 
-   if (!user) 
-      throw Error('Niepoprawny email lub nazwa użytkownika')
+   if (!user) throw Error('Niepoprawny email lub nazwa użytkownika')
 
    const match = await bcrypt.compare(password, user.password)
 
-   if (!match) 
-      throw Error('Niepoprawne hasło')
+   if (!match) throw Error('Niepoprawne hasło')
 
    return user
 }
 
 userSchema.statics.signup = async function (name, email, password) {
+   if (!name || !email || !password) throw Error('Wszytskie pola muszą być wypełnione')
+   if (validator.contains(name, ' ')) throw Error('Nazwa użytkownika nie może zawierać spacji')
+   if (!validator.isEmail(email)) throw Error('Niepoprawny email')
+   if (!validator.isStrongPassword(password)) throw Error('Hasło nie jest wystarczająco silne - musi zawierać co najmniej jedną dużą i małą literę, jeden symbol, jedną liczbę oraz mieć co najmniej 8 znaków')
 
-   if(!name || !email || !password)
-      throw Error('Wszytskie pola muszą być wypełnione')
-   if(validator.contains(name, ' ')) 
-      throw Error('Nazwa użytkownika nie może zawierać spacji')
-   if(!validator.isEmail(email))
-      throw Error('Niepoprawny email')
-   if(!validator.isStrongPassword(password))
-      throw Error('Hasło nie jest wystarczająco silne - musi zawierać co najmniej jedną dużą i małą literę, jeden symbol, jedną liczbę oraz mieć co najmniej 8 znaków')
+   const nameExists = await this.findOne({ name })
 
-   const nameExists = await this.findOne({name})
+   if (nameExists) throw Error('Nazwa użytkownika jest już w użyciu')
 
-   if(nameExists)
-      throw Error('Nazwa użytkownika jest już w użyciu')
+   const emailExists = await this.findOne({ email })
 
-   const emailExists = await this.findOne({email})
-
-   if(emailExists)
-      throw Error('Email jest już w użyciu')
+   if (emailExists) throw Error('Email jest już w użyciu')
 
    const salt = await bcrypt.genSalt(10)
    const hash = await bcrypt.hash(password, salt)

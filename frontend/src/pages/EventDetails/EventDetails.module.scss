@@ -1,4 +1,4 @@
-@use "../../scss/index" as *;
+@use '../../scss/index' as *;
 
 $left-spacing: -12.5px;
 $participant-size: 43.75px;
@@ -59,7 +59,7 @@ $participant-size: 43.75px;
       font-size: 3rem;
       font-weight: 700;
       color: $color-black;
-      letter-spacing: .5px;
+      letter-spacing: 0.5px;
       margin-bottom: 5px;
 
       @include phone {
@@ -73,7 +73,7 @@ $participant-size: 43.75px;
       gap: 0 5px;
       font-size: 1.4rem;
       color: darken($color-gray, 20%);
-      letter-spacing: .5px;
+      letter-spacing: 0.5px;
       margin-bottom: 15px;
 
       .eventDateDot {
@@ -91,7 +91,7 @@ $participant-size: 43.75px;
       font-weight: 400;
       border: none;
       border-radius: calc($border-radius * 2);
-      letter-spacing: .5px;
+      letter-spacing: 0.5px;
       cursor: pointer;
       margin-bottom: 20px;
 
@@ -113,18 +113,21 @@ $participant-size: 43.75px;
       margin-left: 8px;
    }
 
-   .authorContainer, .joinContainer {
+   .authorContainer,
+   .joinContainer {
       display: flex;
       align-items: center;
       margin: 10px 0 25px 0;
 
-      .authorIcon, .joinIcon {
+      .authorIcon,
+      .joinIcon {
          font-size: 3rem;
          color: $color-green;
          margin-right: 15px;
       }
 
-      .authorText, .joinText {
+      .authorText,
+      .joinText {
          font-size: 1.6rem;
          font-weight: 700;
          color: $color-green;
@@ -140,7 +143,7 @@ $participant-size: 43.75px;
       font-weight: 700;
       color: $color-black;
       margin-bottom: 10px;
-      letter-spacing: .5px;
+      letter-spacing: 0.5px;
    }
 
    .eventDescription {
@@ -152,7 +155,7 @@ $participant-size: 43.75px;
    .participantsHeader {
       font-size: 1.8rem;
       font-weight: 700;
-      letter-spacing: .5px;
+      letter-spacing: 0.5px;
    }
 
    .outsideParticipantsContainer {
@@ -177,11 +180,11 @@ $participant-size: 43.75px;
       align-items: center;
       justify-content: center;
       display: none;
-   
+
       @include phone {
          display: flex;
       }
-   
+
       .participant {
          position: relative;
          height: $participant-size;
@@ -192,7 +195,7 @@ $participant-size: 43.75px;
          border: 2px solid $color-purple;
          border-radius: 50%;
          background-color: $color-white;
-   
+
          .participantLetter {
             color: $color-purple;
             font-weight: 700;
@@ -200,7 +203,7 @@ $participant-size: 43.75px;
          }
       }
    }
-   
+
    .participant:nth-child(1) {
       left: 0;
    }

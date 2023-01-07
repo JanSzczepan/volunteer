@@ -4,7 +4,7 @@ import AboutP3 from './AboutP3/AboutP3'
 import AboutP4 from './AboutP4/AboutP4'
 
 const About = () => {
-   return (  
+   return (
       <>
          <AboutP1 />
          <AboutP2 />
@@ -13,5 +13,5 @@ const About = () => {
       </>
    )
 }
- 
+
 export default About

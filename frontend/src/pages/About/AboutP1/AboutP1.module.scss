@@ -1,4 +1,4 @@
-@use "../../../scss/index" as *;
+@use '../../../scss/index' as *;
 
 .aboutSection {
    max-width: 420px !important;
@@ -42,7 +42,7 @@
    font-size: 2.6rem;
    font-weight: 700;
    color: $color-black;
-   letter-spacing: .5px;
+   letter-spacing: 0.5px;
    margin-bottom: 25px;
 
    @include phone {
@@ -110,7 +110,7 @@
    text-align: center;
    color: $color-white;
    font-weight: 700;
-   letter-spacing: .5px;
+   letter-spacing: 0.5px;
    border-radius: $border-radius;
 
    @include desktop {

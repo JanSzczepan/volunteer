@@ -1,4 +1,4 @@
-@use "../../scss/index" as *;
+@use '../../scss/index' as *;
 
 $switch-width: 50px;
 $switch-height: 25px;
@@ -28,19 +28,19 @@ $slider-padding: 4px;
    background-color: $color-gray;
    border-radius: $border-radius;
    cursor: pointer;
-   transition: background-color .4s;
+   transition: background-color 0.4s;
 }
 
 .slider::before {
    position: absolute;
-   content: "";
+   content: '';
    height: calc($switch-height - 2 * $slider-padding);
    width: calc($switch-height - 2 * $slider-padding);
    left: $slider-padding;
    bottom: $slider-padding;
    background-color: $color-white;
    border-radius: 50%;
-   transition: .4s;
+   transition: 0.4s;
 }
 
 .input:checked + .slider {
