@@ -1,6 +1,4 @@
-import { useEffect, useState } from 'react'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
-import { useSelector } from 'react-redux'
 
 import Navbar from './components/Navbar/Navbar'
 import About from './pages/About/About'
@@ -16,15 +14,22 @@ import ArchivalEvents from './pages/ArchivalEvents/ArchivalEvents'
 import SearchEvents from './pages/SearchEvents/SearchEvents'
 import PageNotFound from './pages/PageNotFound/PageNotFound'
 import styles from './App.module.scss'
+import useLocalStorage from './hooks/useLocalStorage'
+
+type User = {
+   _id: string
+   name: string
+   email: string
+   password: string
+}
+
+type UserProfile = Partial<{
+   token: string
+   user: User
+}>
 
 function App() {
-   const [user, setUser] = useState(JSON.parse(window.localStorage.getItem('profile')))
-
-   const { user: auth } = useSelector((store) => store.auth)
-
-   useEffect(() => {
-      setUser(JSON.parse(window.localStorage.getItem('profile')))
-   }, [auth])
+   const [user] = useLocalStorage<UserProfile>('profile', {})
 
    return (
       <BrowserRouter>
