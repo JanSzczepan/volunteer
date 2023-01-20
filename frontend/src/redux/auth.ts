@@ -1,31 +1,43 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import * as api from '../api/index'
+import { UserProfile } from '../App'
 
-const initialState = {
-   user: null,
+type InitialState = {
+   user: UserProfile
+   isLoading: boolean
+   error: any
+}
+
+const initialState: InitialState = {
+   user: {},
    isLoading: false,
    error: null,
 }
 
-export const logIn = createAsyncThunk('auth/logIn', async (dataObj, thunkAPI) => {
+export type AuthDataObj = {
+   formData: Object
+   navigate: (to: string) => void
+}
+
+export const logIn = createAsyncThunk('auth/logIn', async (dataObj: AuthDataObj, thunkAPI) => {
    try {
       const { data } = await api.login(dataObj.formData)
 
       dataObj.navigate('/volunteer/events')
       return data
-   } catch (error) {
+   } catch (error: any) {
       throw thunkAPI.rejectWithValue(error.response.data)
    }
 })
 
-export const signUp = createAsyncThunk('auth/signUp', async (dataObj, thunkAPI) => {
+export const signUp = createAsyncThunk('auth/signUp', async (dataObj: AuthDataObj, thunkAPI) => {
    try {
       const { data } = await api.signup(dataObj.formData)
 
       dataObj.navigate('/volunteer/events')
       return data
-   } catch (error) {
+   } catch (error: any) {
       throw thunkAPI.rejectWithValue(error.response.data)
    }
 })
@@ -37,43 +49,52 @@ export const authSlice = createSlice({
       logOut: (state) => {
          window.localStorage.clear()
 
-         state.user = null
+         state.user = {}
       },
       keepTrack: (state) => {
-         state.user = JSON.parse(window.localStorage.getItem('profile'))
+         const jsonValue = window.localStorage.getItem('profile')
+         let value: UserProfile
+
+         if (jsonValue) {
+            value = JSON.parse(jsonValue)
+         } else {
+            value = {}
+         }
+
+         state.user = value
       },
    },
-   extraReducers: {
-      [logIn.pending]: (state) => {
+   extraReducers: (builder) => {
+      builder.addCase(logIn.pending, (state) => {
          state.isLoading = true
          state.error = null
-      },
-      [logIn.fulfilled]: (state, action) => {
+      })
+      builder.addCase(logIn.fulfilled, (state, action: PayloadAction<UserProfile>) => {
          window.localStorage.setItem('profile', JSON.stringify(action.payload))
 
          state.user = action.payload
          state.isLoading = false
-      },
-      [logIn.rejected]: (state, action) => {
+      })
+      builder.addCase(logIn.rejected, (state, action: PayloadAction<any>) => {
          console.log(action)
          state.error = action.payload.err
          state.isLoading = false
-      },
-      [signUp.pending]: (state) => {
+      })
+      builder.addCase(signUp.pending, (state) => {
          state.isLoading = true
          state.error = null
-      },
-      [signUp.fulfilled]: (state, action) => {
+      })
+      builder.addCase(signUp.fulfilled, (state, action: PayloadAction<UserProfile>) => {
          window.localStorage.setItem('profile', JSON.stringify(action.payload))
 
          state.user = action.payload
          state.isLoading = false
-      },
-      [signUp.rejected]: (state, action) => {
+      })
+      builder.addCase(signUp.rejected, (state, action: PayloadAction<any>) => {
          console.log(action)
          state.error = action.payload.err
          state.isLoading = false
-      },
+      })
    },
 })
 

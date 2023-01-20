@@ -16,14 +16,14 @@ import PageNotFound from './pages/PageNotFound/PageNotFound'
 import styles from './App.module.scss'
 import useLocalStorage from './hooks/useLocalStorage'
 
-type User = {
+export type User = {
    _id: string
    name: string
    email: string
    password: string
 }
 
-type UserProfile = Partial<{
+export type UserProfile = Partial<{
    token: string
    user: User
 }>
