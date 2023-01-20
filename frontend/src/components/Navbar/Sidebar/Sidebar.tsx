@@ -6,6 +6,8 @@ import { MdOutlineEventAvailable, MdOutlineEventNote, MdOutlineArchive } from 'r
 import { IoCloseCircleOutline } from 'react-icons/io5'
 
 import styles from './Sidebar.module.scss'
+import useLocalStorage from '../../../hooks/useLocalStorage'
+import { UserProfile } from '../../../App'
 
 const EXPLORE_ROUTES = [
    {
@@ -33,8 +35,13 @@ const EVENTS_ROUTES = [
    },
 ]
 
-const Sidebar = forwardRef(({ logout, setIsOpen }, ref) => {
-   const user = JSON.parse(window.localStorage.getItem('profile'))
+type SidebarProps = {
+   logout: () => void
+   setIsOpen: (data: boolean) => void
+}
+
+const Sidebar = forwardRef<HTMLElement, SidebarProps>(({ logout, setIsOpen }, ref) => {
+   const [user] = useLocalStorage<UserProfile>('profile', {})
 
    return (
       <section

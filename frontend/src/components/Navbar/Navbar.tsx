@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
 import { BiMenuAltLeft } from 'react-icons/bi'
 import { FiLogOut } from 'react-icons/fi'
 import { FaHeart } from 'react-icons/fa'
@@ -10,41 +9,51 @@ import { keepTrack, logOut } from '../../redux/auth'
 import { cleanError, cleanEvents } from '../../redux/events'
 import Sidebar from './Sidebar/Sidebar'
 import styles from './Navbar.module.scss'
+import useLocalStorage from '../../hooks/useLocalStorage'
+import { useAppDispatch } from '../../hooks/useTypedDispatch'
+import { UserProfile } from '../../App'
+import { useCallback } from 'react'
+import getUserProfile from '../../functions/getUserProfile'
+
+type MyToken = {
+   name: string
+   exp: number
+}
 
 const Navbar = () => {
-   const [user, setUser] = useState(JSON.parse(window.localStorage.getItem('profile')))
-   const [isOpen, setIsOpen] = useState(false)
+   const [user, setUser] = useLocalStorage<UserProfile>('profile', {})
+   const [isOpen, setIsOpen] = useState<boolean>(false)
 
-   const dispatch = useDispatch()
+   const dispatch = useAppDispatch()
 
    const navigate = useNavigate()
    const location = useLocation()
 
-   const menuButtonElement = useRef()
-   const ref = useRef()
+   const menuButtonElement = useRef<HTMLButtonElement>(null)
+   const ref = useRef<HTMLElement>(null)
 
-   const logout = () => {
-      setUser(null)
+   const logout = useCallback(() => {
+      setUser({})
       dispatch(logOut())
       navigate('/volunteer/login')
-   }
+   }, [dispatch, navigate, setUser])
 
    useEffect(() => {
       const token = user?.token
 
       if (token) {
-         const decodedToken = decode(token)
+         const decodedToken = decode<MyToken>(token)
 
          if (decodedToken.exp * 1000 < new Date().getTime()) logout()
       }
 
       dispatch(keepTrack())
 
-      setUser(JSON.parse(window.localStorage.getItem('profile')))
+      setUser(getUserProfile())
       setIsOpen(false)
       dispatch(cleanEvents())
       dispatch(cleanError())
-   }, [location, dispatch])
+   }, [location, dispatch, logout, user?.token, setUser])
 
    return (
       <nav className={styles.nav}>
