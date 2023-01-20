@@ -3,6 +3,8 @@ import { FaUserPlus, FaUsers, FaSearch } from 'react-icons/fa'
 
 import AboutCard from '../../../components/AboutCard/AboutCard'
 import styles from '../About.module.scss'
+import useLocalStorage from '../../../hooks/useLocalStorage'
+import { UserProfile } from '../../../App'
 
 const CARDS_LIST = [
    {
@@ -26,7 +28,7 @@ const CARDS_LIST = [
 ]
 
 const AboutP2 = () => {
-   const user = JSON.parse(window.localStorage.getItem('profile'))
+   const [user] = useLocalStorage<UserProfile>('profile', {})
 
    return (
       <section className={styles.aboutSection}>

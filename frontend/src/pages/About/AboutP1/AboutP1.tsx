@@ -3,11 +3,13 @@ import { BsFillCheckCircleFill } from 'react-icons/bs'
 
 import Image from '../../../images/about_1.jpg'
 import styles from './AboutP1.module.scss'
+import useLocalStorage from '../../../hooks/useLocalStorage'
+import { UserProfile } from '../../../App'
 
 const CHECK_LIST = ['Darmowa Rejestracja', 'Intuicyjny Design', 'Niezawodność']
 
 const AboutP1 = () => {
-   const user = JSON.parse(window.localStorage.getItem('profile'))
+   const [user] = useLocalStorage<UserProfile>('profile', {})
 
    return (
       <section className={`section ${styles.aboutSection}`}>
