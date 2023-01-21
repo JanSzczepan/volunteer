@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import * as api from '../api/index'
 import { CreateEventFormData } from '../pages/AddEvent/AddEvent'
+import { JoinEventFormData } from '../pages/JoinEvent/JoinEvent'
 
 export type Event = Partial<{
    address: string
@@ -52,7 +53,7 @@ type InitialState = {
 
 type JoinEventData = {
    id: string
-   formData: Object
+   formData: JoinEventFormData
    setIsLoading: (isLoading: boolean) => void
    navigate: (to: string) => void
 }

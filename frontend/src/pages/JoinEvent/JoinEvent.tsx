@@ -1,34 +1,40 @@
-import { useEffect, useMemo, useState } from 'react'
+import { FormEvent, useEffect, useMemo, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
 
 import { cleanEvents, getEvent, joinEvent } from '../../redux/events'
 import PageNotFound from '../PageNotFound/PageNotFound'
 import Loader from '../../components/Loader/Loader'
 import { COLORS } from '../../constants'
 import styles from './JoinEvent.module.scss'
+import { useAppDispatch } from '../../hooks/useTypedDispatch'
+import { useAppSelector } from '../../hooks/useTypedSelector'
+import useLocalStorage from '../../hooks/useLocalStorage'
+import { UserProfile } from '../../App'
+
+export type JoinEventFormData = {
+   [key: string]: string
+}
 
 const JoinEvent = () => {
-   const [motivation, setMotivation] = useState('')
-   const [error, setError] = useState(false)
-   const [isLoading, setIsLoading] = useState(false)
+   const [motivation, setMotivation] = useState<string>('')
+   const [error, setError] = useState<string>('')
+   const [isLoading, setIsLoading] = useState<boolean>(false)
 
    const { id } = useParams()
    const navigate = useNavigate()
 
-   const dispatch = useDispatch()
+   const dispatch = useAppDispatch()
+   const { event, isLoading: isEventLoading, error: err } = useAppSelector((store) => store.events)
 
-   const { event, isLoading: isEventLoading, error: err } = useSelector((store) => store.events)
+   const [user] = useLocalStorage<UserProfile>('profile', {})
 
-   const user = JSON.parse(window.localStorage.getItem('profile'))
+   const join = useMemo(() => Boolean(!event?.participants?.includes(user?.user?._id!)), [event?.participants, user?.user?._id])
 
-   const join = useMemo(() => Boolean(!event?.participants?.includes(user?.user._id)), [])
-
-   const handleSubmit = (e) => {
+   const handleSubmit = (e: FormEvent) => {
       e.preventDefault()
       setIsLoading(true)
 
-      if (!user?.user) return
+      if (!user?.user || !id) return
 
       if (!motivation) {
          const errorText = join ? 'Podaj motywację' : 'Podaj rezygnację'
@@ -36,7 +42,7 @@ const JoinEvent = () => {
          return
       }
 
-      let formData
+      let formData: JoinEventFormData
 
       if (join) formData = { motivation }
       else {
@@ -53,7 +59,7 @@ const JoinEvent = () => {
    }, [err])
 
    useEffect(() => {
-      dispatch(getEvent(id))
+      if (id) dispatch(getEvent(id))
    }, [id, dispatch])
 
    if (error === 'Event id is not valid') return <PageNotFound />
@@ -72,7 +78,7 @@ const JoinEvent = () => {
          </div>
       )
 
-   if (event?.banned?.includes(user?.user._id))
+   if (event?.banned?.includes(user?.user?._id!))
       return (
          <section className={`section ${styles.section}`}>
             <div>
@@ -102,7 +108,7 @@ const JoinEvent = () => {
                id='motivation'
                type='text'
             />
-            {error && (
+            {!!error && (
                <div className='joinErrorContainer'>
                   <p className='joinErrorText'>{error}</p>
                </div>
