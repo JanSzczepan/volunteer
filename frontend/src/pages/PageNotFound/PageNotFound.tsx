@@ -3,7 +3,12 @@ import { Link } from 'react-router-dom'
 import Image from '../../images/not_found.jpg'
 import styles from './PageNotFound.module.scss'
 
-const LINKS_LIST = [
+type LinkItem = {
+   text: string
+   link: string
+}
+
+const LINKS_LIST: LinkItem[] = [
    { text: 'O nas', link: '/volunteer/about' },
    { text: 'Wolontariaty', link: '/volunteer/events/upcoming' },
 ]
