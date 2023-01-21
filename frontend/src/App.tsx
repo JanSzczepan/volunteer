@@ -15,6 +15,9 @@ import SearchEvents from './pages/SearchEvents/SearchEvents'
 import PageNotFound from './pages/PageNotFound/PageNotFound'
 import styles from './App.module.scss'
 import useLocalStorage from './hooks/useLocalStorage'
+import { useAppSelector } from './hooks/useTypedSelector'
+import { useEffect } from 'react'
+import getUserProfile from './functions/getUserProfile'
 
 export type User = {
    _id: string
@@ -29,7 +32,12 @@ export type UserProfile = Partial<{
 }>
 
 function App() {
-   const [user] = useLocalStorage<UserProfile>('profile', {})
+   const [user, setUser] = useLocalStorage<UserProfile>('profile', {})
+   const { user: auth } = useAppSelector((store) => store.auth)
+
+   useEffect(() => {
+      setUser(getUserProfile())
+   }, [auth, setUser])
 
    return (
       <BrowserRouter>

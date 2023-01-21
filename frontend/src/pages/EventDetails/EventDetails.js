@@ -1,6 +1,5 @@
 import { useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
 import { IoIosArrowForward } from 'react-icons/io'
 import { FaHouseUser, FaUserCheck } from 'react-icons/fa'
 
@@ -11,10 +10,12 @@ import PageNotFound from '../PageNotFound/PageNotFound'
 import styles from './EventDetails.module.scss'
 import Loader from '../../components/Loader/Loader'
 import { COLORS } from '../../constants'
+import { useAppSelector } from '../../hooks/useTypedSelector'
+import { useAppDispatch } from '../../hooks/useTypedDispatch'
 
 const EventDetails = () => {
-   const dispatch = useDispatch()
-   const { event, isLoading, error } = useSelector((store) => store.events)
+   const dispatch = useAppDispatch()
+   const { event, isLoading, error } = useAppSelector((store) => store.events)
 
    const { id } = useParams()
 
@@ -39,13 +40,13 @@ const EventDetails = () => {
       )
 
    const { month, day, hours, minutes } = returnDate(event.date)
-   const latestParticipants = event.participantsNames.slice(-3)
+   const latestParticipants = event.participantsNames?.slice(-3)
 
    const user = JSON.parse(window.localStorage.getItem('profile'))
 
-   const join = Boolean(!event.participants.includes(user?.user._id))
-   const ban = Boolean(event.banned.includes(user?.user._id))
-   const isAuthor = Boolean(event.creator === user?.user._id)
+   const join = Boolean(!event.participants?.includes(user?.user?._id))
+   const ban = Boolean(event.banned?.includes(user?.user?._id))
+   const isAuthor = Boolean(event.creator === user?.user?._id)
 
    const handleParticipantsText = (participantsNum) => {
       if (!participantsNum) return
@@ -54,7 +55,7 @@ const EventDetails = () => {
       else return `${participantsNum} osób dołączyło`
    }
 
-   const participantsText = handleParticipantsText(event.participants.length)
+   const participantsText = handleParticipantsText(event.participants?.length)
 
    return (
       <section className={`section ${styles.eventDetailsSection}`}>
@@ -107,7 +108,7 @@ const EventDetails = () => {
                )}
                <h5 className={styles.eventDescriptionHeader}>Opis:</h5>
                <p className={styles.eventDescription}>{event.description}</p>
-               {Boolean(event.participants.length) && (
+               {Boolean(event.participants?.length) && (
                   <div className={styles.outsideParticipantsContainer}>
                      <p className={styles.participantsHeader}>
                         {participantsText}

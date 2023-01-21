@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
 
 import EventCard from './EventCard/EventCard'
 import { getUpcomingEvents } from '../../redux/events'
@@ -8,12 +7,14 @@ import EventsInputButtonContainer from '../../components/EventsInputButtonContai
 import styles from './UpcomingEvents.module.scss'
 import Loader from '../../components/Loader/Loader'
 import { COLORS } from '../../constants'
+import { useAppDispatch } from '../../hooks/useTypedDispatch'
+import { useAppSelector } from '../../hooks/useTypedSelector'
 
 const UpcomingEvents = () => {
-   const [isToday, setIsToday] = useState(true)
+   const [isToday, setIsToday] = useState<boolean>(true)
 
-   const dispatch = useDispatch()
-   const { isLoading, todayEvents, tomorrowEvents } = useSelector((store) => store.events)
+   const dispatch = useAppDispatch()
+   const { isLoading, todayEvents, tomorrowEvents } = useAppSelector((store) => store.events)
 
    useEffect(() => {
       dispatch(getUpcomingEvents())

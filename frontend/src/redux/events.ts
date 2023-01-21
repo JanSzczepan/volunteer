@@ -1,9 +1,66 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import * as api from '../api/index'
 
-const initialState = {
-   event: null,
+type Event = Partial<{
+   address: string
+   anonymous: boolean
+   banned: string[]
+   cathegory: string
+   city: string
+   comments: Object[]
+   createdAt: string
+   creator: string
+   date: string
+   description: string
+   motivations: string[]
+   participants: string[]
+   participantsNames: string[]
+   resignations: string[]
+   selectedFile: string
+   title: string
+   updatedAt: string
+   _id: string
+}>
+
+type UpcominEvents = {
+   todayEvents: Event[]
+   tomorrowEvents: Event[]
+}
+
+type YourEvents = {
+   authorEvents: Event[]
+   participantEvents: Event[]
+   authorArchivalEvents: Event[]
+   participantArchivalEvents: Event[]
+}
+
+type InitialState = {
+   event: Event
+   todayEvents: Event[]
+   tomorrowEvents: Event[]
+   allEvents: Event[]
+   authorEvents: Event[]
+   participantEvents: Event[]
+   authorArchivalEvents: Event[]
+   participantArchivalEvents: Event[]
+   eventsBySearch: Event[]
+   isLoading: boolean
+   error: any
+}
+
+type JoinEventData = {
+   id: string
+   setIsLoading: (isLoading: boolean) => void
+} & CreateEventData
+
+type CreateEventData = {
+   formData: Object
+   navigate: (to: string) => void
+}
+
+const initialState: InitialState = {
+   event: {},
    todayEvents: [],
    tomorrowEvents: [],
    allEvents: [],
@@ -13,33 +70,34 @@ const initialState = {
    participantArchivalEvents: [],
    eventsBySearch: [],
    isLoading: true,
+   error: null,
 }
 
-export const getUpcomingEvents = createAsyncThunk('events/getUpcomingEvents', async (thunkAPI) => {
+export const getUpcomingEvents = createAsyncThunk('events/getUpcomingEvents', async (_, thunkAPI) => {
    try {
       const { data } = await api.fetchUpcomingEvents()
 
-      return data
+      return data as { data: UpcominEvents }
    } catch (error) {
       return thunkAPI.rejectWithValue(error)
    }
 })
 
-export const getAllEvents = createAsyncThunk('events/getAllEvents', async (thunkAPI) => {
+export const getAllEvents = createAsyncThunk('events/getAllEvents', async (_, thunkAPI) => {
    try {
       const { data } = await api.fetchAllEvents()
 
-      return data
+      return data as { data: Event[] }
    } catch (error) {
       return thunkAPI.rejectWithValue(error)
    }
 })
 
-export const getYourEvents = createAsyncThunk('events/getYourEvents', async (thunkAPI) => {
+export const getYourEvents = createAsyncThunk('events/getYourEvents', async (_, thunkAPI) => {
    try {
       const { data } = await api.fetchYourEvents()
 
-      return data
+      return data as { data: YourEvents }
    } catch (error) {
       return thunkAPI.rejectWithValue(error)
    }
@@ -49,7 +107,7 @@ export const getEventsBySearch = createAsyncThunk('events/getEventsBySearch', as
    try {
       const { data } = await api.fetchEventsBySearch(search)
 
-      return data
+      return data as { data: Event[] }
    } catch (error) {
       return thunkAPI.rejectWithValue(error)
    }
@@ -59,13 +117,13 @@ export const getEvent = createAsyncThunk('events/getEvent', async (id, thunkAPI)
    try {
       const { data } = await api.fetchEvent(id)
 
-      return data
-   } catch (error) {
+      return data as { data: Event }
+   } catch (error: any) {
       throw thunkAPI.rejectWithValue(error.response.data)
    }
 })
 
-export const joinEvent = createAsyncThunk('events/joinEvent', async (dataObj, thunkAPI) => {
+export const joinEvent = createAsyncThunk('events/joinEvent', async (dataObj: JoinEventData, thunkAPI) => {
    const { id, formData, navigate, setIsLoading } = dataObj
 
    try {
@@ -74,21 +132,21 @@ export const joinEvent = createAsyncThunk('events/joinEvent', async (dataObj, th
       setIsLoading(false)
       navigate(`/volunteer/events/${id}/eventDetails`)
 
-      return data
-   } catch (error) {
+      return data as { _id: string }
+   } catch (error: any) {
       setIsLoading(false)
       throw thunkAPI.rejectWithValue(error.response.data)
    }
 })
 
-export const createEvent = createAsyncThunk('events/createEvent', async (dataObj, thunkAPI) => {
+export const createEvent = createAsyncThunk('events/createEvent', async (dataObj: CreateEventData, thunkAPI) => {
    try {
       const { data } = await api.createEvent(dataObj.formData)
 
       dataObj.navigate(`/volunteer/events/${data.data._id}/eventDetails`)
 
-      return data
-   } catch (error) {
+      return data as { data: Event }
+   } catch (error: any) {
       throw thunkAPI.rejectWithValue(error.response.data)
    }
 })
@@ -98,7 +156,7 @@ export const eventsSlice = createSlice({
    initialState,
    reducers: {
       cleanEvents: (state) => {
-         state.event = null
+         state.event = {}
          state.todayEvents = []
          state.tomorrowEvents = []
          state.allEvents = []
@@ -112,93 +170,93 @@ export const eventsSlice = createSlice({
          state.error = null
       },
    },
-   extraReducers: {
-      [getUpcomingEvents.pending]: (state) => {
+   extraReducers: (builder) => {
+      builder.addCase(getUpcomingEvents.pending, (state) => {
          state.isLoading = true
-      },
-      [getUpcomingEvents.fulfilled]: (state, action) => {
+      })
+      builder.addCase(getUpcomingEvents.fulfilled, (state, action: PayloadAction<{ data: UpcominEvents }>) => {
          state.todayEvents = action.payload.data.todayEvents
          state.tomorrowEvents = action.payload.data.tomorrowEvents
          state.isLoading = false
-      },
-      [getUpcomingEvents.rejected]: (state, action) => {
+      })
+      builder.addCase(getUpcomingEvents.rejected, (state, action) => {
          console.log(action)
          state.isLoading = false
-      },
-      [getAllEvents.pending]: (state) => {
+      })
+      builder.addCase(getAllEvents.pending, (state) => {
          state.isLoading = true
-      },
-      [getAllEvents.fulfilled]: (state, action) => {
+      })
+      builder.addCase(getAllEvents.fulfilled, (state, action: PayloadAction<{ data: Event[] }>) => {
          state.allEvents = action.payload.data
          state.isLoading = false
-      },
-      [getAllEvents.rejected]: (state, action) => {
+      })
+      builder.addCase(getAllEvents.rejected, (state, action) => {
          console.log(action)
          state.isLoading = false
-      },
-      [getYourEvents.pending]: (state) => {
+      })
+      builder.addCase(getYourEvents.pending, (state) => {
          state.isLoading = true
-      },
-      [getYourEvents.fulfilled]: (state, action) => {
+      })
+      builder.addCase(getYourEvents.fulfilled, (state, action: PayloadAction<{ data: YourEvents }>) => {
          state.authorEvents = action.payload.data.authorEvents
          state.participantEvents = action.payload.data.participantEvents
          state.authorArchivalEvents = action.payload.data.authorArchivalEvents
          state.participantArchivalEvents = action.payload.data.participantArchivalEvents
          state.isLoading = false
-      },
-      [getYourEvents.rejected]: (state, action) => {
+      })
+      builder.addCase(getYourEvents.rejected, (state, action) => {
          console.log(action)
          state.isLoading = false
-      },
-      [getEventsBySearch.pending]: (state) => {
+      })
+      builder.addCase(getEventsBySearch.pending, (state) => {
          state.isLoading = true
-      },
-      [getEventsBySearch.fulfilled]: (state, action) => {
+      })
+      builder.addCase(getEventsBySearch.fulfilled, (state, action: PayloadAction<{ data: Event[] }>) => {
          state.eventsBySearch = action.payload.data
          state.isLoading = false
-      },
-      [getEventsBySearch.rejected]: (state, action) => {
+      })
+      builder.addCase(getEventsBySearch.rejected, (state, action) => {
          console.log(action)
          state.isLoading = false
-      },
-      [getEvent.pending]: (state) => {
+      })
+      builder.addCase(getEvent.pending, (state) => {
          state.isLoading = true
-      },
-      [getEvent.fulfilled]: (state, action) => {
+      })
+      builder.addCase(getEvent.fulfilled, (state, action: PayloadAction<{ data: Event }>) => {
          state.event = action.payload.data
          state.isLoading = false
-      },
-      [getEvent.rejected]: (state, action) => {
+      })
+      builder.addCase(getEvent.rejected, (state, action: PayloadAction<any>) => {
          console.log(action)
          state.isLoading = false
          state.error = action.payload.error
-      },
-      [joinEvent.pending]: (state) => {
+      })
+      builder.addCase(joinEvent.pending, (state) => {
          state.error = null
          state.isLoading = true
-      },
-      [joinEvent.fulfilled]: (state, action) => {
+      })
+      builder.addCase(joinEvent.fulfilled, (state, action: PayloadAction<{ _id: string }>) => {
          state.allEvents = state.allEvents.map((event) => (event._id === action.payload._id ? action.payload : event))
          state.isLoading = false
-      },
-      [joinEvent.rejected]: (state, action) => {
+      })
+      builder.addCase(joinEvent.rejected, (state, action: PayloadAction<any>) => {
          console.log(action)
          state.isLoading = false
          state.error = action.payload.error
-      },
-      [createEvent.pending]: (state) => {
+      })
+      builder.addCase(createEvent.pending, (state) => {
          state.error = null
          state.isLoading = true
-      },
-      [createEvent.fulfilled]: (state, action) => {
+      })
+      builder.addCase(createEvent.fulfilled, (state, action: PayloadAction<{ data: Event }>) => {
          state.allEvents = [...state.allEvents, action.payload.data]
          state.isLoading = false
-      },
-      [createEvent.rejected]: (state, action) => {
+      })
+      builder.addCase(createEvent.rejected, (state, action: PayloadAction<any>) => {
          console.log(action)
          state.isLoading = false
          state.error = action.payload.error
-      },
+      })
    },
 })
 

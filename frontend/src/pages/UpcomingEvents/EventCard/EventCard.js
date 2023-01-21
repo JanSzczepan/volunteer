@@ -8,6 +8,7 @@ import styles from './EventCard.module.scss'
 import returnImage from '../../../functions/returnImage'
 import returnDate from '../../../functions/returnDate'
 import CathegoryIcon from '../../../components/CathegoryIcon/CathegoryIcon'
+import useLocalStorage from '../../../hooks/useLocalStorage'
 
 const EventCard = ({ event, isAllEvents = false }) => {
    const { _id, title, date, cathegory, city, selectedFile, participants, participantsNames, banned, creator } = event
@@ -15,11 +16,11 @@ const EventCard = ({ event, isAllEvents = false }) => {
    const { monthNumber, month, day, hours, minutes } = returnDate(date)
    const latestParticipants = participantsNames.slice(-3)
 
-   const user = JSON.parse(window.localStorage.getItem('profile'))
+   const [user] = useLocalStorage('profile', {})
 
-   const join = Boolean(!participants.includes(user?.user._id))
-   const ban = Boolean(banned.includes(user?.user._id))
-   const isAuthor = Boolean(creator === user?.user._id)
+   const join = Boolean(!participants.includes(user?.user?._id))
+   const ban = Boolean(banned.includes(user?.user?._id))
+   const isAuthor = Boolean(creator === user?.user?._id)
 
    return (
       <div className={styles.card}>
