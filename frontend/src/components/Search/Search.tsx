@@ -1,11 +1,11 @@
-import { useState } from 'react'
+import { KeyboardEvent, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { BsSearch } from 'react-icons/bs'
 
 import styles from './Search.module.scss'
 
 const Search = () => {
-   const [search, setSearch] = useState('')
+   const [search, setSearch] = useState<string>('')
 
    const navigate = useNavigate()
 
@@ -17,8 +17,8 @@ const Search = () => {
       setSearch('')
    }
 
-   const handleKeyDown = (e) => {
-      if (e.keyCode === 13) searchEvents()
+   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>): void => {
+      if (e.key === 'Enter') searchEvents()
    }
 
    return (
@@ -36,7 +36,7 @@ const Search = () => {
             placeholder='Szukaj wolontariatu...'
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            onKeyDown={(e) => handleKeyDown(e)}
+            onKeyDown={handleKeyDown}
          />
       </div>
    )
