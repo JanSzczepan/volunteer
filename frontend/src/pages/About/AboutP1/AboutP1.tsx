@@ -6,7 +6,7 @@ import styles from './AboutP1.module.scss'
 import useLocalStorage from '../../../hooks/useLocalStorage'
 import { UserProfile } from '../../../App'
 
-const CHECK_LIST = ['Darmowa Rejestracja', 'Intuicyjny Design', 'Niezawodność']
+const CHECK_LIST: string[] = ['Darmowa Rejestracja', 'Intuicyjny Design', 'Niezawodność']
 
 const AboutP1 = () => {
    const [user] = useLocalStorage<UserProfile>('profile', {})

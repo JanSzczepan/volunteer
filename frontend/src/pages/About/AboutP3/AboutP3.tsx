@@ -1,7 +1,11 @@
 import Image from '../../../images/about_2.jpg'
 import styles from './AboutP3.module.scss'
 
-const VOLUNTEER_REASONS_LIST = [{ header: 'Doświadczenie i umiejętności' }, { header: 'Możliwość poznania branży' }, { header: 'Ciekawe znajomości' }, { header: 'Nauka empatii i wdzięczności' }, { header: 'Wpływ na świat wokół siebie' }]
+type VolunteerReason = {
+   header: string
+}
+
+const VOLUNTEER_REASONS_LIST: VolunteerReason[] = [{ header: 'Doświadczenie i umiejętności' }, { header: 'Możliwość poznania branży' }, { header: 'Ciekawe znajomości' }, { header: 'Nauka empatii i wdzięczności' }, { header: 'Wpływ na świat wokół siebie' }]
 
 const AboutP3 = () => {
    return (

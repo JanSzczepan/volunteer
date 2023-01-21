@@ -5,8 +5,16 @@ import AboutCard from '../../../components/AboutCard/AboutCard'
 import styles from '../About.module.scss'
 import useLocalStorage from '../../../hooks/useLocalStorage'
 import { UserProfile } from '../../../App'
+import { IconType } from 'react-icons'
 
-const CARDS_LIST = [
+type CardItem = {
+   text: string
+   description: string
+   icon: IconType
+   link: string
+}
+
+const CARDS_LIST: CardItem[] = [
    {
       text: 'Dodawaj wolontariaty',
       description: 'Volunteer to aplikacja, która w łatwy sposób pozwoli ci zorganizować wolontariat. Dodaj tytuł, opis, datę, miasto i zdjęcie - to tyle, gotowe!',
