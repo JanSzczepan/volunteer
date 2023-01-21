@@ -6,10 +6,16 @@ import { BsClock } from 'react-icons/bs'
 import returnDate from '../../../functions/returnDate'
 import returnImage from '../../../functions/returnImage'
 import styles from './YourEventCard.module.scss'
+import { Event } from '../../../redux/events'
 
-const YourEventCard = ({ event, isArchival }) => {
+type YourEventCardProps = {
+   event: Event
+   isArchival: boolean
+}
+
+const YourEventCard = ({ event, isArchival }: YourEventCardProps) => {
    const { _id, title, city, date, selectedFile, cathegory } = event
-   const { month, day } = returnDate(date)
+   const { month, day } = returnDate(date!)
 
    const returnCardContent = () => (
       <>

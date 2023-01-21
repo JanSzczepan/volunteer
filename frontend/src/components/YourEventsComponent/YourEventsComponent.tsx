@@ -7,16 +7,24 @@ import YourEventCard from './YourEventCard/YourEventCard'
 import styles from './YourEventsComponent.module.scss'
 import Loader from '../Loader/Loader'
 import { COLORS } from '../../constants'
+import { useAppDispatch } from '../../hooks/useTypedDispatch'
+import { useAppSelector } from '../../hooks/useTypedSelector'
+import useLocalStorage from '../../hooks/useLocalStorage'
+import { UserProfile } from '../../App'
 
-const YourEventsComponent = ({ isArchival }) => {
-   const dispatch = useDispatch()
-   const { authorEvents, participantEvents, authorArchivalEvents, participantArchivalEvents, isLoading } = useSelector((store) => store.events)
+type YourEventsComponentProps = {
+   isArchival: boolean
+}
 
-   const user = JSON.parse(window.localStorage.getItem('profile'))
+const YourEventsComponent = ({ isArchival }: YourEventsComponentProps) => {
+   const dispatch = useAppDispatch()
+   const { authorEvents, participantEvents, authorArchivalEvents, participantArchivalEvents, isLoading } = useAppSelector((store) => store.events)
+
+   const [user] = useLocalStorage<UserProfile>('profile', {})
 
    useEffect(() => {
       if (user?.user) dispatch(getYourEvents())
-   }, [dispatch])
+   }, [dispatch, user?.user])
 
    if (isLoading)
       return (
