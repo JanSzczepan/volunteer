@@ -1,27 +1,33 @@
-import { useEffect, useState } from 'react'
+import { FormEvent, useEffect, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
 
 import Loader from '../../components/Loader/Loader'
 import { logIn } from '../../redux/auth'
 import styles from './Login.module.scss'
 import { COLORS } from '../../constants'
+import { useAppDispatch } from '../../hooks/useTypedDispatch'
+import { useAppSelector } from '../../hooks/useTypedSelector'
+
+export type LoginFormData = {
+   login: string
+   password: string
+}
 
 const Login = () => {
-   const [login, setLogin] = useState('')
-   const [password, setPassword] = useState('')
-   const [error, setError] = useState(false)
+   const [login, setLogin] = useState<string>('')
+   const [password, setPassword] = useState<string>('')
+   const [error, setError] = useState<string | null>(null)
 
-   const dispatch = useDispatch()
-   const { isLoading, error: err } = useSelector((store) => store.auth)
+   const dispatch = useAppDispatch()
+   const { isLoading, error: err } = useAppSelector((store) => store.auth)
 
    const navigate = useNavigate()
    const location = useLocation()
 
-   const handleOnSubmit = (e) => {
+   const handleOnSubmit = (e: FormEvent) => {
       e.preventDefault()
 
-      const formData = { login, password }
+      const formData: LoginFormData = { login, password }
 
       dispatch(logIn({ formData, navigate }))
    }
@@ -49,7 +55,7 @@ const Login = () => {
             </label>
             <input
                onChange={(e) => {
-                  setError(false)
+                  setError(null)
                   setLogin(e.target.value)
                }}
                className='authInput'
@@ -64,7 +70,7 @@ const Login = () => {
             </label>
             <input
                onChange={(e) => {
-                  setError(false)
+                  setError(null)
                   setPassword(e.target.value)
                }}
                className='authInput'

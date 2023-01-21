@@ -1,28 +1,35 @@
-import { useEffect, useState } from 'react'
+import { FormEvent, useEffect, useState } from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
 
 import { signUp } from '../../redux/auth'
 import styles from './Signup.module.scss'
 import Loader from '../../components/Loader/Loader'
 import { COLORS } from '../../constants'
+import { useAppDispatch } from '../../hooks/useTypedDispatch'
+import { useAppSelector } from '../../hooks/useTypedSelector'
+
+export type SignupFormData = {
+   name: string
+   email: string
+   password: string
+}
 
 const Signup = () => {
-   const [name, setName] = useState('')
-   const [email, setEmail] = useState('')
-   const [password, setPassword] = useState('')
-   const [error, setError] = useState(false)
+   const [name, setName] = useState<string>('')
+   const [email, setEmail] = useState<string>('')
+   const [password, setPassword] = useState<string>('')
+   const [error, setError] = useState<string | null>(null)
 
-   const dispatch = useDispatch()
-   const { isLoading, error: err } = useSelector((store) => store.auth)
+   const dispatch = useAppDispatch()
+   const { isLoading, error: err } = useAppSelector((store) => store.auth)
 
    const navigate = useNavigate()
    const location = useLocation()
 
-   const handleOnSubmit = (e) => {
+   const handleOnSubmit = (e: FormEvent) => {
       e.preventDefault()
 
-      const formData = { name, email, password }
+      const formData: SignupFormData = { name, email, password }
 
       dispatch(signUp({ formData, navigate }))
    }
@@ -50,7 +57,7 @@ const Signup = () => {
             </label>
             <input
                onChange={(e) => {
-                  setError(false)
+                  setError(null)
                   setName(e.target.value)
                }}
                className='authInput'
@@ -65,7 +72,7 @@ const Signup = () => {
             </label>
             <input
                onChange={(e) => {
-                  setError(false)
+                  setError(null)
                   setEmail(e.target.value)
                }}
                className='authInput'
@@ -80,7 +87,7 @@ const Signup = () => {
             </label>
             <input
                onChange={(e) => {
-                  setError(false)
+                  setError(null)
                   setPassword(e.target.value)
                }}
                className='authInput'
