@@ -57,7 +57,7 @@ const EventCard = ({ event, isAllEvents = false }: EventCardProps) => {
                   <div className={styles.outsideIconContainer}>
                      <div className={styles.insideIconContainer}>
                         <CathegoryIcon
-                           cathegory={cathegory}
+                           cathegory={cathegory!}
                            className={'cathegoryIconCard'}
                         />
                      </div>

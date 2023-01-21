@@ -7,7 +7,7 @@ import useLocalStorage from '../../../hooks/useLocalStorage'
 import { UserProfile } from '../../../App'
 import { IconType } from 'react-icons'
 
-type CardItem = {
+export type CardItem = {
    text: string
    description: string
    icon: IconType

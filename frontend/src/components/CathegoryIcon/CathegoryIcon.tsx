@@ -1,7 +1,12 @@
 import { OPTIONS } from '../../constants'
 import styles from './CathegoryIcon.module.scss'
 
-const CathegoryIcon = ({ cathegory, className }) => {
+type CathegoryIconProps = {
+   cathegory: string
+   className: string
+}
+
+const CathegoryIcon = ({ cathegory, className }: CathegoryIconProps) => {
    return (
       <>
          {OPTIONS.map((option, i) => {
@@ -14,7 +19,7 @@ const CathegoryIcon = ({ cathegory, className }) => {
                      key={i}
                   />
                )
-            }
+            } else return null
          })}
       </>
    )

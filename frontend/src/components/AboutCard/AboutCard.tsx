@@ -1,6 +1,12 @@
+import { Option } from '../../constants'
+import { CardItem } from '../../pages/About/AboutP2/AboutP2'
 import styles from './AboutCard.module.scss'
 
-const AboutCard = ({ card }) => {
+type AboutCardProps = {
+   card: CardItem | Option
+}
+
+const AboutCard = ({ card }: AboutCardProps) => {
    const CardIcon = <card.icon className={styles.cardIcon} />
 
    return (
