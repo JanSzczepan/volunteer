@@ -1,6 +1,11 @@
 import styles from './Switch.module.scss'
 
-const Switch = ({ isToggled, onToggle }) => {
+type SwitchProps = {
+   isToggled: boolean
+   onToggle: () => void
+}
+
+const Switch = ({ isToggled, onToggle }: SwitchProps) => {
    return (
       <label className={styles.switch}>
          <input
