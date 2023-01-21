@@ -12,15 +12,19 @@ import Loader from '../../components/Loader/Loader'
 import { COLORS } from '../../constants'
 import { useAppSelector } from '../../hooks/useTypedSelector'
 import { useAppDispatch } from '../../hooks/useTypedDispatch'
+import useLocalStorage from '../../hooks/useLocalStorage'
+import { UserProfile } from '../../App'
 
 const EventDetails = () => {
+   const [user] = useLocalStorage<UserProfile>('profile', {})
+
    const dispatch = useAppDispatch()
    const { event, isLoading, error } = useAppSelector((store) => store.events)
 
    const { id } = useParams()
 
    useEffect(() => {
-      dispatch(getEvent(id))
+      dispatch(getEvent(id || ''))
    }, [id, dispatch])
 
    if (error === 'Event id is not valid') return <PageNotFound />
@@ -39,23 +43,21 @@ const EventDetails = () => {
          </div>
       )
 
-   const { month, day, hours, minutes } = returnDate(event.date)
+   const { month, day, hours, minutes } = returnDate(event.date!)
    const latestParticipants = event.participantsNames?.slice(-3)
 
-   const user = JSON.parse(window.localStorage.getItem('profile'))
-
-   const join = Boolean(!event.participants?.includes(user?.user?._id))
-   const ban = Boolean(event.banned?.includes(user?.user?._id))
+   const join = Boolean(!event.participants?.includes(user?.user?._id!))
+   const ban = Boolean(event.banned?.includes(user?.user?._id!))
    const isAuthor = Boolean(event.creator === user?.user?._id)
 
-   const handleParticipantsText = (participantsNum) => {
+   const handleParticipantsText = (participantsNum: number) => {
       if (!participantsNum) return
-      else if (participantsNum == 1) return `${participantsNum} osoba dołączyła`
-      else if (participantsNum == 2 || participantsNum == 3 || participantsNum == 4) return `${participantsNum} osoby dołączyły`
+      else if (participantsNum === 1) return `${participantsNum} osoba dołączyła`
+      else if (participantsNum === 2 || participantsNum === 3 || participantsNum === 4) return `${participantsNum} osoby dołączyły`
       else return `${participantsNum} osób dołączyło`
    }
 
-   const participantsText = handleParticipantsText(event.participants?.length)
+   const participantsText = handleParticipantsText(event.participants?.length!)
 
    return (
       <section className={`section ${styles.eventDetailsSection}`}>
@@ -115,7 +117,7 @@ const EventDetails = () => {
                         <span className={styles.participantsSpan}>:</span>
                      </p>
                      <div className={styles.insideParticipantsContainer}>
-                        {latestParticipants.map((p, i) => (
+                        {latestParticipants?.map((p, i) => (
                            <div
                               className={styles.participant}
                               key={i}
