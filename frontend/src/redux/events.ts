@@ -103,7 +103,7 @@ export const getYourEvents = createAsyncThunk('events/getYourEvents', async (_, 
    }
 })
 
-export const getEventsBySearch = createAsyncThunk('events/getEventsBySearch', async (search, thunkAPI) => {
+export const getEventsBySearch = createAsyncThunk('events/getEventsBySearch', async (search: string, thunkAPI) => {
    try {
       const { data } = await api.fetchEventsBySearch(search)
 

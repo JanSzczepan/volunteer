@@ -1,5 +1,4 @@
 import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 
 import EventsInputButtonContainer from '../../components/EventsInputButtonContainer/EventsInputButtonContainer'
 import EventCard from '../UpcomingEvents/EventCard/EventCard'
@@ -8,10 +7,12 @@ import { getEventsBySearch } from '../../redux/events'
 import Loader from '../../components/Loader/Loader'
 import { COLORS } from '../../constants'
 import styles from './SearchEvents.module.scss'
+import { useAppDispatch } from '../../hooks/useTypedDispatch'
+import { useAppSelector } from '../../hooks/useTypedSelector'
 
 const SearchEvents = () => {
-   const dispatch = useDispatch()
-   const { eventsBySearch, isLoading } = useSelector((store) => store.events)
+   const dispatch = useAppDispatch()
+   const { eventsBySearch, isLoading } = useAppSelector((store) => store.events)
 
    const query = useQuery('search')
 
