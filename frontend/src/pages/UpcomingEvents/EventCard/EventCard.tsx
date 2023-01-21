@@ -34,7 +34,7 @@ const EventCard = ({ event, isAllEvents = false }: EventCardProps) => {
          <Link to={`/volunteer/events/${_id}/eventDetails`}>
             <div
                className={styles.imageContainer}
-               style={{ backgroundImage: `url('${returnImage(selectedFile, cathegory)}')` }}
+               style={{ backgroundImage: `url('${returnImage(selectedFile, cathegory!)}')` }}
             >
                <div className={styles.frontContainer}>
                   <div className={styles.textContainer}>

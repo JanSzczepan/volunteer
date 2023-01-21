@@ -21,7 +21,7 @@ const YourEventCard = ({ event, isArchival }: YourEventCardProps) => {
       <>
          <div
             className={styles.cardImage}
-            style={{ backgroundImage: `url('${returnImage(selectedFile, cathegory)}')` }}
+            style={{ backgroundImage: `url('${returnImage(selectedFile, cathegory!)}')` }}
          />
          <div className={styles.textContainer}>
             <h3 className={styles.cardHeaderText}>{title}</h3>

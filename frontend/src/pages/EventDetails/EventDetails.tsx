@@ -67,7 +67,7 @@ const EventDetails = () => {
          <header className={styles.eventDetailsHeader}>
             <div
                className={styles.imageContainer}
-               style={{ backgroundImage: `url('${returnImage(event.selectedFile, event.cathegory)}')` }}
+               style={{ backgroundImage: `url('${returnImage(event.selectedFile, event.cathegory!)}')` }}
             />
             <div className={styles.outsideTextContainer}>
                <div className={styles.insideTextContainer}>

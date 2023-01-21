@@ -1,6 +1,6 @@
 import { OPTIONS } from '../constants'
 
-const returnImage = (img, cathegory) => {
+const returnImage = (img: string | null | undefined, cathegory: string) => {
    let image = img
 
    if (image) return image
