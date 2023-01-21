@@ -1,6 +1,15 @@
 import { Oval } from 'react-loader-spinner'
 
-const Loader = ({ height, width, color, secondaryColor, strokeWidth, strokeWidthSecondary }) => {
+type LoaderProps = {
+   height: string | number
+   width: string | number
+   color: string
+   secondaryColor: string
+   strokeWidth: string | number
+   strokeWidthSecondary: string | number
+}
+
+const Loader = ({ height, width, color, secondaryColor, strokeWidth, strokeWidthSecondary }: LoaderProps) => {
    return (
       <Oval
          height={height}
