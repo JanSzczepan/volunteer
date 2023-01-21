@@ -6,9 +6,18 @@ import FileBase from 'react-file-base64'
 
 import styles from './ImageUpload.module.scss'
 
-const ImageUpload = ({ handleImage }) => {
-   const [image, setImage] = useState('')
-   const [imageInfo, setImageInfo] = useState('')
+type File = {
+   base64: string
+   name: string
+}
+
+type ImageUploadProps = {
+   handleImage: (image: string) => void
+}
+
+const ImageUpload = ({ handleImage }: ImageUploadProps) => {
+   const [image, setImage] = useState<string>('')
+   const [imageInfo, setImageInfo] = useState<string>('')
 
    useEffect(() => {
       if (!image) {
@@ -18,7 +27,7 @@ const ImageUpload = ({ handleImage }) => {
       }
 
       handleImage(image)
-   }, [image])
+   }, [image, handleImage, imageInfo])
 
    return (
       <div className={styles.container}>
@@ -28,11 +37,11 @@ const ImageUpload = ({ handleImage }) => {
                   type='file'
                   multiple={false}
                   accept='image/png, image/jpeg, image/jpg'
-                  onDone={(file) => {
+                  onDone={(file: File) => {
+                     console.log(file)
                      setImage(file.base64)
                      setImageInfo(file.name)
                   }}
-                  onChange={(e) => setImageInfo(e.target.files[0])}
                />
                <button
                   className={styles.uploadButton}
@@ -53,7 +62,10 @@ const ImageUpload = ({ handleImage }) => {
                <p className={styles.imageText}>{imageInfo}</p>
                <button
                   className={styles.trashButton}
-                  onClick={() => setImage(null)}
+                  onClick={() => {
+                     setImage('')
+                     setImageInfo('')
+                  }}
                   type='button'
                >
                   <FaTrash className={styles.trashIcon} />

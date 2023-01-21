@@ -48,6 +48,7 @@ type InitialState = {
    participantArchivalEvents: Event[]
    eventsBySearch: Event[]
    isLoading: boolean
+   isCreateEventLoading: boolean
    error: any
 }
 
@@ -74,6 +75,7 @@ const initialState: InitialState = {
    participantArchivalEvents: [],
    eventsBySearch: [],
    isLoading: true,
+   isCreateEventLoading: false,
    error: null,
 }
 
@@ -250,15 +252,15 @@ export const eventsSlice = createSlice({
       })
       builder.addCase(createEvent.pending, (state) => {
          state.error = null
-         state.isLoading = true
+         state.isCreateEventLoading = true
       })
       builder.addCase(createEvent.fulfilled, (state, action: PayloadAction<{ data: Event }>) => {
          state.allEvents = [...state.allEvents, action.payload.data]
-         state.isLoading = false
+         state.isCreateEventLoading = false
       })
       builder.addCase(createEvent.rejected, (state, action: PayloadAction<any>) => {
          console.log(action)
-         state.isLoading = false
+         state.isCreateEventLoading = false
          state.error = action.payload.error
       })
    },

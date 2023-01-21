@@ -1,4 +1,4 @@
-import { FormEvent, useState } from 'react'
+import { FormEvent, useCallback, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
 import Switch from '../../components/Switch/Switch'
@@ -29,15 +29,15 @@ const AddEvent = () => {
    const [isToggled, setIsToggled] = useState<boolean>(false)
 
    const dispatch = useAppDispatch()
-   const { isLoading, error } = useAppSelector((store) => store.events)
+   const { error, isCreateEventLoading } = useAppSelector((store) => store.events)
 
    const navigate = useNavigate()
 
    const [user] = useLocalStorage<UserProfile>('profile', {})
 
-   const handleImage = (image: string) => {
+   const handleImage = useCallback((image: string) => {
       setFormData((prevState) => ({ ...prevState, selectedFile: image }))
-   }
+   }, [])
 
    const onSubmit = (e: FormEvent) => {
       e.preventDefault()
@@ -169,9 +169,9 @@ const AddEvent = () => {
                <button
                   className={`addEventSubmitButton ${styles.addEventSubmitButton}`}
                   type='submit'
-                  disabled={isLoading}
+                  disabled={isCreateEventLoading}
                >
-                  {isLoading ? (
+                  {isCreateEventLoading ? (
                      <Loader
                         height={30}
                         width={30}
