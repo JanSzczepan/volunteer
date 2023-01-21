@@ -9,17 +9,24 @@ import returnImage from '../../../functions/returnImage'
 import returnDate from '../../../functions/returnDate'
 import CathegoryIcon from '../../../components/CathegoryIcon/CathegoryIcon'
 import useLocalStorage from '../../../hooks/useLocalStorage'
+import { Event } from '../../../redux/events'
+import { UserProfile } from '../../../App'
 
-const EventCard = ({ event, isAllEvents = false }) => {
+type EventCardProps = {
+   event: Event
+   isAllEvents?: boolean
+}
+
+const EventCard = ({ event, isAllEvents = false }: EventCardProps) => {
+   const [user] = useLocalStorage<UserProfile>('profile', {})
+
    const { _id, title, date, cathegory, city, selectedFile, participants, participantsNames, banned, creator } = event
 
-   const { monthNumber, month, day, hours, minutes } = returnDate(date)
-   const latestParticipants = participantsNames.slice(-3)
+   const { monthNumber, day, hours, minutes } = returnDate(date!)
+   const latestParticipants = participantsNames?.slice(-3)
 
-   const [user] = useLocalStorage('profile', {})
-
-   const join = Boolean(!participants.includes(user?.user?._id))
-   const ban = Boolean(banned.includes(user?.user?._id))
+   const join = Boolean(!participants?.includes(user?.user?._id!))
+   const ban = Boolean(banned?.includes(user?.user?._id!))
    const isAuthor = Boolean(creator === user?.user?._id)
 
    return (
@@ -59,10 +66,10 @@ const EventCard = ({ event, isAllEvents = false }) => {
             </div>
          </Link>
          <div className={styles.infoContainer}>
-            {Boolean(latestParticipants.length) && (
+            {Boolean(latestParticipants?.length) && (
                <div className={styles.outsideParticipantsContainer}>
                   <div className={styles.insideParticipantsContainer}>
-                     {latestParticipants.map((p, i) => (
+                     {latestParticipants?.map((p, i) => (
                         <div
                            className={styles.participant}
                            key={i}
@@ -72,7 +79,7 @@ const EventCard = ({ event, isAllEvents = false }) => {
                      ))}
                   </div>
                   <div className={styles.participantsNumberContainer}>
-                     <p className={styles.participantsNumber}>{participants.length}</p>
+                     <p className={styles.participantsNumber}>{participants?.length}</p>
                   </div>
                </div>
             )}

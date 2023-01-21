@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import * as api from '../api/index'
 
-type Event = Partial<{
+export type Event = Partial<{
    address: string
    anonymous: boolean
    banned: string[]
