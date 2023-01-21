@@ -1,6 +1,5 @@
-import { useState } from 'react'
+import { FormEvent, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
 
 import Switch from '../../components/Switch/Switch'
 import { COLORS, OPTIONS } from '../../constants'
@@ -8,26 +7,42 @@ import { createEvent } from '../../redux/events'
 import ImageUpload from '../../components/ImageUpload/ImageUpload'
 import styles from './AddEvent.module.scss'
 import Loader from '../../components/Loader/Loader'
+import { useAppDispatch } from '../../hooks/useTypedDispatch'
+import { useAppSelector } from '../../hooks/useTypedSelector'
+import useLocalStorage from '../../hooks/useLocalStorage'
+import { UserProfile } from '../../App'
+
+export type CreateEventFormData = {
+   title: string
+   description: string
+   city: string
+   address: string
+   cathegory: string
+   date: string
+   creator: string
+   anonymous: boolean
+   selectedFile: string
+}
 
 const AddEvent = () => {
-   const [formData, setFormData] = useState({ title: '', description: '', city: '', address: '', cathegory: OPTIONS[0].value, date: '', creator: '', anonymous: true, selectedFile: '' })
-   const [isToggled, setIsToggled] = useState(false)
+   const [formData, setFormData] = useState<CreateEventFormData>({ title: '', description: '', city: '', address: '', cathegory: OPTIONS[0].value, date: '', creator: '', anonymous: true, selectedFile: '' })
+   const [isToggled, setIsToggled] = useState<boolean>(false)
 
-   const dispatch = useDispatch()
-   const { isLoading, error } = useSelector((store) => store.events)
+   const dispatch = useAppDispatch()
+   const { isLoading, error } = useAppSelector((store) => store.events)
 
    const navigate = useNavigate()
 
-   const user = JSON.parse(window.localStorage.getItem('profile'))
+   const [user] = useLocalStorage<UserProfile>('profile', {})
 
-   const handleImage = (image) => {
-      setFormData({ ...formData, selectedFile: image })
+   const handleImage = (image: string) => {
+      setFormData((prevState) => ({ ...prevState, selectedFile: image }))
    }
 
-   const onSubmit = (e) => {
+   const onSubmit = (e: FormEvent) => {
       e.preventDefault()
 
-      if (isToggled) setFormData({ ...formData, anonymous: false })
+      if (isToggled) setFormData((prevState) => ({ ...prevState, anonymous: false }))
 
       dispatch(createEvent({ formData, navigate }))
    }
@@ -63,7 +78,7 @@ const AddEvent = () => {
                onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                className={`addEventTextarea ${error?.emptyFields?.includes('description') && styles.inputError}`}
                id='description'
-               rows='6'
+               rows={6}
             ></textarea>
             <label
                className='addEventLabel'

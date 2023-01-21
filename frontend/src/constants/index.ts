@@ -2,8 +2,17 @@ import { FaDog, FaHandsHelping, FaHospital } from 'react-icons/fa'
 import { BiPackage } from 'react-icons/bi'
 import { GiMoneyStack, GiSlicedBread, GiPartyPopper } from 'react-icons/gi'
 import { MdChildFriendly, MdLocalHospital } from 'react-icons/md'
+import { IconType } from 'react-icons'
 
-export const OPTIONS = [
+export type Option = {
+   value: string
+   text: string
+   imgLink: string
+   icon: IconType
+   description: string
+}
+
+export const OPTIONS: Option[] = [
    { value: 'Pomoc finansowa', text: 'Pomoc finansowa', imgLink: 'https://woiz.p.lodz.pl/arch/wp-content/uploads/2020/07/pomoc-materialna-i-stypendia.jpeg', icon: GiMoneyStack, description: 'W życiu spotykamy ludzi, dla których los był nieprzychylny. Niektórzy mają problemy, z którymi nie potrafią sobie poradzić. Wspomóż finansowo tych, którzy nie mieli tyle szczęścia co ty.' },
    { value: 'Pomoc materialna', text: 'Pomoc materialna', imgLink: 'https://images.squarespace-cdn.com/content/v1/5fc85c0aedf9c235eae18004/1642641112725-QGYNG8YR4ADZYEVM9J9K/Rouba_001+copy.jpg?format=1500w', icon: GiSlicedBread, description: 'Pomoc materialna może usczęśliwić wiele osób i dzieci. Rzeczy, które tobie są niepotrzebne, lecz w dobrym stanie mogą innym się bardzo przydać, rozwiązać podstawowe problemy i dać wiele radości.' },
    { value: 'Pomoc zwierzętom', text: 'Pomoc zwierzętom', imgLink: 'https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2019/10/1200/675/iStock-992637094.jpg?ve=1&tl=1', icon: FaDog, description: 'Zwierzęta również potrzebują naszej pomocy. Wiele z nich jest samotnych lub opuszczonych. Zobacz jak możesz im pomóc, ich los niejednokrotnie leży w twoich rękach.' },
