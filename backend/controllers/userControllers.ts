@@ -1,10 +1,17 @@
+import { RequestHandler } from 'express'
 import jwt from 'jsonwebtoken'
+import { Types } from 'mongoose'
 
 import UserModel from '../models/user.js'
 
-const createToken = (email, _id) => jwt.sign({ email, _id }, process.env.TOKEN_SECRET, { expiresIn: '1h' })
+export type UserToken = {
+   email: string
+   _id: Types.ObjectId
+}
 
-export const login = async (req, res) => {
+const createToken = (email: string, _id: Types.ObjectId) => jwt.sign({ email, _id } as UserToken, process.env.TOKEN_SECRET!, { expiresIn: '1h' })
+
+export const login: RequestHandler = async (req, res) => {
    const { login, password } = req.body
 
    try {
@@ -13,12 +20,12 @@ export const login = async (req, res) => {
       const token = createToken(user.email, user._id)
 
       res.status(200).json({ user, token })
-   } catch (err) {
+   } catch (err: any) {
       res.status(400).json({ err: err.message })
    }
 }
 
-export const signup = async (req, res) => {
+export const signup: RequestHandler = async (req, res) => {
    const { name, email, password } = req.body
 
    try {
@@ -27,7 +34,7 @@ export const signup = async (req, res) => {
       const token = createToken(user.email, user._id)
 
       res.status(200).json({ user, token })
-   } catch (err) {
+   } catch (err: any) {
       res.status(400).json({ err: err.message })
    }
 }

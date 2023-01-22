@@ -1,5 +1,5 @@
-import mongoose from 'mongoose';
-var eventSchema = mongoose.Schema({
+import { model, Schema } from 'mongoose';
+var eventSchema = new Schema({
     title: {
         type: String,
         required: true,
@@ -61,5 +61,5 @@ var eventSchema = mongoose.Schema({
         default: [],
     },
 }, { timestamps: true });
-var EventModel = mongoose.model('Event', eventSchema);
+var EventModel = model('Event', eventSchema);
 export default EventModel;

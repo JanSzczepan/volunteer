@@ -1,6 +1,24 @@
-import mongoose from 'mongoose'
+import { model, Schema } from 'mongoose'
 
-const eventSchema = mongoose.Schema(
+type IEvent = {
+   title: string
+   description: string
+   date: Date
+   creator: string
+   anonymous: boolean
+   cathegory: string
+   address: string
+   city: string
+   selectedFile: string
+   participants: string[]
+   participantsNames: string[]
+   motivations: string[]
+   resignations: string[]
+   banned: string[]
+   comments: string[]
+}
+
+const eventSchema = new Schema<IEvent>(
    {
       title: {
          type: String,
@@ -66,6 +84,6 @@ const eventSchema = mongoose.Schema(
    { timestamps: true }
 )
 
-const EventModel = mongoose.model('Event', eventSchema)
+const EventModel = model<IEvent>('Event', eventSchema)
 
 export default EventModel

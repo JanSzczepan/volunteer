@@ -34,10 +34,10 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import mongoose from 'mongoose';
+import { model, Schema } from 'mongoose';
 import bcrypt from 'bcrypt';
 import validator from 'validator';
-var userSchema = mongoose.Schema({
+var userSchema = new Schema({
     name: {
         type: String,
         required: true,
@@ -84,11 +84,11 @@ userSchema.statics.signup = function (name, email, password) {
                 case 0:
                     if (!name || !email || !password)
                         throw Error('Wszytskie pola muszą być wypełnione');
-                    if (validator.contains(name, ' '))
+                    if (validator.default.contains(name, ' '))
                         throw Error('Nazwa użytkownika nie może zawierać spacji');
-                    if (!validator.isEmail(email))
+                    if (!validator.default.isEmail(email))
                         throw Error('Niepoprawny email');
-                    if (!validator.isStrongPassword(password))
+                    if (!validator.default.isStrongPassword(password))
                         throw Error('Hasło nie jest wystarczająco silne - musi zawierać co najmniej jedną dużą i małą literę, jeden symbol, jedną liczbę oraz mieć co najmniej 8 znaków');
                     return [4 /*yield*/, this.findOne({ name: name })];
                 case 1:
@@ -114,5 +114,5 @@ userSchema.statics.signup = function (name, email, password) {
         });
     });
 };
-var UserModel = mongoose.model('User', userSchema);
+var UserModel = model('User', userSchema);
 export default UserModel;

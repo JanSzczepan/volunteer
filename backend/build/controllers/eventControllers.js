@@ -123,30 +123,31 @@ export var getEvent = function (req, res) { return __awaiter(void 0, void 0, voi
 }); };
 export var getYourEvents = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var today, _id, authorEvents, participantEvents, authorArchivalEvents, participantArchivalEvents, error_4;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
+    var _a;
+    return __generator(this, function (_b) {
+        switch (_b.label) {
             case 0:
                 today = new Date();
-                _a.label = 1;
+                _b.label = 1;
             case 1:
-                _a.trys.push([1, 6, , 7]);
-                _id = req.user._id.toString();
+                _b.trys.push([1, 6, , 7]);
+                _id = (_a = req.user) === null || _a === void 0 ? void 0 : _a._id.toString();
                 return [4 /*yield*/, EventModel.find({ $and: [{ creator: _id }, { date: { $gte: today.toISOString() } }] }).sort({ date: 1 })];
             case 2:
-                authorEvents = _a.sent();
+                authorEvents = _b.sent();
                 return [4 /*yield*/, EventModel.find({ $and: [{ participants: { $in: [_id] } }, { creator: { $ne: _id } }, { date: { $gte: today.toISOString() } }] }).sort({ date: 1 })];
             case 3:
-                participantEvents = _a.sent();
+                participantEvents = _b.sent();
                 return [4 /*yield*/, EventModel.find({ $and: [{ creator: _id }, { date: { $lte: today.toISOString() } }] }).sort({ date: 1 })];
             case 4:
-                authorArchivalEvents = _a.sent();
+                authorArchivalEvents = _b.sent();
                 return [4 /*yield*/, EventModel.find({ $and: [{ participants: { $in: [_id] } }, { creator: { $ne: _id } }, { date: { $lte: today.toISOString() } }] }).sort({ date: 1 })];
             case 5:
-                participantArchivalEvents = _a.sent();
+                participantArchivalEvents = _b.sent();
                 res.status(200).json({ data: { authorEvents: authorEvents, participantEvents: participantEvents, authorArchivalEvents: authorArchivalEvents, participantArchivalEvents: participantArchivalEvents } });
                 return [3 /*break*/, 7];
             case 6:
-                error_4 = _a.sent();
+                error_4 = _b.sent();
                 res.status(404).json({ error: error_4.message });
                 return [3 /*break*/, 7];
             case 7: return [2 /*return*/];
@@ -159,7 +160,7 @@ export var getEventBySearch = function (req, res) { return __awaiter(void 0, voi
         switch (_a.label) {
             case 0:
                 search = req.query.search;
-                searchQuery = search ? new RegExp(search, 'i') : null;
+                searchQuery = search ? new RegExp(search.toString(), 'i') : null;
                 today = new Date();
                 _a.label = 1;
             case 1:
@@ -179,8 +180,9 @@ export var getEventBySearch = function (req, res) { return __awaiter(void 0, voi
 }); };
 export var createEvent = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var _a, title, description, date, cathegory, city, emptyFields, event, newEvent, error_6;
-    return __generator(this, function (_b) {
-        switch (_b.label) {
+    var _b, _c, _d;
+    return __generator(this, function (_e) {
+        switch (_e.label) {
             case 0:
                 _a = req.body, title = _a.title, description = _a.description, date = _a.date, cathegory = _a.cathegory, city = _a.city;
                 emptyFields = [];
@@ -196,17 +198,17 @@ export var createEvent = function (req, res) { return __awaiter(void 0, void 0, 
                     emptyFields.push('city');
                 if (emptyFields.length > 0)
                     return [2 /*return*/, res.status(400).json({ error: { errorMessage: 'Wypełnij wszystkie wymagane pola', emptyFields: emptyFields } })];
-                _b.label = 1;
+                _e.label = 1;
             case 1:
-                _b.trys.push([1, 3, , 4]);
-                event = __assign(__assign({}, req.body), { participants: [req.user._id], participantsNames: [req.user.name], creator: req.user._id });
+                _e.trys.push([1, 3, , 4]);
+                event = __assign(__assign({}, req.body), { participants: [(_b = req.user) === null || _b === void 0 ? void 0 : _b._id], participantsNames: [(_c = req.user) === null || _c === void 0 ? void 0 : _c.name], creator: (_d = req.user) === null || _d === void 0 ? void 0 : _d._id });
                 return [4 /*yield*/, EventModel.create(__assign({}, event))];
             case 2:
-                newEvent = _b.sent();
+                newEvent = _e.sent();
                 res.status(201).json({ data: newEvent });
                 return [3 /*break*/, 4];
             case 3:
-                error_6 = _b.sent();
+                error_6 = _e.sent();
                 res.status(409).json({ error: error_6.message });
                 return [3 /*break*/, 4];
             case 4: return [2 /*return*/];
@@ -215,43 +217,44 @@ export var createEvent = function (req, res) { return __awaiter(void 0, void 0, 
 }); };
 export var joinEvent = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var id, _a, motivation, resignation, event, banned, index, updatedEvent, error_7;
-    return __generator(this, function (_b) {
-        switch (_b.label) {
+    var _b, _c, _d;
+    return __generator(this, function (_e) {
+        switch (_e.label) {
             case 0:
-                _b.trys.push([0, 3, , 4]);
+                _e.trys.push([0, 3, , 4]);
                 id = req.params.id;
                 _a = req.body, motivation = _a.motivation, resignation = _a.resignation;
                 if (!mongoose.isValidObjectId(id))
                     return [2 /*return*/, res.status(404).json({ error: 'Event id is not valid' })];
                 return [4 /*yield*/, EventModel.findById(id)];
             case 1:
-                event = _b.sent();
-                banned = event.banned.findIndex(function (id) { return id === String(req.user._id); }) === -1 ? false : true;
+                event = (_e.sent());
+                banned = event.banned.findIndex(function (id) { var _a; return id === String((_a = req.user) === null || _a === void 0 ? void 0 : _a._id); }) === -1 ? false : true;
                 if (banned)
                     return [2 /*return*/, res.status(404).json({ error: 'You have already resigned from this event' })];
-                index = event.participants.findIndex(function (id) { return id === String(req.user._id); });
+                index = event.participants.findIndex(function (id) { var _a; return id === String((_a = req.user) === null || _a === void 0 ? void 0 : _a._id); });
                 if (index === -1) {
                     if (!motivation)
                         return [2 /*return*/, res.status(404).json({ error: 'Quote your motivation' })];
-                    event.participants.push(req.user._id);
-                    event.participantsNames.push(req.user.name);
+                    event.participants.push((_b = req.user) === null || _b === void 0 ? void 0 : _b._id.toString());
+                    event.participantsNames.push((_c = req.user) === null || _c === void 0 ? void 0 : _c.name);
                     event.motivations.push(motivation);
                 }
                 else {
                     if (!resignation)
                         return [2 /*return*/, res.status(404).json({ error: 'Quote your resignation' })];
-                    event.participants = event.participants.filter(function (id) { return id !== String(req.user._id); });
-                    event.participantsNames = event.participantsNames.filter(function (n) { return n !== String(req.user.name); });
+                    event.participants = event.participants.filter(function (id) { var _a; return id !== String((_a = req.user) === null || _a === void 0 ? void 0 : _a._id); });
+                    event.participantsNames = event.participantsNames.filter(function (n) { var _a; return n !== String((_a = req.user) === null || _a === void 0 ? void 0 : _a.name); });
                     event.resignations.push(resignation);
-                    event.banned.push(req.user._id);
+                    event.banned.push((_d = req.user) === null || _d === void 0 ? void 0 : _d._id.toString());
                 }
                 return [4 /*yield*/, EventModel.findByIdAndUpdate(id, event, { new: true })];
             case 2:
-                updatedEvent = _b.sent();
+                updatedEvent = _e.sent();
                 res.status(200).json(updatedEvent);
                 return [3 /*break*/, 4];
             case 3:
-                error_7 = _b.sent();
+                error_7 = _e.sent();
                 res.status(404).json({ error: error_7.message });
                 return [3 /*break*/, 4];
             case 4: return [2 /*return*/];
